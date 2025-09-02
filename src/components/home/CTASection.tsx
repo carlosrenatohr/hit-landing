@@ -3,7 +3,7 @@ import { Button } from '../ui/Button';
 
 const CTASection: React.FC = () => {
   return (
-    <section className="py-20 bg-secondary dark:bg-secondary">
+    <section className="py-20 bg-secondary dark:bg-secondary-light">
       <div className="container mx-auto px-4 md:px-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-accent-yellow opacity-10 rounded-full"></div>
         <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-48 h-48 bg-primary opacity-10 rounded-full"></div>
