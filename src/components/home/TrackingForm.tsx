@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { Search } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Button } from '../ui/Button';
+import { Search } from 'lucide-preact';
+import { useState } from 'preact/hooks';
 
-const TrackingForm: React.FC = () => {
+export const TrackingForm = () => {
   const [trackingNumber, setTrackingNumber] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     
     if (!trackingNumber.trim()) {
@@ -16,25 +14,12 @@ const TrackingForm: React.FC = () => {
     }
     
     setError('');
-    
-    try {
-      // Here you can integrate with your tracking service
-      const response = await fetch(`/api/track/${trackingNumber}`);
-      if (!response.ok) throw new Error('Tracking failed');
-      
-      window.location.href = `#/track?number=${trackingNumber}`;
-    } catch (err) {
-      setError('No se pudo rastrear el paquete. Inténtalo de nuevo.');
-    }
+    // Direct navigation for now
+    window.location.href = `/track?number=${trackingNumber}`;
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="relative"
-    >
+    <div className="relative">
       <h2 className="text-2xl font-bold text-secondary dark:text-white mb-4">
         Rastrea tu Paquete
       </h2>
@@ -46,33 +31,28 @@ const TrackingForm: React.FC = () => {
           <input
             type="text"
             value={trackingNumber}
-            onChange={(e) => setTrackingNumber(e.target.value)}
+            onInput={(e: any) => setTrackingNumber(e.target.value)}
             placeholder="Ingresa tu número de rastreo"
             className={`pl-12 pr-4 py-4 w-full border-2 ${
               error ? 'border-red-500' : 'border-accent-blue/30 dark:border-gray-600'
-            } rounded-xl bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-accent-blue transition-all duration-300`}
+            } rounded-xl bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-accent-blue transition-all duration-300 shadow-sm`}
           />
         </div>
         {error && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-red-500 text-sm mt-2"
-          >
+          <p className="text-red-500 text-sm mt-2 animate-in fade-in slide-in-from-top-1">
             {error}
-          </motion.p>
+          </p>
         )}
-        <Button 
+        <button 
           type="submit" 
-          variant="accent-blue" 
-          className="w-full mt-4 py-4 text-lg rounded-xl transform hover:scale-105 transition-transform duration-300"
+          className="w-full mt-4 bg-accent-blue text-white py-4 text-lg rounded-xl font-bold transform hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg hover:bg-blue-600"
         >
           Rastrear Paquete
-        </Button>
+        </button>
       </form>
-      <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary rounded-full opacity-10 blur-xl" />
-      <div className="absolute -top-4 -left-4 w-32 h-32 bg-accent-blue rounded-full opacity-10 blur-xl" />
-    </motion.div>
+      <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary rounded-full opacity-10 blur-xl pointer-events-none" />
+      <div className="absolute -top-4 -left-4 w-32 h-32 bg-accent-blue rounded-full opacity-10 blur-xl pointer-events-none" />
+    </div>
   );
 };
 
