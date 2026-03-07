@@ -1,0 +1,10 @@
+---
+import TrackingPortal from '../components/tracking/TrackingPortal';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Rastrear Paquete">
+  <main class="pt-24 pb-20 bg-neutral-bg dark:bg-secondary min-h-[calc(100vh-80px)]">
+    <TrackingPortal client:load />
+  </main>
+</Layout>

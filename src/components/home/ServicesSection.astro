@@ -1,0 +1,63 @@
+---
+const services = [
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.7 5.2c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.7.5-1.2z"/></svg>',
+    title: "Envío Aéreo",
+    description: "Entrega rápida por vía aérea para paquetes urgentes. Llega a Nicaragua en solo 3-5 días hábiles.",
+    linkUrl: "/services/air"
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M2 21c.6.5 1.2 1 2.5 1 1.4 0 2.5-1 3.5-1s2.1 1 3.5 1 2.5-1 3.5-1 2.1 1 3.5 1 2.5-1 3.5-1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.26.44 4.41 1.25 6"/><path d="M9 6c0-2 1.5-3 3-3s3 1 3 3"/><path d="M12 21v-3"/><path d="M5 14v-2"/><path d="M19 14v-2"/></svg>',
+    title: "Envío Marítimo",
+    description: "Opción económica de envío por vía marítima. Perfecto para artículos grandes con tiempos flexibles.",
+    linkUrl: "/services/sea"
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+    title: "Asistencia de Compras",
+    description: "Te ayudamos a comprar en tiendas de Estados Unidos que no envían internacionalmente.",
+    linkUrl: "/services/shopping"
+  },
+  {
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+    title: "Entrega Express",
+    description: "Servicio premium expedito para envíos urgentes con manejo prioritario y tránsito más rápido.",
+    linkUrl: "/services/express"
+  }
+];
+---
+
+<section class="py-20 bg-neutral-bg dark:bg-secondary">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-secondary dark:text-white mb-4">Nuestros Servicios</h2>
+      <p class="text-xl text-neutral-text dark:text-gray-300 max-w-3xl mx-auto">
+        Ofrecemos soluciones integrales de envío para conectarte con tus tiendas favoritas de Estados Unidos.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {services.map((service) => (
+        <div class="bg-white dark:bg-secondary-light p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-primary/10 hover:border-primary/30 group">
+          <div class="bg-neutral-bg dark:bg-secondary p-3 rounded-full inline-block mb-4 group-hover:bg-primary/10 transition-colors">
+            <Fragment set:html={service.icon} />
+          </div>
+          <h3 class="text-xl font-bold text-secondary dark:text-white mb-3">{service.title}</h3>
+          <p class="text-neutral-text dark:text-gray-300 mb-4">{service.description}</p>
+          <a 
+            href={service.linkUrl} 
+            class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center"
+          >
+            Saber más <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <button class="bg-secondary text-white py-3 px-8 rounded-md font-bold hover:bg-secondary-light transition-all shadow-lg">
+        Ver Todos los Servicios
+      </button>
+    </div>
+  </div>
+</section>

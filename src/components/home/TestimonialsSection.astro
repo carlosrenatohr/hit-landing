@@ -1,0 +1,70 @@
+---
+const testimonials = [
+  {
+    quote: "HIT CARGO hizo que fuera muy fácil comprar en tiendas de Estados Unidos. Mis paquetes siempre llegan seguros y a tiempo. ¡Excelente servicio!",
+    author: "María Hernández",
+    role: "Cliente Regular",
+    rating: 5,
+    imageSrc: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    quote: "He estado usando su servicio por más de un año. El sistema de rastreo es excelente y su atención al cliente es muy responsiva.",
+    author: "Carlos Mendoza",
+    role: "Empresario",
+    rating: 4,
+    imageSrc: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    quote: "¡Finalmente puedo comprar en mis tiendas favoritas de Estados Unidos! La opción de envío marítimo me ahorra mucho dinero en compras grandes.",
+    author: "Elena Gutiérrez",
+    role: "Compradora Online",
+    rating: 5,
+    imageSrc: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  }
+];
+---
+
+<section class="py-20 bg-secondary dark:bg-secondary hidden">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Lo que Dicen Nuestros Clientes</h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        No solo tomes nuestra palabra. Esto es lo que nuestros clientes satisfechos dicen sobre nuestros servicios.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <div class="bg-white dark:bg-secondary-light p-6 rounded-lg shadow-lg border border-primary/10">
+          <div class="flex mb-4">
+            {[...Array(5)].map((_, i) => (
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="20" height="20" 
+                viewBox="0 0 24 24" 
+                fill={i < testimonial.rating ? "currentColor" : "none"} 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                class={`h-5 w-5 ${i < testimonial.rating ? 'text-accent-yellow' : 'text-gray-300'}`}
+              ><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            ))}
+          </div>
+          <p class="text-neutral-text dark:text-gray-300 mb-6 italic">"{testimonial.quote}"</p>
+          <div class="flex items-center">
+            <img 
+              src={testimonial.imageSrc} 
+              alt={testimonial.author} 
+              class="h-12 w-12 rounded-full object-cover mr-4 border-2 border-primary/20" 
+            />
+            <div>
+              <h4 class="font-bold text-secondary dark:text-white">{testimonial.author}</h4>
+              <p class="text-sm text-neutral-text dark:text-gray-400">{testimonial.role}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

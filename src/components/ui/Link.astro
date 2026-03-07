@@ -1,0 +1,15 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const { href, class: className = '', ...props } = Astro.props;
+const baseClasses = 'font-medium transition-colors duration-200';
+const combinedClasses = `${baseClasses} ${className}`;
+---
+
+<a href={href} class={combinedClasses} {...props}>
+  <slot />
+</a>

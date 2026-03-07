@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #FF3B3F;
+  --primary-dark: #D92E31;
+  --secondary: #1A1A1A;
+  --secondary-light: #2D2D2D;
+  --accent-yellow: #FFD700;
+  --accent-blue: #00A8E8;
+  --neutral-bg: #F8F9FA;
+  --neutral-text: #4A4A4A;
+}
+
+@layer base {
+  body {
+    @apply text-neutral-text;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .dark body {
+    @apply text-gray-300;
+  }
+}
+
+.bg-grid-pattern {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 30px 30px;
+}

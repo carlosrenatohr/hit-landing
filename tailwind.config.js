@@ -1,31 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{astro,html,js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#FF6B00',
-          dark: '#e55a00'
+          DEFAULT: '#FF3B3F',
+          dark: '#D92E31'
         },
         secondary: {
           DEFAULT: '#111111',
-          light: '#333333'
+          light: '#2D2D2D'
         },
         accent: {
-          yellow: '#FFD400',
-          blue: '#008CFF'
+          yellow: '#FFD700',
+          blue: '#00A8E8'
         },
         neutral: {
-          text: '#4B4B4B',
-          bg: '#F5F5F5'
+          text: '#4A4A4A',
+          bg: '#F8F9FA'
         }
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
-        'slide-down': 'slideDown 0.5s ease-out'
+        'slide-down': 'slideDown 0.5s ease-out',
+        'in': 'fadeIn 0.5s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -43,5 +44,5 @@ export default {
       }
     }
   },
-  plugins: []
+  plugins: [require("tailwindcss-animate")]
 };

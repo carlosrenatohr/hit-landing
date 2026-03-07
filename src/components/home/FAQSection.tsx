@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { ChevronDown, ChevronUp } from 'lucide-preact';
+import { useState } from 'preact/hooks';
 
 interface FAQItemProps {
   question: string;
@@ -9,7 +8,7 @@ interface FAQItemProps {
   toggleOpen: () => void;
 }
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, toggleOpen }) => {
+const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
   return (
     <div className="border-b border-gray-200 dark:border-gray-700 py-5">
       <button
@@ -25,16 +24,16 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, toggleOpen 
           )}
         </span>
       </button>
-      {isOpen && (
-        <div className="mt-4 pr-12">
-          <p className="text-neutral-text dark:text-gray-300">{answer}</p>
-        </div>
-      )}
+      <div 
+        className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <p className="text-neutral-text dark:text-gray-300 pr-12 pb-4">{answer}</p>
+      </div>
     </div>
   );
 };
 
-const FAQSection: React.FC = () => {
+export const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   const faqs = [
@@ -90,9 +89,9 @@ const FAQSection: React.FC = () => {
           <p className="text-neutral-text dark:text-gray-300 mb-6">
             ¿No encuentras lo que buscas? Contacta a nuestro equipo de atención al cliente.
           </p>
-          <Button variant="primary">
+          <button className="bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all shadow-lg">
             Ver Todas las Preguntas
-          </Button>
+          </button>
         </div>
       </div>
     </section>

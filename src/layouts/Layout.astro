@@ -1,0 +1,47 @@
+---
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Hit Cargo - Tu puente desde Estados Unidos a Nicaragua" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | HIT CARGO</title>
+    <script is:inline>
+      // Initialize dark mode
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } else {
+        // Default to dark as per original design
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-neutral-bg dark:bg-secondary transition-colors duration-300 min-h-screen flex flex-col">
+    <Header client:load />
+		<main class="flex-grow">
+			<slot />
+		</main>
+    <Footer />
+	</body>
+</html>

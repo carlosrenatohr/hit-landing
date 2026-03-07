@@ -1,0 +1,84 @@
+---
+import TrackingForm from './TrackingForm';
+---
+
+<section class="min-h-screen relative overflow-hidden bg-gradient-to-b from-neutral-bg to-white dark:from-secondary dark:to-secondary-light">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
+  </div>
+
+  <div class="container mx-auto px-4 md:px-6 pt-32 pb-20 relative">
+    <div class="flex flex-col lg:flex-row items-center">
+      <div class="lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
+        <h1 class="text-5xl md:text-6xl font-bold text-secondary dark:text-white mb-6 leading-tight animate-in fade-in slide-in-from-left duration-700">
+          Tu puente desde Estados Unidos a Nicaragua
+        </h1>
+        <p class="text-xl text-neutral-text dark:text-gray-300 mb-8 animate-in fade-in slide-in-from-left duration-700 delay-200">
+          Conecta con tus tiendas favoritas de Estados Unidos como Amazon, Shein y eBay con nuestro servicio confiable de envíos. Nosotros nos encargamos de todo, desde la recepción hasta la entrega.
+        </p>
+        
+        <div class="bg-white dark:bg-secondary-light rounded-2xl shadow-2xl p-6 mb-10 border border-primary/20 animate-in fade-in slide-in-from-bottom duration-700 delay-300">
+          <TrackingForm client:load />
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-400">
+          <button class="bg-primary text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg">
+            Nuestros Servicios
+          </button>
+          <button class="bg-transparent border-2 border-primary text-primary py-4 px-8 text-lg rounded-md font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105">
+            Contáctanos
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:w-1/2 relative animate-in fade-in slide-in-from-right duration-1000">
+        <div class="relative">
+          <img 
+            src="https://images.pexels.com/photos/7706440/pexels-photo-7706440.jpeg"
+            alt="Servicio de entrega HIT CARGO"
+            class="rounded-2xl shadow-2xl w-full object-cover border-4 border-primary/20 h-[500px] lg:h-[600px]"
+          />
+
+          <div class="absolute -bottom-5 -left-5 bg-white dark:bg-secondary-light p-6 rounded-2xl shadow-xl border border-primary/20 animate-bounce-subtle">
+            <div class="flex items-center space-x-4">
+              <div class="bg-primary p-3 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3m0 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0m7 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0m5-3.5h1l3.5 3.5V17h-2"/><path d="M10 7h4"/><path d="M10 11h4"/></svg>
+              </div>
+              <div>
+                <p class="text-lg font-bold text-secondary dark:text-white">Entrega Rápida</p>
+                <p class="text-neutral-text dark:text-gray-300">Estados Unidos a Nicaragua</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute -top-5 -right-5 bg-white dark:bg-secondary-light p-6 rounded-2xl shadow-xl border border-primary/20 animate-bounce-subtle-delayed">
+            <div class="flex items-center space-x-4">
+              <div class="bg-accent-yellow p-3 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <div>
+                <p class="text-lg font-bold text-secondary dark:text-white">Envío Seguro</p>
+                <p class="text-neutral-text dark:text-gray-300">100% Confiable</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-secondary-light to-transparent"></div>
+</section>
+
+<style>
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-bounce-subtle {
+    animation: bounce-subtle 3s ease-in-out infinite;
+  }
+  .animate-bounce-subtle-delayed {
+    animation: bounce-subtle 3s ease-in-out infinite 1.5s;
+  }
+</style>
