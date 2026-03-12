@@ -6,20 +6,45 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description?: string;
+  image?: string;
+  canonicalURL?: string;
 }
 
-const { title, description = "Hit Cargo - Tu puente desde Estados Unidos a Nicaragua" } = Astro.props;
+const { 
+  title, 
+  description = "Hit Cargo - Tu puente desde Estados Unidos a Nicaragua. Envíos aéreos y marítimos confiables.",
+  image = "/og-image.jpg",
+  canonicalURL = Astro.url.href,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
 		<title>{title} | HIT CARGO</title>
+		<meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
     <script is:inline>
       // Initialize dark mode
       if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
