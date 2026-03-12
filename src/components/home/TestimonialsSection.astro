@@ -1,27 +1,6 @@
 ---
-const testimonials = [
-  {
-    quote: "HIT CARGO hizo que fuera muy fácil comprar en tiendas de Estados Unidos. Mis paquetes siempre llegan seguros y a tiempo. ¡Excelente servicio!",
-    author: "María Hernández",
-    role: "Cliente Regular",
-    rating: 5,
-    imageSrc: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-  },
-  {
-    quote: "He estado usando su servicio por más de un año. El sistema de rastreo es excelente y su atención al cliente es muy responsiva.",
-    author: "Carlos Mendoza",
-    role: "Empresario",
-    rating: 4,
-    imageSrc: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-  },
-  {
-    quote: "¡Finalmente puedo comprar en mis tiendas favoritas de Estados Unidos! La opción de envío marítimo me ahorra mucho dinero en compras grandes.",
-    author: "Elena Gutiérrez",
-    role: "Compradora Online",
-    rating: 5,
-    imageSrc: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-  }
-];
+import { Image } from 'astro:assets';
+import { testimonials } from '../../content/testimonials';
 ---
 
 <section class="py-20 bg-secondary dark:bg-secondary hidden">
@@ -53,9 +32,11 @@ const testimonials = [
           </div>
           <p class="text-neutral-text dark:text-gray-300 mb-6 italic">"{testimonial.quote}"</p>
           <div class="flex items-center">
-            <img 
+            <Image 
               src={testimonial.imageSrc} 
               alt={testimonial.author} 
+              width={48}
+              height={48}
               class="h-12 w-12 rounded-full object-cover mr-4 border-2 border-primary/20" 
             />
             <div>

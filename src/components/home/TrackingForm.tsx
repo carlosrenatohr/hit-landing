@@ -1,19 +1,19 @@
-import { Search } from 'lucide-preact';
-import { useState } from 'preact/hooks';
+import { Search } from "lucide-preact";
+import { useState } from "preact/hooks";
 
 export const TrackingForm = () => {
-  const [trackingNumber, setTrackingNumber] = useState('');
-  const [error, setError] = useState('');
+  const [trackingNumber, setTrackingNumber] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    
+
     if (!trackingNumber.trim()) {
-      setError('Por favor ingresa un número de rastreo');
+      setError("Por favor ingresa un número de rastreo");
       return;
     }
-    
-    setError('');
+
+    setError("");
     // Direct navigation for now
     window.location.href = `/track?number=${trackingNumber}`;
   };
@@ -34,7 +34,9 @@ export const TrackingForm = () => {
             onInput={(e: any) => setTrackingNumber(e.target.value)}
             placeholder="Ingresa tu número de rastreo"
             className={`pl-12 pr-4 py-4 w-full border-2 ${
-              error ? 'border-red-500' : 'border-accent-blue/30 dark:border-gray-600'
+              error
+                ? "border-red-500"
+                : "border-accent-blue/30 dark:border-gray-600"
             } rounded-xl bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-accent-blue transition-all duration-300 shadow-sm`}
           />
         </div>
@@ -43,8 +45,8 @@ export const TrackingForm = () => {
             {error}
           </p>
         )}
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="w-full mt-4 bg-accent-blue text-white py-4 text-lg rounded-xl font-bold transform hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg hover:bg-blue-600"
         >
           Rastrear Paquete
