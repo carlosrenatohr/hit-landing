@@ -13,10 +13,12 @@ interface Props {
 
 const { 
   title, 
-  description = "Hit Cargo - Tu puente desde Estados Unidos a Nicaragua. Envíos aéreos y marítimos confiables.",
-  image = "/og-image.jpg",
+  description = "HIT CARGO: Importaciones de todo el mundo a Nicaragua. Gestión de envíos desde Miami, China y Panamá con logística profesional y entregas nacionales.",
+  image = "/og-image.png",
   canonicalURL = Astro.url.href,
 } = Astro.props;
+
+const fullTitle = `${title} | HIT CARGO Nicaragua`;
 ---
 
 <!doctype html>
@@ -29,7 +31,7 @@ const {
     <JSONLD />
 
     <!-- SEO Meta Tags -->
-		<title>{title} | HIT CARGO</title>
+		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
@@ -39,13 +41,6 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url.href} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
     <script is:inline>
       // Initialize dark mode

@@ -1,5 +1,5 @@
-export const title = "¿Listo para enviar desde Estados Unidos a Nicaragua?";
+export const title = "¿Listo para importar tus compras a Nicaragua?";
 export const description =
-  "Únete a miles de clientes satisfechos que confían en HIT CARGO para sus necesidades de envío. Regístrate hoy y obtén tu dirección personal de envío en Estados Unidos.";
-export const ctaButtonText = "Comenzar";
-export const contactButtonText = "Contactar Ventas";
+  "Cotiza con nosotros hoy mismo y recibe tus productos de cualquier parte del mundo. HIT CARGO te ofrece seguridad, rapidez y atención personalizada en cada envío.";
+export const ctaButtonText = "Cotizar Mi Envío";
+export const contactButtonText = "Solicitar Cotización";
