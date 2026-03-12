@@ -18,14 +18,14 @@ export function validateTrackingNumber(number: string): boolean {
 export function getTrackingMockData(number: string): TrackingData {
   return {
     number: number,
-    status: 'En Tránsito',
-    estimatedDelivery: '25 de Julio, 2024',
+    status: "En Tránsito",
+    estimatedDelivery: "25 de Julio, 2024",
     events: [
       {
-        date: '20 de Julio, 2024 08:30 AM',
-        location: 'Miami, FL',
-        status: 'Paquete recibido en instalación de origen'
-      }
-    ]
+        date: "20 de Julio, 2024 08:30 AM",
+        location: "Miami, FL",
+        status: "Paquete recibido en instalación de origen",
+      },
+    ],
   };
 }

@@ -1,6 +1,7 @@
 ---
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer.astro';
+import JSONLD from '../components/seo/JSONLD.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -12,10 +13,12 @@ interface Props {
 
 const { 
   title, 
-  description = "Hit Cargo - Tu puente desde Estados Unidos a Nicaragua. Envíos aéreos y marítimos confiables.",
-  image = "/og-image.jpg",
+  description = "HIT CARGO: Importaciones de todo el mundo a Nicaragua. Gestión de envíos desde Miami, China y Panamá con logística profesional y entregas nacionales.",
+  image = "/og-image.png",
   canonicalURL = Astro.url.href,
 } = Astro.props;
+
+const fullTitle = `${title} | HIT CARGO Nicaragua`;
 ---
 
 <!doctype html>
@@ -25,9 +28,10 @@ const {
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+    <JSONLD />
 
     <!-- SEO Meta Tags -->
-		<title>{title} | HIT CARGO</title>
+		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
@@ -37,13 +41,6 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url.href} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
     <script is:inline>
       // Initialize dark mode

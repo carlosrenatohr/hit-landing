@@ -1,5 +1,9 @@
 ---
+import { siteConfig } from '@/config/site'
+import { footerContent } from '@/content/footer'
+import { servicesTitle, services } from '@/content/copy'
 const currentYear = new Date().getFullYear();
+
 ---
 
 <footer class="bg-secondary text-white pt-16 pb-8">
@@ -8,66 +12,65 @@ const currentYear = new Date().getFullYear();
       <div>
         <div class="flex items-center mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M7.5 4.27a2 2 0 0 0-2.73 2.73L2.34 9.43a2 2 0 0 0 .15 2.91l4.05 3.39c.39.33.91.52 1.45.52h6.02a2 2 0 0 0 1.45-.52l4.05-3.39a2 2 0 0 0 .15-2.91l-2.43-2.43a2 2 0 0 0-2.73-2.73L9.5 7.73l-2.01-2.01Z"/><path d="M12 13v8"/><path d="M21.16 9.17 19 11.33"/><path d="M2.84 9.17 5 11.33"/><path d="M17 17v4"/><path d="M7 17v4"/></svg>
-          <span class="ml-2 text-2xl font-bold">HIT CARGO</span>
+          <span class="ml-2 text-2xl font-bold">{siteConfig.name}</span>
         </div>
         <p class="mb-6 text-gray-300">
-          Conectando Nicaragua con retailers de Estados Unidos a través de servicios confiables de envío. Tu socio de confianza para envíos internacionales.
+          {siteConfig.description}
         </p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-300 hover:text-primary transition-colors">
+          <a href={siteConfig.social.facebook} target="_blank" class="text-gray-300 hover:text-primary transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="#" class="text-gray-300 hover:text-primary transition-colors">
+          <a href={siteConfig.social.instagram} target="_blank" class="text-gray-300 hover:text-primary transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
           </a>
-          <a href="#" class="text-gray-300 hover:text-primary transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href={siteConfig.social.tiktok} target="_blank" class="text-gray-300 hover:text-primary transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3c.5 2 2 3.5 4 4v3c-1.5 0-3-.5-4-1.5V14a5 5 0 1 1-5-5c.4 0 .7 0 1 .1v3a2 2 0 1 0 2 2V3z"/></svg>
           </a>
         </div>
       </div>
 
       <div>
-        <h3 class="text-xl font-bold mb-6">Enlaces Rápidos</h3>
+        <h3 class="text-xl font-bold mb-6">{footerContent.quickLinksTitle}</h3>
         <ul class="space-y-3">
-          <li><a href="/" class="text-gray-300 hover:text-primary transition-colors">Inicio</a></li>
-          <li><a href="/services" class="text-gray-300 hover:text-primary transition-colors">Servicios</a></li>
-          <li><a href="/track" class="text-gray-300 hover:text-primary transition-colors">Rastrear Paquete</a></li>
-          <li><a href="/faq" class="text-gray-300 hover:text-primary transition-colors">Preguntas Frecuentes</a></li>
-          <li><a href="/contact" class="text-gray-300 hover:text-primary transition-colors">Contáctanos</a></li>
+          {footerContent.quickLinks.map((link) => (
+            <li><a href={link.url} class="text-gray-300 hover:text-primary transition-colors">{link.name}</a></li>
+          ))}
+          <li><a href="/contact" class="text-gray-300 hover:text-primary transition-colors">{footerContent.contactUs}</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 class="text-xl font-bold mb-6">Nuestros Servicios</h3>
+        <h3 class="text-xl font-bold mb-6">{servicesTitle}</h3>
         <ul class="space-y-3">
-          <li><a href="/services/air" class="text-gray-300 hover:text-primary transition-colors">Envío Aéreo</a></li>
-          <li><a href="/services/sea" class="text-gray-300 hover:text-primary transition-colors">Envío Marítimo</a></li>
-          <li><a href="/services/shopping" class="text-gray-300 hover:text-primary transition-colors">Asistencia de Compras</a></li>
-          <li><a href="/services/warehousing" class="text-gray-300 hover:text-primary transition-colors">Almacenamiento</a></li>
-          <li><a href="/services/customs" class="text-gray-300 hover:text-primary transition-colors">Despacho Aduanero</a></li>
+          {services.map((service) => (
+            <li><a href={service.url} class="text-gray-300 hover:text-primary transition-colors">{service.name}</a></li>
+          ))}
+          <!-- <li><a href="/services/warehousing" class="text-gray-300 hover:text-primary transition-colors">Almacenamiento</a></li>
+          <li><a href="/services/customs" class="text-gray-300 hover:text-primary transition-colors">Despacho Aduanero</a></li> -->
         </ul>
       </div>
 
       <div>
-        <h3 class="text-xl font-bold mb-6">Contáctanos</h3>
+        <h3 class="text-xl font-bold mb-6">{footerContent.contactUs}</h3>
         <ul class="space-y-4">
           <li class="flex items-start">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mt-1 mr-3"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>123 Calle Principal, Managua, Nicaragua</span>
+            <span>{siteConfig.address}</span>
           </li>
           <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mr-3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>+505 1234-5678</span>
+            <span>{siteConfig.phone}</span>
           </li>
           <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mr-3"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <span>info@hitcargo.com</span>
+            <span>{siteConfig.email}</span>
           </li>
         </ul>
         <div class="mt-6">
-          <button class="bg-primary text-white py-3 px-6 rounded-md font-bold hover:bg-primary-dark transition-all">
-            Contáctanos
-          </button>
+          <a href="/contact" class="bg-primary text-white py-3 px-6 rounded-md font-bold hover:bg-primary-dark transition-all">
+            {footerContent.contactUs}
+          </a>
         </div>
       </div>
     </div>
@@ -75,12 +78,12 @@ const currentYear = new Date().getFullYear();
     <div class="border-t border-gray-700 mt-12 pt-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="text-gray-400 text-sm">
-          &copy; {currentYear} HIT CARGO. Todos los derechos reservados.
+          &copy; {currentYear} {siteConfig.name}. {footerContent.rightsReserved}.
         </p>
         <div class="mt-4 md:mt-0">
           <ul class="flex space-x-6 text-sm text-gray-400">
-            <li><a href="/privacy" class="hover:text-primary transition-colors">Política de Privacidad</a></li>
-            <li><a href="/terms" class="hover:text-primary transition-colors">Términos de Servicio</a></li>
+            <li><a href={footerContent.privacyPolicy.url} class="hover:text-primary transition-colors">{footerContent.privacyPolicy.title}</a></li>
+            <li><a href={footerContent.termsOfService.url} class="hover:text-primary transition-colors">{footerContent.termsOfService.title}</a></li>
           </ul>
         </div>
       </div>

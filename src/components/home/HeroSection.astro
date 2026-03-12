@@ -1,5 +1,8 @@
 ---
 import TrackingForm from './TrackingForm';
+import { heroContent } from '../../content/home'
+import { Image } from 'astro:assets'
+import heroBackground from '../../assets/images/background.jpeg'
 ---
 
 <section class="min-h-screen relative overflow-hidden bg-gradient-to-b from-neutral-bg to-white dark:from-secondary dark:to-secondary-light">
@@ -11,10 +14,10 @@ import TrackingForm from './TrackingForm';
     <div class="flex flex-col lg:flex-row items-center">
       <div class="lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
         <h1 class="text-5xl md:text-6xl font-bold text-secondary dark:text-white mb-6 leading-tight animate-in fade-in slide-in-from-left duration-700">
-          Tu puente desde Estados Unidos a Nicaragua
+          {heroContent.title}
         </h1>
         <p class="text-xl text-neutral-text dark:text-gray-300 mb-8 animate-in fade-in slide-in-from-left duration-700 delay-200">
-          Conecta con tus tiendas favoritas de Estados Unidos como Amazon, Shein y eBay con nuestro servicio confiable de envíos. Nosotros nos encargamos de todo, desde la recepción hasta la entrega.
+          {heroContent.subtitle}
         </p>
         
         <div class="bg-white dark:bg-secondary-light rounded-2xl shadow-2xl p-6 mb-10 border border-primary/20 animate-in fade-in slide-in-from-bottom duration-700 delay-300">
@@ -23,18 +26,18 @@ import TrackingForm from './TrackingForm';
 
         <div class="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-400">
           <button class="bg-primary text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg">
-            Nuestros Servicios
+            {heroContent.primaryCTA}
           </button>
           <button class="bg-transparent border-2 border-primary text-primary py-4 px-8 text-lg rounded-md font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105">
-            Contáctanos
+            {heroContent.secondaryCTA}
           </button>
         </div>
       </div>
 
       <div class="lg:w-1/2 relative animate-in fade-in slide-in-from-right duration-1000">
         <div class="relative">
-          <img 
-            src="https://images.pexels.com/photos/7706440/pexels-photo-7706440.jpeg"
+          <Image
+            src={heroBackground}
             alt="Servicio de entrega HIT CARGO"
             class="rounded-2xl shadow-2xl w-full object-cover border-4 border-primary/20 h-[500px] lg:h-[600px]"
           />
