@@ -1,6 +1,7 @@
 ---
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer.astro';
+import JSONLD from '../components/seo/JSONLD.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -25,6 +26,7 @@ const {
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+    <JSONLD />
 
     <!-- SEO Meta Tags -->
 		<title>{title} | HIT CARGO</title>

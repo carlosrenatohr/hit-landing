@@ -1,18 +1,18 @@
 export const heroContent = {
-  title: "Compra en Estados Unidos. Nosotros lo llevamos hasta Nicaragua.",
-  subtitle:
-    "Recibe tus compras de Amazon, Shein, AliExpress y cualquier tienda de Estados Unidos en nuestra bodega en Miami y te las enviamos a Nicaragua de forma rápida y segura.",
-  primaryCTA: "Nuestros servicios",
-  secondaryCTA: "Contáctanos",
+    title: "Importaciones Directas de USA a Nicaragua",
+    subtitle:
+        "Tu aliado logístico estratégico para compras en Amazon, Shein y mas. Recibimos en nuestra bodega optimizada en Miami y entregamos en Managua y departamentos con la seguridad que tu carga merece.",
+    primaryCTA: "Ver Servicios",
+    secondaryCTA: "Hablar con un Asesor",
 
-  highlights: [
-    {
-      title: "Entrega rápida",
-      description: "Estados Unidos a Nicaragua",
-    },
-    {
-      title: "Envío seguro",
-      description: "100% confiable",
-    },
-  ],
+    highlights: [
+        {
+            title: "Logística Especializada",
+            description: "Miami - Managua - Todo el país",
+        },
+        {
+            title: "Seguridad Garantizada",
+            description: "Monitoreo constante de tu carga",
+        },
+    ],
 };

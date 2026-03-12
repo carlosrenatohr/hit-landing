@@ -74,6 +74,7 @@ export const FAQSection = () => {
             {text}
           </p>
           <button className="bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all shadow-lg">
+            <a href={moreQs.url}>{moreQs.title}</a>
           </button>
         </div>
       </div>

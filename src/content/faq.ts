@@ -1,31 +1,27 @@
+export const title = "Preguntas Frecuentes";
+export const subtitle = "Todo lo que necesitas saber sobre tus envíos.";
+export const text = "¿Tienes más dudas? Nuestro equipo de soporte está listo para asesorarte personalmente.";
 
-export const title = "Encuentra respuestas a preguntas comunes sobre nuestros servicios de envío.";
-export const subtitle = "Preguntas Frecuentes"
-export const text = "¿No encuentras lo que buscas? Contacta a nuestro equipo de atención al cliente.";
-
-export const moreQs = "Ver Todas las Preguntas"
+export const moreQs = {
+    title: "Ver todos los servicios",
+    url: '/services'
+};
 
 export const faqs = [
     {
-        question: "¿Cómo obtengo una dirección de Estados Unidos para envíos?",
-        answer: "Cuando te registres con HIT CARGO, automáticamente recibirás una dirección de Estados Unidos para usar en tus envíos. Esta dirección estará vinculada a tu cuenta, permitiéndonos identificar y procesar tus paquetes cuando lleguen.",
+        question: "¿Cuáles son los tiempos estimados de tránsito?",
+        answer: "Contamos con dos modalidades de despacho: El envío Aéreo (prioritario) toma de 3 a 5 días hábiles después de salir de nuestra bodega en Miami. El envío Marítimo (económico) toma entre 15 y 20 días, ideal para carga pesada o voluminosa.",
     },
     {
-        question: "¿Cuánto tiempo toma el envío?",
-        answer: "Los tiempos de envío varían según el método elegido. El envío aéreo típicamente toma 5-7 días hábiles desde que recibimos tu paquete, mientras que el envío marítimo puede tomar 20-25 días hábiles pero es más económico para artículos grandes.",
+        question: "¿Cómo se calculan los costos de importación?",
+        answer: "Nuestras tarifas son competitivas y transparentes. Para envíos aéreos cobramos por libra física (peso real). Para marítimos, el costo se basa en el volumen. No hay cargos ocultos; te asesoramos para que elijas la opción más rentable según tu compra.",
     },
     {
-        question: "¿Cuánto cuesta el envío?",
-        answer:
-            "Los costos de envío dependen del peso, dimensiones y método de envío. Ofrecemos tarifas competitivas con envío aéreo por libra y envío marítimo a tarifas más bajas para artículos voluminosos. No dejes de preguntar por las promociones de temporada.",
+        question: "¿Mi carga está asegurada?",
+        answer: "Sí, en HIT CARGO priorizamos la integridad de tu inversión. Contamos con protocolos de seguridad en bodega y manejo cuidadoso durante el tránsito internacional para garantizar que tus productos lleguen en perfectas condiciones.",
     },
     {
-        question: "¿Puedo rastrear mi paquete?",
-        answer:
-            "Sí, todos los envíos incluyen rastreo gratuito. Una vez que tu paquete sea procesado en nuestra bodega, recibirás información de rastreo por correo electrónico. También puedes iniciar sesión en tu cuenta en nuestro sitio web para monitorear el viaje de tu paquete en tiempo real.",
-    },
-    {
-        question: "¿Qué artículos están prohibidos para envío?",
-        answer: "Los artículos prohibidos incluyen armas de fuego, liquidos inflamables, telescopios, spray pimienta, drones, o materiales inflamables, sustancias ilegales. Por favor revisa nuestra lista completa de artículos prohibidos antes de comprar para asegurar el cumplimiento.",
+        question: "¿Realizan entregas en los departamentos de Nicaragua?",
+        answer: "Correcto. Tenemos cobertura nacional. Entregamos directamente en nuestras oficinas en Managua y coordinamos envíos seguros a cualquier departamento del país a través de nuestros aliados logísticos locales.",
     },
 ];
