@@ -42,19 +42,8 @@ const fullTitle = `${title} | HIT CARGO Nicaragua`;
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
 
-    <script is:inline>
-      // Initialize dark mode
-      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-        if (localStorage.getItem('theme') === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      } else {
-        // Default to dark as per original design
-        document.documentElement.classList.add('dark');
-      }
-    </script>
+    <!-- Dark mode initialization script (must load before body renders) -->
+    <script is:inline src="/scripts/dark-mode-init.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
