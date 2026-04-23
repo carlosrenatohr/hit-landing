@@ -1,9 +1,6 @@
-# Forzar HTTPS
-http://hit-cargo.com/* https://hit-cargo.com/:splat 301!
-http://www.hit-cargo.com/* https://www.hit-cargo.com/:splat 301!
+# Cloudflare Workers/Pages redirects
+# HTTPS is enforced automatically by Cloudflare
+# Only relative URLs are allowed for Workers
 
-# Redirect www a non-www (o viceversa, según prefieras)
-https://www.hit-cargo.com/* https://hit-cargo.com/:splat 301!
-
-# SPA fallback (si necesitas en el futuro)
-# /* /index.html 200
+# Redirect www to non-www (if needed, configure at DNS level)
+# For static sites, Cloudflare handles this automatically
