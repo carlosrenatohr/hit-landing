@@ -1,0 +1,9 @@
+# Forzar HTTPS
+http://hit-cargo.com/* https://hit-cargo.com/:splat 301!
+http://www.hit-cargo.com/* https://www.hit-cargo.com/:splat 301!
+
+# Redirect www a non-www (o viceversa, según prefieras)
+https://www.hit-cargo.com/* https://hit-cargo.com/:splat 301!
+
+# SPA fallback (si necesitas en el futuro)
+# /* /index.html 200
