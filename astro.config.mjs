@@ -11,7 +11,7 @@ export default defineConfig({
     csp: {
       scriptDirective: {
         hashes: ['sha256-0dBUwkzfoB1M/jvkeTON0OiNWCK33H/pUhgagkI0mo4='],
-        resources: ["'self'", 'https://www.googletagmanager.com'],
+        resources: ["'self'", 'https://www.googletagmanager.com', 'https://static.cloudflareinsights.com'],
       },
       styleDirective: {
         resources: ["'self'", 'https://fonts.googleapis.com'],
