@@ -34,9 +34,3 @@ pnpm-debug.log*
 
 # Cloudflare Wrangler local state
 .wrangler/
-
-# Plan drafts — keep only the master plan, README, and claude.md
-docs/plans/*
-!docs/plans/MASTER_PLAN*.md
-!docs/plans/README.md
-!docs/plans/claude.md
