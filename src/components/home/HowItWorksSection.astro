@@ -19,7 +19,7 @@ import { title, description, steps } from '../../content/howItWorks'
                <Fragment set:html={step.icon} />
             </div>
             {index < steps.length - 1 && (
-              <div class="absolute top-1/2 left-1/2 w-full h-0.5 bg-primary opacity-30 hidden md:block" style="transform: translate(0, -50%); width: 100%;"></div>
+              <div class="absolute top-1/2 left-1/2 w-full h-0.5 bg-primary opacity-30 hidden md:block -translate-y-1/2"></div>
             )}
           </div>
           <div class="mt-6 text-center md:text-left">
