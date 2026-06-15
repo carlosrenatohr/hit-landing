@@ -146,13 +146,16 @@ Algunas decisiones del negocio aparecen disfrazadas como decisiones de UX. Listo
 
 ## Estado actual
 
+> Verificado contra el código en `docs/operations/audit-2026-06.md`. Fuente de verdad operativa: `docs/backlog.md`.
+
 - ✅ Migración React SPA → Astro completada (ver `docs/history/migration-plan.md`).
-- ✅ Tracking básico vía Preact.
+- ✅ UI de tracking vía Preact (datos mock; sin API real todavía).
 - ✅ SEO base, JSON-LD de Local Business, sitemap automático.
 - ✅ Dark mode persistente.
 - ✅ Headers de seguridad (CSP, HSTS, X-Frame, etc.) — ver `docs/operations/security-deployment-guide.md`.
-- ✅ Google Tag Manager integrado (mayo 2026).
-- 🚧 Tracking conectado a la API real (`hit-ever2`) — en progreso.
+- ✅ Google Tag Manager — container instalado (`GTM-K55VC9JZ`, mayo 2026). Eventos de conversión aún sin instrumentar (cero `dataLayer.push`).
+- 🔴 Tracking conectado a la API real (`hit-ever2`) — **stub**, no iniciado. `TrackingPortal.tsx` renderiza datos hardcodeados.
+- 🔴 Harness de entrega (CI, gates, tests) — ausente. Ver `docs/operations/delivery-harness.md`.
 - 📋 Portal de clientes con auth, dashboard admin, sistema de notificaciones — roadmap a 6-18 meses, ver plan maestro.
 
 ## Performance que queremos defender
@@ -185,6 +188,11 @@ Node version:     20.x
 - [Image Plan](docs/business/image-plan.md) — banco visual y dirección de fotografía
 - [Plan Scraper Everest](docs/business/everest-scraper-plan.md) — integración con hit-ever2
 
+**Estado y proceso**
+- [Backlog y mapa de progreso](docs/backlog.md) — fuente de verdad operativa
+- [Auditoría junio 2026](docs/operations/audit-2026-06.md) — brechas vs objetivos
+- [Delivery Harness](docs/operations/delivery-harness.md) — gates pre/durante/post deploy
+
 **Operaciones**
 - [Security Deployment Guide](docs/operations/security-deployment-guide.md)
 - [CI/CD Flow](docs/operations/ci-cd-flow.md)
@@ -196,6 +204,7 @@ Node version:     20.x
 
 **Equipo**
 - [GitFlow Tutorial](docs/guides/gitflow-tutorial.md)
+- [Estilo de trabajo con agentes IA](docs/guides/ai-agent-workflow.md)
 
 **Histórico**
 - [CHANGELOG](CHANGELOG.md)

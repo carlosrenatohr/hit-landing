@@ -34,3 +34,9 @@ pnpm-debug.log*
 
 # Cloudflare Wrangler local state
 .wrangler/
+
+# Artefactos de trabajo del playbook de feature (estado local)
+.feature/
+
+# Local agent config (not shared)
+.claude/
