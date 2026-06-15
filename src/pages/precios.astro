@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config/site';
+
+const wa = siteConfig.social.whatsapp;
+
+// NOTE (Renato/Abi): do not publish specific rates until confirmed with the team.
+// When real numbers exist (e.g. air per-pound, sea per-ft³), add them here.
+// Never invent prices: for now the page explains the model and points to a WhatsApp quote.
+---
+
+<Layout
+  title="Precios"
+  description="Cómo cobramos tus importaciones a Nicaragua: envío aéreo por libra, marítimo por volumen y entrega nacional incluida. Pedí tu cotización por WhatsApp."
+>
+  <section class="pt-32 pb-16 bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Precios</h1>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Cobramos de forma simple y transparente. Te ayudamos a estimar el costo antes de que compres.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-neutral-bg dark:bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10">
+          <h2 class="text-xl font-bold text-secondary dark:text-white mb-3">Envío Aéreo</h2>
+          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por libra</strong>. Ideal para compras que necesitás rápido.</p>
+          <p class="text-neutral-text dark:text-gray-300">Te damos el estimado según el peso antes de comprar.</p>
+        </div>
+        <div class="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10">
+          <h2 class="text-xl font-bold text-secondary dark:text-white mb-3">Envío Marítimo</h2>
+          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por volumen</strong>. Conviene para carga pesada o voluminosa.</p>
+          <p class="text-neutral-text dark:text-gray-300">Pensado para inventarios y pedidos grandes.</p>
+        </div>
+      </div>
+
+      <ul class="space-y-3 mb-12">
+        <li class="flex items-start">
+          <span class="text-primary font-bold mr-3">✓</span>
+          <span class="text-neutral-text dark:text-gray-300"><strong>Entrega nacional gratis:</strong> está incluida en el flete, no es un costo extra.</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-primary font-bold mr-3">✓</span>
+          <span class="text-neutral-text dark:text-gray-300"><strong>Asesoría antes de comprar:</strong> validamos tus links y te damos tips de ahorro.</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-primary font-bold mr-3">✓</span>
+          <span class="text-neutral-text dark:text-gray-300"><strong>Empresas (B2B):</strong> manejamos líneas de crédito según volumen. Consultá los términos con nuestro equipo.</span>
+        </li>
+      </ul>
+
+      <div class="bg-secondary-light rounded-lg p-8 text-center">
+        <p class="text-lg text-gray-200 mb-6">
+          El costo final depende del peso, el volumen y el origen de tu compra. Escribinos y te damos una cotización clara.
+        </p>
+        <a href={wa} target="_blank" rel="noopener" class="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
+          Pedí tu cotización por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

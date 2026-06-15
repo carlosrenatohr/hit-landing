@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config/site';
+
+// NOTE (team): general draft Terms of Service. Needs legal review before it is considered
+// final. Adjust to the real operation and to Nicaraguan law.
+const updated = "junio 2026";
+---
+
+<Layout
+  title="Términos de Servicio"
+  description="Términos de servicio de HIT CARGO Nicaragua para importaciones desde USA, China y Panamá."
+>
+  <section class="pt-32 pb-12 bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Términos de Servicio</h1>
+      <p class="text-gray-400">Última actualización: {updated}</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-neutral-bg dark:bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 max-w-3xl space-y-8 text-neutral-text dark:text-gray-300">
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">1. Quiénes somos</h2>
+        <p>HIT CARGO es una empresa de logística internacional con sede en Nicaragua que actúa como intermediario (freight forwarder). No somos una tienda: no vendemos producto propio ni manejamos inventario. Facilitamos la importación de tus compras desde el exterior hasta Nicaragua.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">2. Cómo funciona el servicio</h2>
+        <p>Comprás en la tienda de tu preferencia y enviás tu mercancía a la dirección de casillero en Miami que te asignamos. Nosotros la traemos a Nicaragua —por vía aérea o marítima—, gestionamos la nacionalización y la aduana, y te la entregamos a domicilio. El flujo es siempre del cliente hacia Miami y de Miami hacia Nicaragua.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">3. Precios y pagos</h2>
+        <p>El envío aéreo se cobra por peso y el marítimo por volumen. La entrega nacional a domicilio está incluida en el flete. El costo final depende del peso, el volumen y el origen de la compra; te damos una cotización antes de proceder.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">4. Tiempos y disponibilidad</h2>
+        <p>Los tiempos de tránsito son estimados y pueden variar por factores fuera de nuestro control (aduana, clima, transportistas). No se trabaja los domingos.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">5. Mercancía no permitida</h2>
+        <p>No transportamos artículos prohibidos o restringidos por la ley o por los transportistas (entre otros: sustancias peligrosas, ilegales o perecederos no autorizados). El cliente es responsable de la veracidad de la descripción y del valor declarado de su mercancía.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">6. Responsabilidad</h2>
+        <p>Hacemos nuestro mejor esfuerzo para que tu mercancía llegue en buen estado y a tiempo. Nuestra responsabilidad se limita a los términos acordados para cada envío. Recomendamos consultar opciones de seguro para mercancía de alto valor.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">7. Empresas (B2B)</h2>
+        <p>Ofrecemos condiciones especiales y líneas de crédito para clientes empresariales según el volumen. Los términos se acuerdan de forma individual; consultá con nuestro equipo.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">8. Cambios y contacto</h2>
+        <p>Podemos actualizar estos términos. Para cualquier consulta escribinos a {siteConfig.email} o por WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

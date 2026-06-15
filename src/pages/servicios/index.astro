@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { servicePages } from '../../content/servicePages';
+import { siteConfig } from '../../config/site';
+
+const wa = siteConfig.social.whatsapp;
+---
+
+<Layout
+  title="Servicios"
+  description="Servicios de importación a Nicaragua: envío aéreo, envío marítimo y consolidación desde USA, China y Panamá, con casillero en Miami y entrega a domicilio."
+>
+  <section class="pt-32 pb-16 bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Nuestros Servicios</h1>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Importá desde USA, China y Panamá a Nicaragua. Elegí la vía que mejor se adapta a tu compra.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-neutral-bg dark:bg-secondary">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {servicePages.map((service) => (
+          <a
+            href={`/servicios/${service.slug}`}
+            class="block bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10 hover:border-primary/40 transition-all"
+          >
+            <h2 class="text-xl font-bold text-secondary dark:text-white mb-3">{service.nav}</h2>
+            <p class="text-neutral-text dark:text-gray-300 mb-4">{service.hero}</p>
+            <span class="text-primary font-medium">Ver más →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center mt-16">
+        <p class="text-lg text-neutral-text dark:text-gray-300 mb-6">
+          ¿No estás seguro de cuál te conviene? Te asesoramos sin compromiso.
+        </p>
+        <a href={wa} target="_blank" rel="noopener" class="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -52,22 +52,22 @@ export const Header = () => {
               <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-secondary shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right border border-gray-100 dark:border-gray-800">
                 <div className="py-2 px-4">
                   <a
-                    href="/services/air"
+                    href="/servicios/aereo"
                     className="block py-2 text-neutral-text dark:text-gray-300 hover:text-primary"
                   >
                     Envío Aéreo
                   </a>
                   <a
-                    href="/services/sea"
+                    href="/servicios/maritimo"
                     className="block py-2 text-neutral-text dark:text-gray-300 hover:text-primary"
                   >
                     Envío Marítimo
                   </a>
                   <a
-                    href="/services/shopping"
+                    href="/servicios/consolidacion"
                     className="block py-2 text-neutral-text dark:text-gray-300 hover:text-primary"
                   >
-                    Asistencia de Compras
+                    Consolidación
                   </a>
                 </div>
               </div>
@@ -79,13 +79,13 @@ export const Header = () => {
               Rastrear Paquete
             </a>
             <a
-              href="/faq"
+              href="/#faq"
               className="text-secondary dark:text-white hover:text-primary transition-colors font-medium"
             >
               Preguntas Frecuentes
             </a>
             <a
-              href="/contact"
+              href="/contacto"
               className="text-secondary dark:text-white hover:text-primary transition-colors font-medium"
             >
               Contacto
@@ -131,25 +131,25 @@ export const Header = () => {
               </h3>
               <div className="pl-4 space-y-2">
                 <a
-                  href="/services/air"
+                  href="/servicios/aereo"
                   className="block py-1 text-neutral-text dark:text-gray-300 hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Envío Aéreo
                 </a>
                 <a
-                  href="/services/sea"
+                  href="/servicios/maritimo"
                   className="block py-1 text-neutral-text dark:text-gray-300 hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Envío Marítimo
                 </a>
                 <a
-                  href="/services/shopping"
+                  href="/servicios/consolidacion"
                   className="block py-1 text-neutral-text dark:text-gray-300 hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Asistencia de Compras
+                  Consolidación
                 </a>
               </div>
             </div>
@@ -161,14 +161,14 @@ export const Header = () => {
               Rastrear Paquete
             </a>
             <a
-              href="/faq"
+              href="/#faq"
               className="block py-2 text-secondary dark:text-white hover:text-primary font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Preguntas Frecuentes
             </a>
             <a
-              href="/contact"
+              href="/contacto"
               className="block py-2 text-secondary dark:text-white hover:text-primary font-medium"
               onClick={() => setIsMenuOpen(false)}
             >

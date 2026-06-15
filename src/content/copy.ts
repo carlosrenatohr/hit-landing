@@ -4,14 +4,18 @@ export const servicesTitle = "Nuestros Servicios";
 export const services = [
   {
     name: "Envío Aéreo",
-    url: "/services/air",
+    url: "/servicios/aereo",
   },
   {
     name: "Envío Marítimo",
-    url: "/services/sea",
+    url: "/servicios/maritimo",
   },
   {
-    name: "Asistencia de Compras",
-    url: "/services/shopping",
+    name: "Consolidación",
+    url: "/servicios/consolidacion",
+  },
+  {
+    name: "Precios",
+    url: "/precios",
   },
 ];
