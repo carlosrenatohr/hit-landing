@@ -4,15 +4,16 @@ import FAQSection from '../components/home/FAQSection';
 import HeroSection from '../components/home/HeroSection.astro';
 import HowItWorksSection from '../components/home/HowItWorksSection.astro';
 import ServicesSection from '../components/home/ServicesSection.astro';
-import TestimonialsSection from '../components/home/TestimonialsSection.astro';
 import Layout from '../layouts/Layout.astro';
+import { seo } from '../config/seo';
 ---
 
-<Layout title="Inicio">
+<Layout title={seo.title} description={seo.description} keywords={seo.keywords}>
   <HeroSection />
   <ServicesSection />
   <HowItWorksSection />
-  <TestimonialsSection />
-  <FAQSection client:visible />
+  <div id="faq">
+    <FAQSection client:visible />
+  </div>
   <CTASection />
 </Layout>

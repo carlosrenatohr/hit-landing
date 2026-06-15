@@ -2,6 +2,7 @@
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer.astro';
 import JSONLD from '../components/seo/JSONLD.astro';
+import { siteMeta } from '../content/meta';
 import '../styles/global.css';
 
 interface Props {
@@ -9,16 +10,18 @@ interface Props {
 	description?: string;
   image?: string;
   canonicalURL?: string;
+  keywords?: string[];
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "HIT CARGO: Importaciones de todo el mundo a Nicaragua. Gestión de envíos desde Miami, China y Panamá con logística profesional y entregas nacionales.",
-  image = "/og-image.png",
+  image = siteMeta.ogImage,
   canonicalURL = Astro.url.href,
+  keywords,
 } = Astro.props;
 
-const fullTitle = `${title} | HIT CARGO Nicaragua`;
+const fullTitle = `${title} | ${siteMeta.siteName}`;
 ---
 
 <!doctype html>
@@ -39,6 +42,7 @@ const fullTitle = `${title} | HIT CARGO Nicaragua`;
     <!-- SEO Meta Tags -->
 		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
+    {keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
@@ -47,6 +51,15 @@ const fullTitle = `${title} | HIT CARGO Nicaragua`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:site_name" content={siteMeta.siteName} />
+    <meta property="og:locale" content="es_NI" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hit__cargo" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
     <!-- Dark mode initialization script (must load before body renders) -->
     <script is:inline src="/scripts/dark-mode-init.js"></script>
