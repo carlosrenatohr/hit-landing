@@ -1,31 +1,12 @@
-export interface TrackingEvent {
-  date: string;
-  location: string;
-  status: string;
+// Validates/normalizes the number the customer enters to track a shipment.
+// Accepts the waybill number (almacén id, e.g. "926791") or the carrier tracking (e.g. "1Z...").
+// Must match the worker's validation (hit-ever2): [\w-]+, max 64.
+
+export function normalizeQuery(value: string): string {
+  return value.trim().toUpperCase();
 }
 
-export interface TrackingData {
-  number: string;
-  status: string;
-  estimatedDelivery: string;
-  events: TrackingEvent[];
-}
-
-export function validateTrackingNumber(number: string): boolean {
-  return /^HIT\d{8}-\d{3}$/.test(number.trim());
-}
-
-export function getTrackingMockData(number: string): TrackingData {
-  return {
-    number: number,
-    status: "En Tránsito",
-    estimatedDelivery: "25 de Julio, 2024",
-    events: [
-      {
-        date: "20 de Julio, 2024 08:30 AM",
-        location: "Miami, FL",
-        status: "Paquete recibido en instalación de origen",
-      },
-    ],
-  };
+export function isValidQuery(value: string): boolean {
+  const v = value.trim();
+  return v.length > 0 && v.length <= 64 && /^[\w-]+$/.test(v);
 }
