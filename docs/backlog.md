@@ -1,7 +1,7 @@
 # Backlog y mapa de progreso
 
 > Fuente de verdad operativa, versionada en git. Ventana de 2 semanas, alineada al [plan maestro 2024-2026](business/master-plan-2024-2026.md) (el *qué/por qué* estratégico) y al [delivery-harness](operations/delivery-harness.md) (el *cómo* entregar).
-> Última actualización: **14 de junio de 2026**. Mantener esta fecha al editar.
+> Última actualización: **16 de junio de 2026**. Mantener esta fecha al editar.
 
 ## Cómo se usa
 
@@ -11,9 +11,9 @@
 - Se revisa en la reunión quincenal. Lo que sale de la ventana de 2 semanas vuelve a `Backlog`.
 - Cada tarea de código cierra solo cuando pasa el harness (gate verde), no cuando "parece hecho".
 
-## Estado actual verificado (2026-06-14)
+## Estado actual verificado (2026-06-16)
 
-Verificado contra el código, no contra lo que dice la doc.
+Verificado contra el código y contra el worker en vivo, no contra lo que dice la doc.
 
 | Capacidad | Estado real | Nota |
 |---|---|---|
@@ -24,15 +24,15 @@ Verificado contra el código, no contra lo que dice la doc.
 | GTM container instalado | ✅ Hecho | `GTM-K55VC9JZ`, pinneado por hash |
 | GTM — eventos de conversión | ⚠️ **No iniciado** | Cero `dataLayer.push` en `src/`. Pageviews sí, eventos no. |
 | Tracking — UI | ✅ Hecho | `TrackingPortal.tsx` funcional |
-| Tracking — integración API real (`hit-ever2`) | 🔴 **Stub** | Datos hardcodeados, sin `fetch`, sin env vars. La doc lo sobreestima. |
-| CI / gates de entrega | 🔴 **Ausente** | Ver [harness](operations/delivery-harness.md), nivel L0 |
+| Tracking — integración API real (`hit-ever2`) | ✅ Hecho | `fetch` real a `/track/:guia` + `PUBLIC_API_URL`, estados loading/ok/notfound/error. Worker en prod con datos reales (verificado e2e). Falta fijar `PUBLIC_API_URL` en Cloudflare Pages. |
+| CI / gates de entrega | ⚠️ **Parcial** | `ci.yml` corre `pnpm check` en PR (ambos repos). Falta: protección de rama y `typecheck`+`lint` en el gate. Nivel ~L1. |
 | Backlog vivo | ✅ Hecho | Este archivo |
 
 ## En progreso
 
 | Tarea | Owner | Rama | Estado | Bloqueante |
 |---|---|---|---|---|
-| Reorg de docs + harness + auditoría | Renato | `feat/gtm-tracking` | En revisión | — |
+| Páginas MVP + conectar tracking al worker + harness | Renato | `feat/mvp-pages-tracker` | En revisión | Sin mergear a `master`: falta abrir PR + protección de rama |
 | Plan de marketing (versionar y reubicar) | Abi | `feat/gtm-tracking` | En progreso | `MARKETING_LAUNCH_PLAN.md` untracked, mover a `docs/marketing/` |
 
 ## Pendiente priorizado
@@ -41,14 +41,14 @@ Mapeado a las fases del plan maestro. Prioridad hereda de la [auditoría](operat
 
 ### P0 — fundación (cierra brechas de auditoría #1, #2, #4)
 
-- [ ] **Levantar harness L1**: scripts `typecheck`/`lint`/`test`/`check` + workflow `ci.yml` + protección de rama en `master`. Un solo PR. (Renato) → harness F0–F3
-- [ ] **Corregir doc de estado**: CLAUDE.md dice tracking "en progreso"; es stub. Alinear con realidad. (Renato) → trivial
-- [ ] **`.env.example`**: documentar `PUBLIC_API_URL` y variables de tracking aunque aún no se usen. (Renato) → harness F0
+- [~] **Harness L1 (parcial)**: `ci.yml` + `pnpm check` ya existen en ambos repos. **Falta**: añadir `typecheck`+`lint` al gate (`check` hoy solo corre tests+build) y **protección de rama** en `master`/`main`. (Renato) → harness F0–F3
+- [x] **Corregir doc de estado**: hecho (corte 2026-06-16) — CLAUDE.md/backlog/README de ever2 alineados a que tracking está conectado, no stub. (Renato)
+- [x] **`.env.example`**: hecho — documenta `PUBLIC_API_URL` (worker). (Renato)
 
 ### P1 — medir y conectar (Fase 1–2 del plan maestro)
 
 - [ ] **Eventos GTM de conversión**: `dataLayer.push` en submit de formulario, click a WhatsApp, búsqueda de tracking. Sin esto el objetivo 1 no es medible. (Renato/Abi)
-- [ ] **Integración tracking → `hit-ever2`**: reemplazar mock por `fetch` real, cablear env vars, manejar error/loading. (Renato) → Fase 4 plan maestro
+- [x] **Integración tracking → `hit-ever2`**: hecho — `fetch` real, env vars (`PUBLIC_API_URL`), estados error/loading/notfound. **Pendiente operativo**: fijar `PUBLIC_API_URL` en Cloudflare Pages (prod) para que `/track` no muestre *coming-soon*. (Renato) → Fase 4 plan maestro
 - [ ] **Smoke test post-deploy**: script que valide prod 200 + headers + JSON-LD tras el deploy. (Renato) → harness F5
 - [ ] **Subir cobertura de tests**: empezar por utils y lógica de tracking; umbral en CI. (Renato) → harness L2
 

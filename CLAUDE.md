@@ -149,12 +149,12 @@ Algunas decisiones del negocio aparecen disfrazadas como decisiones de UX. Listo
 > Verificado contra el código en `docs/operations/audit-2026-06.md`. Fuente de verdad operativa: `docs/backlog.md`.
 
 - ✅ Migración React SPA → Astro completada (ver `docs/history/migration-plan.md`).
-- ✅ UI de tracking vía Preact (datos mock; sin API real todavía).
+- ✅ UI de tracking vía Preact, **conectada a la API real** (`hit-ever2`) vía `PUBLIC_API_URL`; fallback honesto *coming-soon* si la variable no está.
 - ✅ SEO base, JSON-LD de Local Business, sitemap automático.
 - ✅ Dark mode persistente.
 - ✅ Headers de seguridad (CSP, HSTS, X-Frame, etc.) — ver `docs/operations/security-deployment-guide.md`.
 - ✅ Google Tag Manager — container instalado (`GTM-K55VC9JZ`, mayo 2026). Eventos de conversión aún sin instrumentar (cero `dataLayer.push`).
-- 🔴 Tracking conectado a la API real (`hit-ever2`) — **stub**, no iniciado. `TrackingPortal.tsx` renderiza datos hardcodeados.
+- ✅ Tracking conectado a la API real (`hit-ever2`). `TrackingPortal.tsx` hace `fetch` a `/track/:guia` con estados loading/ok/notfound/error; el worker está en producción sirviendo datos reales (verificado e2e). Falta: instrumentar el evento GTM de la búsqueda y fijar `PUBLIC_API_URL` en Cloudflare Pages.
 - 🔴 Harness de entrega (CI, gates, tests) — ausente. Ver `docs/operations/delivery-harness.md`.
 - 📋 Portal de clientes con auth, dashboard admin, sistema de notificaciones — roadmap a 6-18 meses, ver plan maestro.
 
