@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, Package, X } from "lucide-preact";
+import { ChevronDown, Menu, X } from "lucide-preact";
 import { useEffect, useState } from "preact/hooks";
 
 export const Header = () => {
@@ -30,7 +30,7 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <Package className="h-8 w-8 text-primary" />
+              <img src="/brand/logo-mark.png" alt="HIT Cargo" className="h-8 w-8 object-contain" />
               <span className="ml-2 text-2xl font-bold text-secondary dark:text-white">
                 HIT CARGO
               </span>
