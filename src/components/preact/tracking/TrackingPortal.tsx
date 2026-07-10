@@ -49,11 +49,17 @@ function dayKey(iso: string): string {
   const d = new Date(iso);
   return isNaN(+d) ? iso : d.toISOString().slice(0, 10);
 }
+function eventTime(iso: string): number {
+  const t = Date.parse(iso);
+  return isNaN(t) ? -Infinity : t;
+}
 // Reverse-chronological day groups (latest first, Amazon-style) for the vertical journey.
+// Sort defensively by timestamp so the order is correct regardless of how the worker returns
+// events; unparseable dates sink to the bottom.
 function buildTimeline(events: PublicEvent[]): { key: string; label: string; items: PublicEvent[] }[] {
   const groups: { key: string; label: string; items: PublicEvent[] }[] = [];
   const byKey = new Map<string, { key: string; label: string; items: PublicEvent[] }>();
-  for (const ev of [...events].reverse()) {
+  for (const ev of [...events].sort((a, b) => eventTime(b.date) - eventTime(a.date))) {
     const k = dayKey(ev.date);
     let g = byKey.get(k);
     if (!g) {
@@ -275,14 +281,14 @@ export const TrackingPortal = () => {
                     <p className="text-sm text-gray-400">Todavía no hay eventos registrados para esta guía.</p>
                   ) : (
                     <div className="space-y-6">
-                      {buildTimeline(data.events).map((group) => (
+                      {buildTimeline(data.events).map((group, gi) => (
                         <div key={group.key}>
                           <div className="mb-3 text-sm font-bold capitalize text-secondary dark:text-white">
                             {group.label}
                           </div>
                           <ol className="ml-1 space-y-5 border-l-2 border-gray-200 dark:border-gray-700 pl-5">
                             {group.items.map((ev, i) => {
-                              const isLatest = ev === data.events[data.events.length - 1];
+                              const isLatest = gi === 0 && i === 0;
                               return (
                                 <li key={i} className="relative">
                                   <span
