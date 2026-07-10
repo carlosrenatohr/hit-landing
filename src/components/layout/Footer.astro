@@ -11,7 +11,7 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <div>
         <div class="flex items-center mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M7.5 4.27a2 2 0 0 0-2.73 2.73L2.34 9.43a2 2 0 0 0 .15 2.91l4.05 3.39c.39.33.91.52 1.45.52h6.02a2 2 0 0 0 1.45-.52l4.05-3.39a2 2 0 0 0 .15-2.91l-2.43-2.43a2 2 0 0 0-2.73-2.73L9.5 7.73l-2.01-2.01Z"/><path d="M12 13v8"/><path d="M21.16 9.17 19 11.33"/><path d="M2.84 9.17 5 11.33"/><path d="M17 17v4"/><path d="M7 17v4"/></svg>
+          <img src="/brand/logo-mark.png" alt={siteConfig.name} width="32" height="32" class="h-8 w-8 object-contain" />
           <span class="ml-2 text-2xl font-bold">{siteConfig.name}</span>
         </div>
         <p class="mb-6 text-gray-300">
@@ -36,7 +36,7 @@ const currentYear = new Date().getFullYear();
           {footerContent.quickLinks.map((link) => (
             <li><a href={link.url} class="text-gray-300 hover:text-primary transition-colors">{link.name}</a></li>
           ))}
-          <li><a href="/contact" class="text-gray-300 hover:text-primary transition-colors">{footerContent.contactUs}</a></li>
+          <li><a href="/contacto" class="text-gray-300 hover:text-primary transition-colors">{footerContent.contactUs}</a></li>
         </ul>
       </div>
 
@@ -68,7 +68,7 @@ const currentYear = new Date().getFullYear();
           </li>
         </ul>
         <div class="mt-6">
-          <a href="/contact" class="bg-primary text-white py-3 px-6 rounded-md font-bold hover:bg-primary-dark transition-all">
+          <a href="/contacto" class="bg-primary text-white py-3 px-6 rounded-md font-bold hover:bg-primary-dark transition-all">
             {footerContent.contactUs}
           </a>
         </div>

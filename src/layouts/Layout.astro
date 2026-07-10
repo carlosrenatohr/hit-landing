@@ -2,6 +2,7 @@
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer.astro';
 import JSONLD from '../components/seo/JSONLD.astro';
+import { siteMeta } from '../content/meta';
 import '../styles/global.css';
 
 interface Props {
@@ -9,16 +10,18 @@ interface Props {
 	description?: string;
   image?: string;
   canonicalURL?: string;
+  keywords?: string[];
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "HIT CARGO: Importaciones de todo el mundo a Nicaragua. Gestión de envíos desde Miami, China y Panamá con logística profesional y entregas nacionales.",
-  image = "/og-image.png",
+  image = siteMeta.ogImage,
   canonicalURL = Astro.url.href,
+  keywords,
 } = Astro.props;
 
-const fullTitle = `${title} | HIT CARGO Nicaragua`;
+const fullTitle = `${title} | ${siteMeta.siteName}`;
 ---
 
 <!doctype html>
@@ -32,13 +35,16 @@ const fullTitle = `${title} | HIT CARGO Nicaragua`;
 		<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K55VC9JZ');</script>
 		<!-- End Google Tag Manager -->
 
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/brand/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" href="/brand/mark-32.png" />
+		<link rel="apple-touch-icon" href="/brand/mark-180.png" />
 		<meta name="generator" content={Astro.generator} />
     <JSONLD />
 
     <!-- SEO Meta Tags -->
 		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
+    {keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
@@ -47,6 +53,15 @@ const fullTitle = `${title} | HIT CARGO Nicaragua`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:site_name" content={siteMeta.siteName} />
+    <meta property="og:locale" content="es_NI" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hit__cargo" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
     <!-- Dark mode initialization script (must load before body renders) -->
     <script is:inline src="/scripts/dark-mode-init.js"></script>

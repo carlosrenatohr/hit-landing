@@ -19,7 +19,7 @@ export const footerContent = {
   contactUs: "Contactanos",
   privacyPolicy: {
     title: "Política de Privacidad",
-    url: "privacidad",
+    url: "/privacidad",
   },
   termsOfService: {
     title: "Términos de Servicio",

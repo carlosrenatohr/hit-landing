@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config/site';
+
+const wa = siteConfig.social.whatsapp;
+---
+
+<Layout
+  title="Contacto"
+  description="Contactá a HIT CARGO Nicaragua por WhatsApp, teléfono o correo. Te asesoramos con tus importaciones desde USA, China y Panamá."
+>
+  <section class="pt-32 pb-16 bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Contactanos</h1>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Escribinos por WhatsApp para cotizar, rastrear o resolver cualquier duda. Te respondemos rápido.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-neutral-bg dark:bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 max-w-3xl">
+      <div class="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10">
+        <ul class="space-y-6">
+          <li>
+            <span class="block text-sm font-medium text-neutral-text dark:text-gray-400 mb-1">WhatsApp</span>
+            <a href={wa} target="_blank" rel="noopener" class="text-lg font-bold text-primary hover:underline">Escribinos por WhatsApp</a>
+          </li>
+          <li>
+            <span class="block text-sm font-medium text-neutral-text dark:text-gray-400 mb-1">Teléfono</span>
+            <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} class="text-lg text-secondary dark:text-white">{siteConfig.phone}</a>
+          </li>
+          <li>
+            <span class="block text-sm font-medium text-neutral-text dark:text-gray-400 mb-1">Correo</span>
+            <a href={`mailto:${siteConfig.email}`} class="text-lg text-secondary dark:text-white">{siteConfig.email}</a>
+          </li>
+          <li>
+            <span class="block text-sm font-medium text-neutral-text dark:text-gray-400 mb-1">Dirección</span>
+            <span class="text-lg text-secondary dark:text-white">{siteConfig.address}</span>
+          </li>
+          <li>
+            <span class="block text-sm font-medium text-neutral-text dark:text-gray-400 mb-1">Horario</span>
+            <span class="text-lg text-secondary dark:text-white">Lunes a viernes, 8:00 a.m. – 5:00 p.m. No trabajamos domingos.</span>
+          </li>
+        </ul>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href={siteConfig.social.facebook} target="_blank" rel="noopener" class="text-neutral-text dark:text-gray-300 hover:text-primary">Facebook</a>
+          <a href={siteConfig.social.instagram} target="_blank" rel="noopener" class="text-neutral-text dark:text-gray-300 hover:text-primary">Instagram</a>
+          <a href={siteConfig.social.tiktok} target="_blank" rel="noopener" class="text-neutral-text dark:text-gray-300 hover:text-primary">TikTok</a>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href={wa} target="_blank" rel="noopener" class="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

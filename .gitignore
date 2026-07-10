@@ -35,8 +35,8 @@ pnpm-debug.log*
 # Cloudflare Wrangler local state
 .wrangler/
 
-# Plan drafts — keep only the master plan, README, and claude.md
-docs/plans/*
-!docs/plans/MASTER_PLAN*.md
-!docs/plans/README.md
-!docs/plans/claude.md
+# Artefactos de trabajo del playbook de feature (estado local)
+.feature/
+
+# Local agent config (not shared)
+.claude/

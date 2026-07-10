@@ -20,9 +20,9 @@ Estos archivos configuran la seguridad en producción y **DEBEN estar en el repo
 
 ### 2. Documentación de Seguridad
 ```bash
-✅ docs/SECURITY_DEPLOYMENT_GUIDE.md    # Este archivo
-✅ docs/master-plan-2025.md             # Plan maestro
-✅ claude.md                            # Documentación del proyecto
+✅ docs/operations/security-deployment-guide.md    # Este archivo
+✅ docs/business/master-plan-2024-2026.md          # Plan maestro canónico
+✅ CLAUDE.md                                       # Documentación del proyecto
 ```
 
 ### 3. Archivos Actualizados
@@ -52,7 +52,7 @@ git status
 git add public/_headers public/_redirects vercel.json netlify.toml
 
 # 3. Agregar documentación
-git add docs/SECURITY_DEPLOYMENT_GUIDE.md docs/master-plan-2025.md claude.md
+git add docs/operations/security-deployment-guide.md docs/business/master-plan-2024-2026.md CLAUDE.md
 
 # 4. Agregar dependencias actualizadas
 git add package.json pnpm-lock.yaml

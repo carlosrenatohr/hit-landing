@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config/site';
+
+// NOTE (team): general draft Privacy Policy. Needs legal review.
+// Reflects how tracking data is handled: shipment status is read from our logistics
+// provider's system using our own account, and the public tracker exposes only
+// minimal package information.
+const updated = "junio 2026";
+---
+
+<Layout
+  title="Política de Privacidad"
+  description="Cómo HIT CARGO Nicaragua recopila y usa tus datos, incluido el rastreo de envíos."
+>
+  <section class="pt-32 pb-12 bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Política de Privacidad</h1>
+      <p class="text-gray-400">Última actualización: {updated}</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-neutral-bg dark:bg-secondary">
+    <div class="container mx-auto px-4 md:px-6 max-w-3xl space-y-8 text-neutral-text dark:text-gray-300">
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">1. Qué datos recopilamos</h2>
+        <p>Recopilamos los datos que nos compartís para prestarte el servicio: nombre, contacto (WhatsApp, teléfono, correo), dirección de entrega e información de tus envíos. Cuando usás el rastreo, procesamos el número de guía o de tracking que ingresás.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">2. Rastreo de envíos</h2>
+        <p>Para mostrarte el estado de tu paquete consultamos el sistema de nuestro proveedor logístico utilizando nuestra propia cuenta. El rastreo público muestra únicamente información mínima del envío (estado, eventos, peso y fechas) y no expone datos de otros clientes ni información interna.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">3. Para qué usamos tus datos</h2>
+        <p>Usamos tus datos para gestionar tus importaciones, comunicarnos contigo, darte soporte y mejorar nuestro servicio. No vendemos tu información personal a terceros.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">4. Analítica y cookies</h2>
+        <p>Usamos herramientas de analítica (Google Tag Manager y Cloudflare Web Analytics) para entender el uso del sitio de forma agregada. Podés gestionar las cookies desde la configuración de tu navegador.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">5. Con quién compartimos datos</h2>
+        <p>Compartimos datos solo cuando es necesario para prestar el servicio (por ejemplo, con transportistas y agentes aduanales) o cuando la ley lo requiere.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-secondary dark:text-white mb-2">6. Tus derechos y contacto</h2>
+        <p>Podés solicitar acceso, corrección o eliminación de tus datos escribiéndonos a {siteConfig.email} o por WhatsApp. Podemos actualizar esta política; publicaremos los cambios en esta página.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
