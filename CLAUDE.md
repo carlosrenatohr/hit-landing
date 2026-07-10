@@ -20,7 +20,8 @@ Empresa de logística internacional con sede en Nicaragua. Funciona como freight
 
 ## Identidad visual
 
-- Paleta: naranja + negro como base. Estética sobria, moderna, oscura sin ser pesada, con guiños cinematográficos (la referencia interna es la dirección de arte de GTA VI). Dark mode es default.
+- Paleta: rojo-naranja de alta energía (`#FF3B3F`) + negro como base. Estética sobria, moderna, oscura sin ser pesada, con guiños cinematográficos (la referencia interna es la dirección de arte de GTA VI). Dark mode es default.
+- **Sistema de color completo (tokens, colores semánticos del tracker, reglas de uso):** [docs/marketing/brand-color-system.md](docs/marketing/brand-color-system.md). Es la fuente de verdad de marca; `tailwind.config.js` la implementa.
 - Tipografía: Inter (Google Fonts).
 - Tono de comunicación: cercano y profesional. Educativo cuando hace falta. Cero hype de marketing.
 
