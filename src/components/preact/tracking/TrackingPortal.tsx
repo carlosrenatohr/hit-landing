@@ -16,6 +16,56 @@ const WHATSAPP = siteConfig.social.whatsapp;
 // 4-step progress bar (mirrors Everest's public tracking widget).
 const STEPS = ["En bodega Miami", "En camino", "En Nicaragua", "Entregado"];
 
+// Friendly office labels (Cargotrack uses IATA-ish codes).
+const OFFICE_LABEL: Record<string, string> = { MIA: "Miami, US", MGA: "Managua, NI" };
+function officeLabel(o?: string): string {
+  if (!o) return "";
+  return OFFICE_LABEL[o.toUpperCase()] ?? o;
+}
+
+// Status pill color by state.
+const STATUS_PILL: Record<string, string> = {
+  entregado: "bg-green-100 text-green-800",
+  en_destino: "bg-purple-100 text-purple-800",
+  en_transito: "bg-blue-100 text-blue-800",
+  parcial: "bg-amber-100 text-amber-800",
+  en_almacen: "bg-gray-100 text-gray-800",
+  excepcion: "bg-red-100 text-red-800",
+};
+
+// Cargotrack timestamps are stored as the original wall-clock in UTC; render in UTC so we show
+// exactly what the provider recorded, with no timezone shift.
+function fmtDay(iso: string): string {
+  const d = new Date(iso);
+  return isNaN(+d)
+    ? iso
+    : d.toLocaleDateString("es", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
+}
+function fmtTime(iso: string): string {
+  const d = new Date(iso);
+  return isNaN(+d) ? "" : d.toLocaleTimeString("es", { hour: "numeric", minute: "2-digit", timeZone: "UTC" });
+}
+function dayKey(iso: string): string {
+  const d = new Date(iso);
+  return isNaN(+d) ? iso : d.toISOString().slice(0, 10);
+}
+// Reverse-chronological day groups (latest first, Amazon-style) for the vertical journey.
+function buildTimeline(events: PublicEvent[]): { key: string; label: string; items: PublicEvent[] }[] {
+  const groups: { key: string; label: string; items: PublicEvent[] }[] = [];
+  const byKey = new Map<string, { key: string; label: string; items: PublicEvent[] }>();
+  for (const ev of [...events].reverse()) {
+    const k = dayKey(ev.date);
+    let g = byKey.get(k);
+    if (!g) {
+      g = { key: k, label: fmtDay(ev.date), items: [] };
+      byKey.set(k, g);
+      groups.push(g);
+    }
+    g.items.push(ev);
+  }
+  return groups;
+}
+
 interface PublicEvent {
   date: string;
   description: string;
@@ -172,62 +222,119 @@ export const TrackingPortal = () => {
           )}
 
           {view === "ok" && data && (
-            <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom duration-500">
-              <div className="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg mb-8 border border-primary/10">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
-                  <div>
-                    <h2 className="text-2xl font-bold text-secondary dark:text-white mb-1">
-                      Guía: {data.guia}
-                    </h2>
-                    {data.serviceType && (
-                      <p className="text-neutral-text dark:text-gray-300">
-                        {data.serviceType === "aereo" ? "Envío aéreo" : "Envío marítimo"}
-                        {data.weightLb ? ` · ${data.weightLb} lbs` : ""}
-                      </p>
-                    )}
+            <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom duration-500">
+              <div className="bg-white dark:bg-secondary-light rounded-xl shadow-lg border border-primary/10 overflow-hidden">
+                {/* Header: guía, servicio y estado destacado */}
+                <div className="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <div className="text-xs font-medium uppercase tracking-wide text-gray-400">Guía</div>
+                      <h2 className="text-2xl font-bold text-secondary dark:text-white">{data.guia}</h2>
+                      {(data.serviceType || data.weightLb || data.pieces) && (
+                        <p className="mt-1 text-sm text-neutral-text dark:text-gray-300">
+                          {data.serviceType ? (data.serviceType === "aereo" ? "✈️ Aéreo" : "🚢 Marítimo") : ""}
+                          {data.pieces ? ` · ${data.pieces} pzs` : ""}
+                          {data.weightLb ? ` · ${data.weightLb} lb` : ""}
+                        </p>
+                      )}
+                    </div>
+                    <span
+                      className={`inline-block rounded-full px-4 py-1.5 text-sm font-bold ${
+                        STATUS_PILL[data.status] ?? "bg-accent-yellow text-secondary"
+                      }`}
+                    >
+                      {data.statusLabel}
+                    </span>
                   </div>
-                  <span className="mt-4 md:mt-0 inline-block bg-accent-yellow text-secondary font-bold px-4 py-2 rounded-full">
-                    {data.statusLabel}
-                  </span>
+
+                  {/* Barra de 4 pasos */}
+                  <div className="mt-6 flex items-end gap-1.5">
+                    {STEPS.map((label, i) => {
+                      const done = i < data.step;
+                      return (
+                        <div key={label} className="flex-1">
+                          <div
+                            className={`h-1.5 rounded-full ${done ? "bg-primary" : "bg-gray-200 dark:bg-gray-600"}`}
+                          ></div>
+                          <div
+                            className={`mt-1.5 text-[11px] leading-tight ${
+                              done ? "font-medium text-secondary dark:text-white" : "text-gray-400"
+                            }`}
+                          >
+                            {label}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
-                {data.step >= 1 && (
-                  <div className="flex items-center gap-2 mb-8">
-                    {STEPS.map((label, i) => (
-                      <div key={label} className="flex-1 text-center">
-                        <div
-                          className={`h-2 rounded-full mb-2 ${
-                            i < data.step ? "bg-green-500" : "bg-gray-200 dark:bg-gray-600"
-                          }`}
-                        ></div>
-                        <span className="text-xs text-neutral-text dark:text-gray-400">{label}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {data.events.length > 0 && (
-                  <>
-                    <h3 className="text-xl font-bold text-secondary dark:text-white mb-4">
-                      Historial de Rastreo
-                    </h3>
-                    <div className="space-y-4">
-                      {data.events.map((ev, i) => (
-                        <div key={i} className="flex items-start">
-                          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-secondary flex items-center justify-center mr-4">
-                            <Package className="h-5 w-5 text-primary" />
+                {/* Journey vertical (estilo Amazon): agrupado por día, más reciente arriba */}
+                <div className="p-6 md:p-8">
+                  {data.events.length === 0 ? (
+                    <p className="text-sm text-gray-400">Todavía no hay eventos registrados para esta guía.</p>
+                  ) : (
+                    <div className="space-y-6">
+                      {buildTimeline(data.events).map((group) => (
+                        <div key={group.key}>
+                          <div className="mb-3 text-sm font-bold capitalize text-secondary dark:text-white">
+                            {group.label}
                           </div>
-                          <div>
-                            <div className="font-medium text-secondary dark:text-white">{ev.description}</div>
-                            <div className="text-sm text-neutral-text dark:text-gray-400">
-                              {ev.date}{ev.office ? ` · ${ev.office}` : ""}
-                            </div>
-                          </div>
+                          <ol className="ml-1 space-y-5 border-l-2 border-gray-200 dark:border-gray-700 pl-5">
+                            {group.items.map((ev, i) => {
+                              const isLatest = ev === data.events[data.events.length - 1];
+                              return (
+                                <li key={i} className="relative">
+                                  <span
+                                    className={`absolute -left-[27px] top-0.5 h-3.5 w-3.5 rounded-full ring-4 ring-white dark:ring-secondary-light ${
+                                      isLatest ? "bg-primary" : "bg-gray-300 dark:bg-gray-600"
+                                    }`}
+                                    aria-hidden="true"
+                                  ></span>
+                                  <div className="flex flex-col sm:flex-row sm:gap-4">
+                                    <div className="w-24 shrink-0 text-xs text-gray-400">{fmtTime(ev.date)}</div>
+                                    <div>
+                                      <div
+                                        className={`text-sm ${
+                                          isLatest
+                                            ? "font-semibold text-secondary dark:text-white"
+                                            : "text-neutral-text dark:text-gray-200"
+                                        }`}
+                                      >
+                                        {ev.description}
+                                      </div>
+                                      {ev.office && (
+                                        <div className="text-xs italic text-gray-400">{officeLabel(ev.office)}</div>
+                                      )}
+                                    </div>
+                                  </div>
+                                </li>
+                              );
+                            })}
+                          </ol>
                         </div>
                       ))}
                     </div>
-                  </>
-                )}
+                  )}
+                </div>
+              </div>
+
+              {/* Acciones */}
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setView("idle");
+                    setData(null);
+                    setTrackingNumber("");
+                  }}
+                  className="font-medium text-primary hover:underline"
+                >
+                  Rastrear otro paquete
+                </button>
+                <a href={WHATSAPP} target="_blank" rel="noopener" className="text-neutral-text dark:text-gray-300 hover:underline">
+                  ¿Dudas? Escribinos por WhatsApp
+                </a>
               </div>
             </div>
           )}
