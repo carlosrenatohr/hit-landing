@@ -3,9 +3,14 @@ import { useEffect, useState } from "preact/hooks";
 import { siteConfig } from "../../../config/site";
 import { isValidQuery } from "../../../utils/tracking";
 
-// Tracking worker URL (hit-ever2). When unset, the page shows an honest
-// "coming soon" state instead of fake data.
-const API_URL = import.meta.env.PUBLIC_API_URL as string | undefined;
+// Tracking worker URL (hit-ever2). Defaults to the live public worker so the page works even
+// when PUBLIC_API_URL isn't injected at build time (e.g. Cloudflare Pages without the env var —
+// .env is gitignored, so production builds otherwise had no URL and fell back to "coming soon").
+// Override PUBLIC_API_URL to point at a staging worker or api.hit-cargo.com later; set it to an
+// empty string to force the honest "coming soon" state during an outage.
+const DEFAULT_API_URL = "https://hit-ever-scraper.honchkrow1995.workers.dev";
+const envApiUrl = import.meta.env.PUBLIC_API_URL as string | undefined;
+const API_URL = envApiUrl ?? DEFAULT_API_URL;
 const WHATSAPP = siteConfig.social.whatsapp;
 
 // 4-step progress bar (mirrors Everest's public tracking widget).
