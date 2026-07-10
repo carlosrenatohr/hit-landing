@@ -175,7 +175,7 @@ Build settings de referencia:
 ```yaml
 Build command:    pnpm build
 Output directory: dist
-Node version:     20.x
+Node version:     22.x   # Astro 6 requiere Node >=22.12 (ver .nvmrc)
 ```
 
 ---
