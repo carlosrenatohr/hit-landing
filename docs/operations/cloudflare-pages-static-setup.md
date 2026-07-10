@@ -32,7 +32,7 @@ Esto ocurre porque Wrangler está intentando crear recursos de Workers que no ne
 
 4. **Environment variables:**
    ```
-   NODE_VERSION = 20
+   NODE_VERSION = 22
    ```
 
 5. **IMPORTANTE - Deployment method:**
@@ -76,7 +76,7 @@ Si la Opción 1 no funciona:
    Root directory: (dejar vacío)
 
    Environment variables:
-   NODE_VERSION: 20
+   NODE_VERSION: 22
    ```
 
 4. **NO agregar ningún "Deploy command" personalizado**
@@ -128,7 +128,7 @@ git push origin fix/redirects-cloudflare
 
 **Environment variables:**
 ```
-NODE_VERSION = 20
+NODE_VERSION = 22
 ```
 
 **Deploy command:** (VACÍO - no usar wrangler deploy)

@@ -78,7 +78,7 @@ git push --tags
    Build output directory: dist
    Root directory: /
    Environment variables:
-     NODE_VERSION: 20
+     NODE_VERSION: 22
    ```
 
 5. **Configuración de Branches:**
@@ -296,9 +296,9 @@ wrangler pages project create hit-cargo
 pnpm build
 
 # Verificar node version
-node --version  # Debería ser v20.x
+node --version  # Debería ser v22.x
 
-# Agregar NODE_VERSION=20 en environment variables de Cloudflare
+# Agregar NODE_VERSION=22 en environment variables de Cloudflare
 ```
 
 ### Headers no se aplican

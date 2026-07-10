@@ -150,7 +150,7 @@ Una vez que hagas push a `master`, puedes configurar deployment automático:
 
 2. **Variables de Entorno:**
    ```
-   NODE_VERSION=20
+   NODE_VERSION=22
    ```
 
 3. **Preview Branches:**
