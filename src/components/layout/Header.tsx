@@ -94,7 +94,7 @@ export const Header = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <a href="/track">
-              <button className="bg-accent-blue text-white py-2 px-6 rounded-md hover:bg-blue-600 transition-all shadow-lg font-medium">
+              <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-primary-dark transition-all shadow-lg font-medium">
                 Rastrear Paquete
               </button>
             </a>
@@ -176,7 +176,7 @@ export const Header = () => {
             </a>
             <a href="/track">
               <button
-                className="w-full bg-accent-blue text-white py-3 rounded-md font-bold"
+                className="w-full bg-primary text-white py-3 rounded-md font-bold hover:bg-primary-dark transition-all"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Rastrear Paquete

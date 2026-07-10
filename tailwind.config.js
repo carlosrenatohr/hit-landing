@@ -14,8 +14,8 @@ export default {
           light: '#2D2D2D'
         },
         accent: {
-          yellow: '#FFD700',
-          blue: '#00A8E8'
+          yellow: { DEFAULT: '#FFD700', dark: '#E6C200' },
+          blue: { DEFAULT: '#00A8E8', dark: '#0089BE' }
         },
         neutral: {
           text: '#4A4A4A',

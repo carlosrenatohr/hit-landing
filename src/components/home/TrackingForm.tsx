@@ -37,7 +37,7 @@ export const TrackingForm = () => {
               error
                 ? "border-red-500"
                 : "border-accent-blue/30 dark:border-gray-600"
-            } rounded-xl bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-accent-blue transition-all duration-300 shadow-sm`}
+            } rounded-md bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-accent-blue transition-all duration-300 shadow-sm`}
           />
         </div>
         {error && (
@@ -47,7 +47,7 @@ export const TrackingForm = () => {
         )}
         <button
           type="submit"
-          className="w-full mt-4 bg-accent-blue text-white py-4 text-lg rounded-xl font-bold transform hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg hover:bg-blue-600"
+          className="w-full mt-4 bg-primary text-white py-4 text-lg rounded-md font-bold transition-all duration-300 shadow-lg hover:bg-primary-dark"
         >
           Rastrear Paquete
         </button>
