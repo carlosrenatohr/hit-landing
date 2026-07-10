@@ -3,6 +3,10 @@
 > Documento de marca. Owner: **Mayqueline** (branding) con soporte de Renato (implementación).
 > Rol de quien escribe esto: *brand/marketing lead*. Define **qué** color usar y **por qué**; los
 > tokens técnicos viven en `tailwind.config.js`. Si cambian los valores acá, actualizar ambos.
+>
+> **Actualización:** además del sistema de color (§1–6), este documento ahora consolida el
+> **research y los recursos usados para el sitio web** (§7–10) para que el equipo correspondiente
+> los tenga a la mano y pueda extenderlos fácilmente.
 
 ## 1. Personalidad de marca (por qué esta paleta)
 
@@ -36,7 +40,7 @@ todo es "urgente", nada lo es.
 
 El rastreo es la cara pública del producto. Cada estado necesita un color propio, **sobrio**
 (fondo suave + texto oscuro), legible en light y dark, y coherente con la marca. El Primario se
-reserva para **el paso actual** (el punto/ًícono activo del journey), no para pintar cada estado.
+reserva para **el paso actual** (el punto/ícono activo del journey), no para pintar cada estado.
 
 | Estado (interno) | Etiqueta pública | Familia de color | Idea |
 |---|---|---|---|
@@ -86,3 +90,143 @@ entrega) — no se inventan fechas para hitos intermedios que no podemos atribui
 - ❌ Mostrar los logs literales del proveedor al cliente.
 - ❌ Inventar fechas para hitos que no podemos atribuir.
 - ❌ Rojo semántico (retenido) y Primario juntos compitiendo en la misma vista.
+
+---
+
+# Recursos del sitio web (research)
+
+> Consolidación del research y las decisiones técnicas usadas hasta ahora para el sitio. El objetivo
+> es que el equipo pueda **extender** el sitio sin re-investigar. Los valores marcados como
+> `<placeholder>` o "referencia" deben validarse con operaciones/branding antes de publicar.
+
+## 7. Stack del sitio web
+
+El sitio está construido con **Astro + Preact**.
+
+- **Astro** para el render de la landing: entrega HTML estático/SSR con cero JS por defecto —
+  ideal para performance y SEO de una página de negocio.
+- **Preact** para las *islas* interactivas puntuales (tracker, acordeón de FAQ, CTA de WhatsApp,
+  formularios). Mismo modelo mental que React pero mucho más liviano, hidratación selectiva por isla.
+- **Dark mode** es el default de marca (§1) y se resuelve vía tokens de CSS/Tailwind, no requiere JS.
+
+Los tokens de color (§2) viven en `tailwind.config.js`; este documento define su semántica.
+
+## 8. Arquitectura de contenido (data-driven)
+
+El contenido está **separado de la presentación**: vive en archivos TypeScript bajo `src/data/`, y
+los componentes lo importan. Así el equipo cambia textos, precios o servicios sin tocar el markup.
+
+```
+src/
+  data/
+    site.ts          → nombre, contacto, redes, horarios (datos globales)
+    hero.ts          → título, subtítulo, CTAs, imagen
+    services.ts      → servicios (icono, título, descripción, precio)
+    howItWorks.ts    → pasos del proceso
+    testimonials.ts  → reseñas de clientes
+    faq.ts           → preguntas y respuestas
+    pricing.ts       → tarifas
+```
+
+**Regla:** un dato que se repite (teléfono, WhatsApp, email) vive en **un solo lugar** (`site.ts`) y
+se importa donde haga falta (header, footer, sección de contacto).
+
+### `site.ts` — datos globales
+
+```ts
+// valores de ejemplo — reemplazar por los reales antes de publicar
+export const site = {
+  name: "HIT CARGO",
+  phone: "<placeholder>",
+  whatsapp: "<placeholder>",       // https://wa.me/<numero>
+  email: "<placeholder>",
+  address: "Managua, Nicaragua",
+  social: {
+    facebook: "<placeholder>",
+    instagram: "<placeholder>",
+  },
+  hours: "Lunes a Sábado, 8am – 5pm",
+};
+```
+
+### `hero.ts`
+
+```ts
+export const hero = {
+  title: "Tu puente desde Estados Unidos a Nicaragua",
+  subtitle: "Conecta con tus tiendas favoritas de EE.UU. como Amazon, Shein y eBay...",
+  cta: {
+    primary: { text: "Nuestros Servicios", href: "#servicios" },
+    secondary: { text: "Contáctanos", href: "#contacto" },
+  },
+  image: { src: "/images/hero-delivery.jpg", alt: "Servicio de entrega HIT CARGO" },
+};
+```
+
+> CTA y color: el `primary` usa el **Primario `#FF3B3F`** (regla de oro, §2). El `secondary`
+> nunca va en azul.
+
+### `services.ts` (contenido de referencia — validar precios con operaciones)
+
+```ts
+export const services = [
+  {
+    icon: "package",
+    title: "Casillero Virtual",
+    description: "Te damos una dirección en Miami...",
+    price: "Desde $5/lb",
+  },
+  {
+    icon: "truck",
+    title: "Envío Marítimo",
+    description: "Para paquetes grandes o pesados...",
+    price: "Desde $3/lb",
+  },
+];
+```
+
+Y en un componente Astro:
+
+```astro
+---
+import { hero } from '../data/hero';
+---
+<h1>{hero.title}</h1>
+<p>{hero.subtitle}</p>
+<a href={hero.cta.primary.href} class="btn-primary">{hero.cta.primary.text}</a>
+```
+
+## 9. Cómo extender (research → recursos)
+
+Cuando el contenido crezca (blog, guías de envío, una página por servicio), migrar a **Content
+Collections** de Astro con Markdown/MDX y validación de schemas con **Zod**:
+
+```
+src/
+  content/
+    config.ts
+    blog/
+      como-usar-casillero.md
+      guia-amazon-nicaragua.md
+    services/
+      casillero-virtual.md
+      envio-maritimo.md
+```
+
+Ventajas: rutas generadas automáticamente, schemas tipados, y contenido largo con formato.
+
+**Camino a CMS:** si eventualmente el contenido se edita desde un CMS (Storyblok, Contentful), sólo
+se reemplazan los imports de `src/data/*` por llamadas al CMS — el markup de los componentes no
+cambia. La arquitectura data-driven de §8 es justamente lo que habilita esta migración sin dolor.
+
+## 10. Tracker y proveedores (referencia)
+
+El rastreo (§3–4) consume eventos de los proveedores logísticos **Everest** y **Global Connection**,
+cada uno con textos de evento distintos. Reglas del sitio, ya cubiertas arriba:
+
+- No mostrar logs crudos del proveedor → estandarizar a los **4 hitos de marca** (§4).
+- Aplicar los **colores semánticos** por estado (§3); Primario sólo para el hito actual.
+- No inventar fechas para hitos intermedios no atribuibles (§4).
+
+La isla de Preact del tracker mapea `estado interno → etiqueta pública → color semántico` usando esta
+guía como fuente única de verdad.
