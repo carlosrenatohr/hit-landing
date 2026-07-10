@@ -7,19 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- Google Tag Manager integration (container `GTM-K55VC9JZ`) with hash-based CSP via Astro `security.csp`.
-- Cloudflare Web Analytics allowed through CSP (kept alongside GA4 for ad-blocker-resilient baseline).
-- `docs/business/company-overview.md` — business context document.
+## [2.3.0] — 2026-07-10
 
-### Fixed
-- Astro island hydration silently broken since v2.2.0 hardening (CSP blocked Astro's inline hydration scripts). Now coordinated header CSP + auto-generated meta CSP unblock hydration while preserving the hardening.
+MVP release: the missing site pages, a real package-tracking portal wired to the
+`hit-ever2` worker, and a first pass of the brand color system. Everything below shipped to
+production on Cloudflare Pages.
+
+### Added
+- **Real tracking portal.** `TrackingPortal.tsx` now fetches live shipment data from the
+  `hit-ever2` worker (`GET /track/:id`, primary by waybill/guía, fallback by carrier tracking
+  number) and replaces the previous mock. States: loading / ok / not-found / error, plus an
+  honest "coming soon" fallback only when the API URL is explicitly disabled.
+- **Result modal with a standardized journey.** The result opens in a modal (Escape /
+  click-outside / close button, body-scroll locked) instead of reloading the page. Provider event
+  logs — which differ between Everest and Global Connection — are no longer shown raw; they are
+  mapped to a fixed 4-milestone journey (In Miami warehouse → In transit → In Nicaragua →
+  Delivered) with the current milestone **bolded** and dated only where the date is reliable
+  (Miami reception, Nicaragua arrival by MGA office, delivery).
+- **URL auto-search.** `/track/?number=XXXX` searches automatically on load (shareable links).
+- **Brand color system.** `docs/marketing/brand-color-system.md` — palette tokens, tracker status
+  colors, usage rules and accessibility, written from a marketing-lead perspective. Applied to the
+  tracker: the primary CTA is now the brand Primary (was blue) and status pills use the semantic
+  ramp.
+- **Missing pages.** Services (air / ocean / consolidation), pricing, contact, terms and privacy.
+- **Real logo assets.** Favicon, `favicon.ico`, apple-touch-icon and header/footer marks now use
+  the real HIT Cargo logo instead of the scaffold placeholder and generic icons.
+- **Delivery harness.** `pnpm check` (Vitest + `astro build`) and a GitHub Actions CI workflow as
+  the merge gate.
+- Google Tag Manager (`GTM-K55VC9JZ`) with hash-based CSP via Astro `security.csp`; Cloudflare Web
+  Analytics allowed through CSP alongside GA4.
+- `docs/business/company-overview.md` and a reorganized `docs/{business,operations,guides,marketing,history}/` tree.
 
 ### Changed
-- Refactored two inline `style="..."` attributes to Tailwind classes (required for hash-based CSP3).
-- Docs reorganised into `docs/{business,operations,guides,marketing,history}/`. Filenames standardised to kebab-case. `claude.md` → `CLAUDE.md`.
-- `MIGRATION_PLAN.md` moved to `docs/history/migration-plan.md`.
-- `RELEASE_NOTES_v2.2.0.md` consolidated into this CHANGELOG.
+- **Hosting consolidated to Cloudflare Pages**; Netlify and Vercel config files removed (leftover
+  GitHub App checks are disconnected separately from the dashboards).
+- **Node 22 required** — Astro 6 dropped Node 20 support, which was silently failing the CI build.
+- The tracking portal defaults to the live public worker URL, so it works even when
+  `PUBLIC_API_URL` is not injected at build time; the env var still overrides it.
+- Coordinated header CSP + auto-generated meta CSP unblock Astro island hydration while preserving
+  the v2.2.0 hardening.
+- Refactored inline `style="..."` attributes to Tailwind classes (required for hash-based CSP3).
+
+### Fixed
+- SEO hardening; corrected contact data (phone/domain); removed the invented rating and stock
+  testimonials (Google policy risk).
+- Astro island hydration silently broken since v2.2.0 CSP hardening.
 
 ## [2.2.0] — 2026-04-23
 
