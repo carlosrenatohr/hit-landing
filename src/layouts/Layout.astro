@@ -63,11 +63,15 @@ const fullTitle = `${title} | ${siteMeta.siteName}`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
+    <!-- Brand book §03: navy is the strategic support/base color for browser chrome. -->
+    <meta name="theme-color" content="#14213D" />
+
     <!-- Dark mode initialization script (must load before body renders) -->
     <script is:inline src="/scripts/dark-mode-init.js"></script>
+    <!-- Brand book §04: Montserrat (impact/headings) + Poppins (reading/body). -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body class="bg-neutral-bg dark:bg-secondary transition-colors duration-300 min-h-screen flex flex-col">
     <!-- Google Tag Manager (noscript) -->

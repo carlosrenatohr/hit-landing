@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --primary: #FF3B3F;
-  --primary-dark: #D92E31;
+  --primary: #FF7A00;
+  --primary-dark: #E56E00;
   --secondary: #111111;
   --secondary-light: #2D2D2D;
+  --navy: #14213D;
   --accent-yellow: #FFD700;
   --accent-blue: #00A8E8;
   --neutral-bg: #F8F9FA;
@@ -16,9 +17,14 @@
 @layer base {
   body {
     @apply text-neutral-text;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
-  
+
+  /* Brand book §04: strong hierarchy is built with Montserrat weights. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+
   .dark body {
     @apply text-gray-300;
   }

@@ -51,8 +51,8 @@ export const TrackingForm = () => {
             }}
             placeholder="Ingresa tu número de rastreo"
             className={`pl-12 pr-4 py-4 w-full border-2 ${
-              error ? "border-red-500" : "border-accent-blue/30 dark:border-gray-600"
-            } rounded-md bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-accent-blue transition-all duration-300 shadow-sm`}
+              error ? "border-red-500" : "border-primary/30 dark:border-gray-600"
+            } rounded-md bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 shadow-sm`}
           />
         </div>
         {error && <p className="text-red-500 text-sm mt-2 animate-in fade-in slide-in-from-top-1">{error}</p>}
@@ -65,7 +65,7 @@ export const TrackingForm = () => {
         </button>
       </form>
       <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary rounded-full opacity-10 blur-xl pointer-events-none" />
-      <div className="absolute -top-4 -left-4 w-32 h-32 bg-accent-blue rounded-full opacity-10 blur-xl pointer-events-none" />
+      <div className="absolute -top-4 -left-4 w-32 h-32 bg-navy rounded-full opacity-10 blur-xl pointer-events-none" />
 
       <TrackingOverlay view={view} data={data} onClose={close} />
     </div>
