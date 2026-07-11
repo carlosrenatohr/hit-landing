@@ -15,7 +15,7 @@ import { title, description, steps } from '../../content/howItWorks'
       {steps.map((step, index) => (
         <div class="flex flex-col items-center md:items-start group">
           <div class="relative">
-            <div class="bg-accent-yellow rounded-full p-4 z-10 relative shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+            <div class="bg-primary rounded-full p-4 z-10 relative shadow-lg transform group-hover:scale-110 transition-transform duration-300">
                <Fragment set:html={step.icon} />
             </div>
             {index < steps.length - 1 && (

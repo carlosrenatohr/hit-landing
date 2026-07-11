@@ -81,8 +81,8 @@ export const TrackingPortal = () => {
                   }}
                   placeholder="Número de guía (ej. 926791)"
                   className={`pl-10 pr-4 py-4 w-full border-2 ${
-                    error ? "border-red-500" : "border-accent-blue/30 dark:border-gray-600"
-                  } rounded-md focus:outline-none focus:ring-2 focus:ring-accent-blue text-lg bg-white dark:bg-secondary text-secondary dark:text-white`}
+                    error ? "border-red-500" : "border-primary/30 dark:border-gray-600"
+                  } rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-lg bg-white dark:bg-secondary text-secondary dark:text-white`}
                 />
                 {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
               </div>
