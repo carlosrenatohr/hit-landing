@@ -28,3 +28,9 @@
   background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
   background-size: 30px 30px;
 }
+
+/* Indeterminate loading bar for the tracking overlay (branded). */
+@keyframes loadingBar {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
