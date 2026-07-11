@@ -95,37 +95,41 @@ aparece con intención: no decora, señala.
 CTA. **Accesibilidad:** blanco sobre negro/navy cumple AAA; el naranja rinde en acentos, botones y
 texto grande — para párrafos pequeños sobre blanco, preferir el negro.
 
+**En la web, estos son los únicos colores.** El sitio y todas las piezas digitales deben implementar
+exactamente estos tokens: naranja para acción/foco, negro/navy como base, blanco para respirar. Nada
+fuera de la paleta.
+
 ## 04 · Tipografía
 
-Tres registros para una sola voz: impacto para titular, claridad para leer, y una firma emocional
-para los momentos que lo merecen.
+Dos familias, una sola voz. **Sin cursivas ni scripts** — la consistencia se logra por peso, no por
+mezcla de fuentes.
 
-- **Principal (títulos e impacto):** `Anton` (grandes titulares), `Bebas Neue` (etiquetas y UI),
-  `Montserrat Extra Bold` (subtítulos con fuerza).
-- **Secundaria (textos y descripciones):** `Montserrat` (Regular / Medium), `Poppins` (Regular /
-  Medium). Legible, moderna, neutra.
-- **Emocional (uso limitado):** `Great Vibes` — solo palabras o frases emocionales en temporadas
-  especiales. Nunca en cuerpos de texto ni datos.
+- **Montserrat** — títulos, etiquetas e impacto. Toda la jerarquía fuerte se construye con sus pesos:
+  Black/ExtraBold para titulares, Bold/SemiBold para etiquetas y UI.
+- **Sans de lectura estilo Amazon (Poppins)** — cuerpos de texto, párrafos y descripciones. Limpia,
+  moderna y cercana. Montserrat Regular/Medium sirve como alternativa de lectura.
 
-**Escala tipográfica:** Display (Anton) → Título (Bebas) → Subtítulo (Montserrat XB) → Cuerpo
-(Poppins) → Caption.
+**Escala tipográfica:** Display (Montserrat Black) → Título (Montserrat ExtraBold) → Etiqueta
+(Montserrat Bold, mayúsculas espaciadas) → Cuerpo (Poppins).
 
 ## 05 · Logotipo
 
-Un solo símbolo, cinco maneras de aparecer. Elegir la versión que garantice contraste y respeto por
+Un solo símbolo, cuatro maneras de aparecer. Elegir la versión que garantice contraste y respeto por
 el espacio.
 
-- **Versión principal** — HIT en negro + CARGO en naranja, sobre fondo claro.
+- **Versión principal** — globo/flecha en naranja + "HIT CARGO" en negro, sobre fondo claro.
 - **Versión en blanco** — sobre fondos oscuros.
 - **Versión en azul** — sobre navy `#14213D`.
 - **Versión en negro** — sobre fondos claros.
-- **Isologo** — globo + flecha, sin texto.
+
+*(El isologo suelto se descartó; no se usa como logo. El favicon/avatar sí emplean el globo/flecha,
+pero como icono de app, no como logo.)*
 
 **Especificaciones**
 
 - **Área de protección:** reservar alrededor del logo un margen igual a la altura de la letra "H".
-  Nada invade ese espacio.
-- **Tamaño mínimo:** 24 mm de ancho en impresión · 120 px en digital. Por debajo, usar el isologo.
+- **Tamaño mínimo:** 24 mm de ancho en impresión · 120 px en digital. Mantener siempre legible
+  "HIT CARGO".
 - **Fondo:** preferir fondos oscuros o con overlay; sobre foto, siempre garantizar contraste.
 
 **Aplicaciones correctas:** buen contraste y legibilidad · mantener el área de protección · usar
@@ -175,26 +179,26 @@ Cinco formatos, un mismo ADN. Cada pieza tiene propósito y tono claros.
 tu tipo de envío: Aéreo o Marítimo"; story "Tu carga segura, nosotros la llevamos".
 
 **Regla transversal:** el **Naranja HIT** marca lo importante (precios, CTA, palabra clave); el resto
-vive sobre base oscura con blanco para respirar. Las frases emocionales, solo en temporada y en Great
-Vibes.
+vive sobre base oscura con blanco para respirar. Toda la tipografía es Montserrat (+ Poppins para
+leer); sin cursivas.
 
 ## 09 · Calendario de marca
 
 | Mes / temporada | Ocasión | Frase |
 |---|---|---|
 | Enero | Regreso a clases | ¡Listos para un nuevo comienzo! |
-| Febrero | San Valentín | *Enviamos tu amor* |
-| Marzo | Día de la Mujer | *Fuerza que nos mueve* |
-| Mayo | Día de las Madres | *Para mamá, sin fronteras* |
-| Junio | Día del Padre | *Papá merece lo mejor* |
+| Febrero | San Valentín | Enviamos tu amor |
+| Marzo | Día de la Mujer | Fuerza que nos mueve |
+| Mayo | Día de las Madres | Para mamá, sin fronteras |
+| Junio | Día del Padre | Papá merece lo mejor |
 | Agosto | Fiestas Agostinas | Celebramos nuestras raíces |
-| Septiembre | Fiestas Patrias | *¡Viva Nicaragua!* |
+| Septiembre | Fiestas Patrias | ¡Viva Nicaragua! |
 | Prime Day | Ofertas | Ofertas que no puedes dejar pasar |
 | Black Friday | Noviembre | Grandes ofertas, envíos que llegan |
 | Navidad | Diciembre | Lo mejor de la Navidad, lo llevamos a ti |
 
-Frases emocionales de temporada → **Great Vibes** (uso limitado). Fechas comerciales → tono impactante
-en Anton / Bebas. Naranja solo en el foco del mensaje.
+Todas las frases van en **Montserrat** (las emocionales pueden ir en naranja para distinguirlas). Sin
+cursivas. Naranja solo en el foco del mensaje.
 
 ## 10 · Manifiesto y contacto
 
@@ -222,26 +226,29 @@ El sitio está construido con **Astro + Preact**.
   que React pero mucho más liviano; hidratación selectiva por isla.
 
 **Arquitectura de contenido (data-driven).** El contenido está separado de la presentación: vive en
-TypeScript bajo `src/data/` e importado por los componentes. El equipo cambia textos, precios y
-servicios sin tocar el markup.
+TypeScript bajo `src/content/` (y `src/config/` para los globales), importado por los componentes. El
+equipo cambia textos, precios y servicios sin tocar el markup.
 
 ```
 src/
-  data/
+  config/
     site.ts          → nombre, contacto, redes, horarios (global)
-    hero.ts          → título, subtítulo, CTAs, imagen
+    seo.ts           → metadatos y SEO
+  content/
+    home.ts          → hero: título, subtítulo, CTAs
     services.ts      → Aéreo / Marítimo (icono, título, tarifa)
     howItWorks.ts    → pasos del proceso
     testimonials.ts  → reseñas de clientes
     faq.ts           → preguntas y respuestas
+    copy.ts          → copy transversal
 ```
 
-**Regla:** un dato que se repite (WhatsApp, Instagram, web) vive en un solo lugar (`site.ts`) y se
-importa donde haga falta.
+**Regla:** un dato que se repite (WhatsApp, Instagram, web) vive en un solo lugar (`src/config/site.ts`)
+y se importa donde haga falta.
 
 ## B · Archivos de datos
 
-### `site.ts` — datos globales (de la guía)
+### `src/config/site.ts` — datos globales (de la guía)
 
 ```ts
 export const site = {
@@ -299,7 +306,7 @@ src/
 ```
 
 **Camino a CMS:** si el contenido se edita desde un CMS (Storyblok, Contentful), sólo se reemplazan
-los imports de `src/data/*` por llamadas al CMS — el markup no cambia.
+los imports de `src/content/*` (y `src/config/*`) por llamadas al CMS — el markup no cambia.
 
 **Tracker y proveedores.** El rastreo consume eventos de **Everest** y **Global Connection**, con
 textos distintos. La isla de Preact los estandariza y estiliza según esta guía:
@@ -313,30 +320,31 @@ textos distintos. La isla de Preact los estandariza y estiliza según esta guía
 ## D · Kit de assets
 
 Todo lo necesario para lanzar el sitio y el resto de piezas, entregado como
-`HIT_CARGO_Assets.zip`. PNG con fondo transparente en alta resolución (logo ~2400 px, isotipo ~1600 px).
+`HIT_CARGO_Assets.zip`. PNG con fondo transparente en alta resolución (~2400 px de ancho).
 
-**Logotipos e isotipos** (`/logo`)
+**Logotipos** (`/logo`)
 
-- `logo-principal.png` — HIT negro + CARGO naranja (fondo claro)
+- `logo-principal.png` — globo/flecha naranja + HIT CARGO en negro (fondo claro)
 - `logo-blanco.png` — logo completo en blanco (fondos oscuros)
 - `logo-negro.png` — logo completo en negro (fondos claros)
-- `logo-naranja.png` — logo completo en naranja
-- `isotipo-naranja.png` / `isotipo-blanco.png` / `isotipo-negro.png` — solo globo + flecha
+- `logo-naranja.png` — logo completo en naranja (monocromático)
+
+*(El isologo suelto se descartó.)*
 
 **Favicon y web** (`/favicon`)
 
-- `favicon.ico` (16/32/48, tile navy mejorado) · `favicon-16/32/48/64.png`
-- `apple-touch-icon.png` (180) · `android-chrome-192/512.png` · `maskable-512.png`
-- `favicon-linea-transparente-64.png` (versión de línea original) · `site.webmanifest`
+- `favicon.ico` original (16/32/48/64, globo de línea transparente) · `favicon-16/32/48/64.png`
+- `apple-touch-icon.png` (180) · `android-chrome-192/512.png` · `site.webmanifest`
+- `site.webmanifest`
 
 **Social / anuncios** (`/social`)
 
 - `og-image-1200x630.png` — preview de enlaces y banner de anuncios
 - `profile-navy-1000.png` / `profile-negro-1000.png` — avatares de redes
 
-**Favicon — mejora.** El isotipo de línea se difumina a 16 px y pierde contraste sobre fondos claros;
-la versión sobre **tile navy redondeado** gana presencia en pestañas, PWA y avatares. Se conserva la
-versión de línea transparente. El `README.md` del kit incluye el snippet completo del `<head>`.
+**Favicon.** Se mantiene el **favicon original** — globo/flecha naranja de línea sobre transparente,
+tal cual. Los avatares de redes sí van sobre fondo sólido (navy/negro) porque las plataformas rellenan
+el fondo. El `README.md` del kit incluye el snippet completo del `<head>`.
 
 **Snippet del `<head>`:**
 
@@ -354,18 +362,3 @@ versión de línea transparente. El `README.md` del kit incluye el snippet compl
 **Follow-up.** Para nitidez infinita y menor peso en web, exportar los logos en **SVG** desde el
 archivo de diseño original — el master disponible es raster (PNG 8000 px), y un autotrace no iguala
 un vector nativo.
-
-## Assets del logo en el repo (implementación actual)
-
-Master: `public/brand/logo.jpg` (1080×1080 — isotipo naranja + wordmark negro sobre blanco).
-Derivados web con **fondo transparente** (matte suave, ~43 KB c/u):
-
-| Archivo | Wordmark | Fondo objetivo | Se usa en |
-|---|---|---|---|
-| `public/brand/logo-full.png` | Negro | Claro | Login del panel; OG/impresión |
-| `public/brand/logo-full-dark.png` | Blanco | Oscuro | Footer del sitio |
-| `public/brand/logo-mark.png` · `mark-32/180/512.png` | — (solo isotipo) | Cualquiera | Header/nav, favicon |
-
-**Regla de uso.** En **barras horizontales** (header, nav) va el **isotipo + texto**, no el lockup
-apilado. El **lockup completo** se reserva para bloques verticales con aire: footer (variante dark)
-y login del panel (variante light). El panel copia `logo-full.png` a su propio `public/`.
