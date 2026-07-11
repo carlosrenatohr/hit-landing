@@ -154,9 +154,11 @@ Algunas decisiones del negocio aparecen disfrazadas como decisiones de UX. Listo
 - ✅ SEO base, JSON-LD de Local Business, sitemap automático.
 - ✅ Dark mode persistente.
 - ✅ Headers de seguridad (CSP, HSTS, X-Frame, etc.) — ver `docs/operations/security-deployment-guide.md`.
-- ✅ Google Tag Manager — container instalado (`GTM-K55VC9JZ`, mayo 2026). Eventos de conversión aún sin instrumentar (cero `dataLayer.push`).
-- ✅ Tracking conectado a la API real (`hit-ever2`). `TrackingPortal.tsx` hace `fetch` a `/track/:guia` con estados loading/ok/notfound/error; el worker está en producción sirviendo datos reales (verificado e2e). Falta: instrumentar el evento GTM de la búsqueda y, opcionalmente, fijar `PUBLIC_API_URL` en Cloudflare Pages para apuntar a `api.hit-cargo.com` en lugar del subdominio `workers.dev` por defecto.
-- 🔴 Harness de entrega (CI, gates, tests) — ausente. Ver `docs/operations/delivery-harness.md`.
+- ✅ Google Tag Manager — container instalado (`GTM-K55VC9JZ`). **El código YA emite eventos `dataLayer`:** `track_search` (búsqueda de tracking, con outcome) y `whatsapp_click` (widget flotante). **Falta el lado GTM:** crear los triggers (Custom Event) y conectarlos a un tag de GA4/pixel — sin eso los eventos se emiten pero nadie los consume.
+- ✅ Tracking conectado a la API real (`hit-ever2`). `TrackingPortal.tsx`/`shared.tsx` hacen `fetch` a `/track/:guia` con estados loading/ok/notfound/error; verificado e2e. Opcional: fijar `PUBLIC_API_URL` en Cloudflare Pages para apuntar a `api.hit-cargo.com`.
+- ✅ Página de contacto rediseñada (iconos por dato + iconos de marca de redes + mapa de Google embebido con pin exacto) y **widget flotante de WhatsApp** en todas las páginas (`components/preact/WhatsappFab.tsx`). Iconos = **SVG inline** (lucide para campos, simple-icons para marcas) porque `lucide-preact` es solo para islas; el mapa requirió ampliar `frame-src` del CSP a Google.
+- ✅ Deploy automático: `master` → Cloudflare Pages (git-connect nativo). Harness: CI (`pnpm check`) en cada PR.
+- 🔴 Tests/gate del harness: sitio y worker tienen CI; el panel aún no. Ver `docs/operations/delivery-harness.md`.
 - 📋 Portal de clientes con auth, dashboard admin, sistema de notificaciones — roadmap a 6-18 meses, ver plan maestro.
 
 ## Performance que queremos defender
