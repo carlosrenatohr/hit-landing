@@ -1,204 +1,289 @@
-# Sistema de color de marca — HIT CARGO
+# HIT CARGO — Manual de marca
 
-> Documento de marca. Owner: **Mayqueline** (branding) con soporte de Renato (implementación).
-> Rol de quien escribe esto: *brand/marketing lead*. Define **qué** color usar y **por qué**; los
-> tokens técnicos viven en `tailwind.config.js`. Si cambian los valores acá, actualizar ambos.
+**Brand Book · Fundamentos** · Versión 1.0 · 2026 · Mercado: Nicaragua / EE. UU. · Interno · Confidencial
+
+> *Envíos que conectan.*
 >
-> **Actualización:** además del sistema de color (§1–6), este documento ahora consolida el
-> **research y los recursos usados para el sitio web** (§7–10) para que el equipo correspondiente
-> los tenga a la mano y pueda extenderlos fácilmente.
+> Documento maestro de marca. Define **qué** usar y **por qué**. Los tokens técnicos viven en
+> `tailwind.config.js`; si cambian los valores acá, actualizar ambos. Incluye, además de los
+> fundamentos de marca (01–10), un **anexo de recursos del sitio web** (A–C) con el research y las
+> decisiones técnicas usadas hasta ahora.
 
-## 1. Personalidad de marca (por qué esta paleta)
+## Índice
 
-HIT CARGO mueve paquetes de EE.UU./China/Panamá a Nicaragua. La marca tiene que transmitir tres
-cosas a la vez: **energía y velocidad** (el envío llega), **confianza y seriedad** (tu plata y tu
-mercancía están seguras) y un aire **premium/cinematográfico** (la referencia interna es la dirección
-de arte de GTA VI: negros profundos, un acento cálido que resalta). Dark mode es el default, no un
-extra.
+**Fundamentos de marca**
 
-De ahí la fórmula: **negro base + un acento cálido de alta energía (rojo-naranja) + neutrales
-legibles + colores semánticos sobrios para estados.** El acento se usa poco y con intención — cuando
-todo es "urgente", nada lo es.
+01. ADN de marca — propósito y valores
+02. Voz y tono — cómo hablamos
+03. Paleta de colores — sistema cromático
+04. Tipografía — jerarquía y voz visual
+05. Logotipo — versiones y uso correcto
+06. Elementos visuales — lenguaje gráfico y tratamiento
+07. Estilo fotográfico — dirección de arte
+08. Sistema de contenidos — formatos y tono por pieza
+09. Calendario de marca — plantillas por temporada
+10. Manifiesto y contacto
 
-## 2. Paleta base
+**Anexo · Recursos del sitio**
 
-| Rol | Nombre | HEX | Uso |
-|-----|--------|-----|-----|
-| **Primario** | Rojo-Naranja HIT | `#FF3B3F` | CTAs, marca, estado actual, foco. El color que "acciona". |
-| Primario (hover) | HIT oscuro | `#D92E31` | hover/active del primario. |
-| **Secundario** | Negro HIT | `#111111` | fondo dark-mode, texto sobre claro, superficies. |
-| Secundario claro | Grafito | `#2D2D2D` | tarjetas/superficies en dark. |
-| Acento cálido | Ámbar | `#FFD700` | realces puntuales, badges "en movimiento". Nunca como CTA. |
-| Acento frío | Azul HIT | `#00A8E8` | enlaces informativos, datos. **No** para el CTA principal. |
-| Neutral texto | Gris texto | `#4A4A4A` | cuerpo sobre fondo claro. |
-| Neutral fondo | Casi blanco | `#F8F9FA` | fondo light-mode. |
-
-**Regla de oro del CTA:** el botón de acción principal (Rastrear, Cotizar, WhatsApp) va en
-**Primario**, nunca en Azul. El azul es para información, no para "hacé clic acá".
-
-## 3. Colores semánticos del tracker (estados del paquete)
-
-El rastreo es la cara pública del producto. Cada estado necesita un color propio, **sobrio**
-(fondo suave + texto oscuro), legible en light y dark, y coherente con la marca. El Primario se
-reserva para **el paso actual** (el punto/ícono activo del journey), no para pintar cada estado.
-
-| Estado (interno) | Etiqueta pública | Familia de color | Idea |
-|---|---|---|---|
-| `en_almacen` | En bodega Miami | **Slate** (gris azulado) | "ya está en nuestras manos" |
-| `parcial` | En preparación | **Ámbar** | "procesándose" |
-| `en_transito` | En camino | **Ámbar** | "en movimiento" |
-| `en_destino` | En Nicaragua | **Cian/Teal** | "casi en casa" |
-| `entregado` | Entregado | **Verde** | éxito, cierre |
-| `excepcion` | Retenido | **Rojo alerta** | necesita atención (distinto del Primario por contexto) |
-| `desconocido` | Sin información | **Slate tenue** | neutro |
-
-Valores de referencia (Tailwind, light / dark):
-
-- Slate: `bg-slate-100 text-slate-700` · dark `bg-slate-800 text-slate-200`
-- Ámbar: `bg-amber-100 text-amber-800` · dark `bg-amber-900/40 text-amber-200`
-- Cian: `bg-cyan-100 text-cyan-800` · dark `bg-cyan-900/40 text-cyan-200`
-- Verde: `bg-green-100 text-green-800` · dark `bg-green-900/40 text-green-200`
-- Rojo: `bg-red-100 text-red-800` · dark `bg-red-900/40 text-red-200`
-
-**Punto/hito actual del journey:** Primario `#FF3B3F` (relleno) con anillo del color de fondo de la
-tarjeta. Hitos completados: verde tenue con check. Hitos pendientes: gris.
-
-## 4. Journey estandarizado (no logs crudos)
-
-Cada proveedor (Everest, Global Connection) emite eventos con textos distintos ("Recibido en Bodega
-Santa Maria", "Enviando a Oficina Metrocentro", etc.). **No los mostramos crudos al cliente** — se
-estandariza a los 4 hitos de la marca, siempre los mismos, con el hito actual en **negrita**:
-
-1. **En bodega Miami** — "Tu paquete llegó a nuestra bodega en Miami."
-2. **En camino** — "Tu paquete va en camino a Nicaragua."
-3. **En Nicaragua** — "Llegó a Nicaragua y está en proceso de entrega."
-4. **Entregado** — "¡Listo! Tu paquete fue entregado."
-
-Las fechas se toman de datos confiables (recepción en Miami, llegada a Nicaragua por oficina MGA,
-entrega) — no se inventan fechas para hitos intermedios que no podemos atribuir con certeza.
-
-## 5. Accesibilidad
-
-- Contraste mínimo AA (4.5:1) para texto. Los pares fondo-suave/texto-oscuro de arriba lo cumplen.
-- Nunca comunicar estado **solo** por color: siempre acompañar con etiqueta de texto (y check/●).
-- Primario sobre blanco pasa AA para texto grande/botones; para texto chico usar el gris texto.
-
-## 6. Qué NO hacer
-
-- ❌ CTA en azul (el azul es informativo).
-- ❌ Pintar todos los estados con el Primario (satura y pierde jerarquía).
-- ❌ Mostrar los logs literales del proveedor al cliente.
-- ❌ Inventar fechas para hitos que no podemos atribuir.
-- ❌ Rojo semántico (retenido) y Primario juntos compitiendo en la misma vista.
+- A. Stack y arquitectura — Astro + Preact
+- B. Archivos de datos — contenido y tokens
+- C. Extensión y tracker — roadmap de contenido
 
 ---
 
-# Recursos del sitio web (research)
+## 01 · ADN de marca
 
-> Consolidación del research y las decisiones técnicas usadas hasta ahora para el sitio. El objetivo
-> es que el equipo pueda **extender** el sitio sin re-investigar. Los valores marcados como
-> `<placeholder>` o "referencia" deben validarse con operaciones/branding antes de publicar.
+HIT CARGO existe para acortar distancias. Movemos paquetes entre Estados Unidos y Nicaragua, pero lo
+que entregamos es **certeza**: la tranquilidad de saber que lo que importa va a llegar.
 
-## 7. Stack del sitio web
+Nuestra identidad une la **eficiencia de la logística moderna** con el calor de la **cercanía latina**.
+Somos una marca en movimiento: directa, confiable y humana. Ese equilibrio —lo técnico sostenido por
+lo emocional— es lo que nos hace reconocibles y lo que guía cada decisión de este manual.
+
+**Nuestro propósito.** Conectar personas, negocios y oportunidades a ambos lados de la frontera — con
+la seguridad y la calidez de quien entiende lo que hay dentro de cada caja.
+
+**Pilares de marca**
+
+- **Cercanía humana** — Hablamos claro y tratamos cada envío como si fuera nuestro.
+- **Rapidez eficiente** — Procesos ágiles, sin fricción ni esperas innecesarias.
+- **Confianza segura** — Transparencia y cuidado en cada etapa del trayecto.
+- **Conexión que une** — Un puente real entre quienes están lejos.
+- **Movimiento siempre** — La marca respira dinamismo: nunca se detiene.
+
+## 02 · Voz y tono
+
+Hablamos como una persona cercana y capaz — no como una corporación. Cálidos con energía latina,
+pero siempre profesionales.
+
+**Principios de voz**
+
+- **Claro** antes que elaborado — frases cortas, sin tecnicismos ni relleno.
+- **Humano** antes que corporativo — nos dirigimos de tú a tú, con calidez.
+- **Seguro** antes que exagerado — prometemos lo que cumplimos, sin inflar.
+- **En movimiento** — verbos activos; la marca siempre avanza y conecta.
+
+**Cómo suena**
+
+| Así hablamos | Así no |
+|---|---|
+| "Tu paquete ya está en camino a Nicaragua." | "Su envío ha sido despachado exitosamente conforme al proceso logístico." |
+| "Elige aéreo o marítimo, tú decides." | "Seleccione la modalidad de transporte de su preferencia." |
+| "Lo cuidamos como si fuera nuestro." | "Garantizamos el 100% de satisfacción asegurada." |
+
+## 03 · Paleta de colores
+
+El color es el 10% que lo cambia todo. Sobre una base sobria de negro y navy, el **Naranja HIT**
+aparece con intención: no decora, señala.
+
+| Rol | Nombre | HEX | RGB |
+|-----|--------|-----|-----|
+| **Protagonista** | Naranja HIT | `#FF7A00` | rgb(255,122,0) |
+| **Base** | Negro Profundo | `#111111` | rgb(17,17,17) |
+| **Soporte estratégico** | Azul Navy | `#14213D` | rgb(20,33,61) |
+| **Respiración** | Blanco | `#FFFFFF` | rgb(255,255,255) |
+
+**Escala del protagonista** (para estados, hovers y degradados):
+`50 #FFF3E6` · `100 #FFDCB3` · `300 #FFB870` · `400 #FF9433` · **`500 #FF7A00`** · `600 #E56E00` ·
+`700 #B35600` · `800 #803E00`
+
+**Proporción 70 / 20 / 10:** 70% colores oscuros (base) · 20% blanco (respiración) · 10% Naranja HIT
+(protagonista).
+
+**Azul Navy = soporte estratégico.** Refuerza confianza y profesionalismo; es base, nunca acento ni
+CTA. **Accesibilidad:** blanco sobre negro/navy cumple AAA; el naranja rinde en acentos, botones y
+texto grande — para párrafos pequeños sobre blanco, preferir el negro.
+
+## 04 · Tipografía
+
+Tres registros para una sola voz: impacto para titular, claridad para leer, y una firma emocional
+para los momentos que lo merecen.
+
+- **Principal (títulos e impacto):** `Anton` (grandes titulares), `Bebas Neue` (etiquetas y UI),
+  `Montserrat Extra Bold` (subtítulos con fuerza).
+- **Secundaria (textos y descripciones):** `Montserrat` (Regular / Medium), `Poppins` (Regular /
+  Medium). Legible, moderna, neutra.
+- **Emocional (uso limitado):** `Great Vibes` — solo palabras o frases emocionales en temporadas
+  especiales. Nunca en cuerpos de texto ni datos.
+
+**Escala tipográfica:** Display (Anton) → Título (Bebas) → Subtítulo (Montserrat XB) → Cuerpo
+(Poppins) → Caption.
+
+## 05 · Logotipo
+
+Un solo símbolo, cinco maneras de aparecer. Elegir la versión que garantice contraste y respeto por
+el espacio.
+
+- **Versión principal** — HIT en negro + CARGO en naranja, sobre fondo claro.
+- **Versión en blanco** — sobre fondos oscuros.
+- **Versión en azul** — sobre navy `#14213D`.
+- **Versión en negro** — sobre fondos claros.
+- **Isologo** — globo + flecha, sin texto.
+
+**Especificaciones**
+
+- **Área de protección:** reservar alrededor del logo un margen igual a la altura de la letra "H".
+  Nada invade ese espacio.
+- **Tamaño mínimo:** 24 mm de ancho en impresión · 120 px en digital. Por debajo, usar el isologo.
+- **Fondo:** preferir fondos oscuros o con overlay; sobre foto, siempre garantizar contraste.
+
+**Aplicaciones correctas:** buen contraste y legibilidad · mantener el área de protección · usar
+sobre fondos oscuros o con overlay.
+
+**Usos incorrectos:** ❌ cambiar los colores · ❌ deformar o alterar proporciones · ❌ usar sobre
+fondos sin contraste · ❌ agregar efectos no permitidos.
+
+## 06 · Elementos visuales y tratamiento
+
+Un kit gráfico coherente que traduce el movimiento y la conexión en formas.
+
+**Elementos:** rutas punteadas · aviones · cajas · flechas de movimiento · mapas · glow naranja ·
+curvas dinámicas · tracking visual · partículas suaves · sombras modernas · iconografía lineal ·
+energía en movimiento.
+
+**Tratamiento visual:** alto contraste (impacto inmediato) · glow naranja (energía y enfoque) ·
+degradados oscuros (profundidad) · movimiento (siempre presente) · iconografía lineal (consistente y
+moderna).
+
+## 07 · Estilo fotográfico
+
+Imágenes **reales, cálidas y dinámicas**. La marca se cuenta con gente y con carga de verdad
+moviéndose — nunca con stock frío o genérico.
+
+**Atmósfera:** humana (personas reales, la emoción de recibir) · en movimiento (aviones, cajas,
+oficinas activas) · cálida (luz natural, tonos tierra, acentos de naranja).
+
+**Buscamos:** momentos genuinos · luz cálida y contexto real de logística · composición limpia con
+espacio para el mensaje.
+
+**Evitamos:** stock frío o poses forzadas · sobre-edición y colores fuera de marca · imágenes
+saturadas que compiten con el texto.
+
+## 08 · Sistema de contenidos
+
+Cinco formatos, un mismo ADN. Cada pieza tiene propósito y tono claros.
+
+1. **Comunicados** — serio · claro · oficial. Anuncios y avisos importantes.
+2. **Promociones** — dinámico · impactante. Ofertas y campañas de temporada.
+3. **Educativos** — útil · profesional. Cómo funciona, guías y tips.
+4. **Carruseles** — informativo · claro. Paso a paso y comparativas.
+5. **Stories** — rápido · visual · directo. Novedades del día a día.
+
+**Ejemplos de aplicación:** promo "¡Envíamos tu amor!" (Día de la Madre) con tarifas Aéreo
+**US$6.25/lb** y Marítimo **US$2.90/lb**; educativo "¿Cómo funciona tu envío?"; carrusel "01 · Elige
+tu tipo de envío: Aéreo o Marítimo"; story "Tu carga segura, nosotros la llevamos".
+
+**Regla transversal:** el **Naranja HIT** marca lo importante (precios, CTA, palabra clave); el resto
+vive sobre base oscura con blanco para respirar. Las frases emocionales, solo en temporada y en Great
+Vibes.
+
+## 09 · Calendario de marca
+
+| Mes / temporada | Ocasión | Frase |
+|---|---|---|
+| Enero | Regreso a clases | ¡Listos para un nuevo comienzo! |
+| Febrero | San Valentín | *Enviamos tu amor* |
+| Marzo | Día de la Mujer | *Fuerza que nos mueve* |
+| Mayo | Día de las Madres | *Para mamá, sin fronteras* |
+| Junio | Día del Padre | *Papá merece lo mejor* |
+| Agosto | Fiestas Agostinas | Celebramos nuestras raíces |
+| Septiembre | Fiestas Patrias | *¡Viva Nicaragua!* |
+| Prime Day | Ofertas | Ofertas que no puedes dejar pasar |
+| Black Friday | Noviembre | Grandes ofertas, envíos que llegan |
+| Navidad | Diciembre | Lo mejor de la Navidad, lo llevamos a ti |
+
+Frases emocionales de temporada → **Great Vibes** (uso limitado). Fechas comerciales → tono impactante
+en Anton / Bebas. Naranja solo en el foco del mensaje.
+
+## 10 · Manifiesto y contacto
+
+> *HIT CARGO no diseña flyers, diseña marca.*
+
+**Siempre presentes:** en cada envío · en cada historia · en cada conexión. *Envíos que conectan.*
+
+**Contacto:** WhatsApp `8208-5181` · Instagram `@hit.cargo` · Web `HITCARGO.COM`
+
+---
+
+# Anexo — Recursos del sitio web (research)
+
+> La misma marca, expresada en código. Consolidación del research y decisiones técnicas usadas hasta
+> ahora, alineadas a la marca correcta (naranja `#FF7A00`, navy de soporte, contacto real). Los
+> valores marcados `<confirmar>` se validan con operaciones antes de publicar.
+
+## A · Stack y arquitectura
 
 El sitio está construido con **Astro + Preact**.
 
-- **Astro** para el render de la landing: entrega HTML estático/SSR con cero JS por defecto —
-  ideal para performance y SEO de una página de negocio.
-- **Preact** para las *islas* interactivas puntuales (tracker, acordeón de FAQ, CTA de WhatsApp,
-  formularios). Mismo modelo mental que React pero mucho más liviano, hidratación selectiva por isla.
-- **Dark mode** es el default de marca (§1) y se resuelve vía tokens de CSS/Tailwind, no requiere JS.
+- **Astro** para el render de la landing: HTML estático/SSR con cero JS por defecto — performance y
+  SEO de primera. Los tokens de marca viven en `tailwind.config.js`.
+- **Preact** para las *islas* interactivas (tracker, FAQ, CTA de WhatsApp, formularios). Mismo modelo
+  que React pero mucho más liviano; hidratación selectiva por isla.
 
-Los tokens de color (§2) viven en `tailwind.config.js`; este documento define su semántica.
-
-## 8. Arquitectura de contenido (data-driven)
-
-El contenido está **separado de la presentación**: vive en archivos TypeScript bajo `src/data/`, y
-los componentes lo importan. Así el equipo cambia textos, precios o servicios sin tocar el markup.
+**Arquitectura de contenido (data-driven).** El contenido está separado de la presentación: vive en
+TypeScript bajo `src/data/` e importado por los componentes. El equipo cambia textos, precios y
+servicios sin tocar el markup.
 
 ```
 src/
   data/
-    site.ts          → nombre, contacto, redes, horarios (datos globales)
+    site.ts          → nombre, contacto, redes, horarios (global)
     hero.ts          → título, subtítulo, CTAs, imagen
-    services.ts      → servicios (icono, título, descripción, precio)
+    services.ts      → Aéreo / Marítimo (icono, título, tarifa)
     howItWorks.ts    → pasos del proceso
     testimonials.ts  → reseñas de clientes
     faq.ts           → preguntas y respuestas
-    pricing.ts       → tarifas
 ```
 
-**Regla:** un dato que se repite (teléfono, WhatsApp, email) vive en **un solo lugar** (`site.ts`) y
-se importa donde haga falta (header, footer, sección de contacto).
+**Regla:** un dato que se repite (WhatsApp, Instagram, web) vive en un solo lugar (`site.ts`) y se
+importa donde haga falta.
 
-### `site.ts` — datos globales
+## B · Archivos de datos
+
+### `site.ts` — datos globales (de la guía)
 
 ```ts
-// valores de ejemplo — reemplazar por los reales antes de publicar
 export const site = {
   name: "HIT CARGO",
-  phone: "<placeholder>",
-  whatsapp: "<placeholder>",       // https://wa.me/<numero>
-  email: "<placeholder>",
-  address: "Managua, Nicaragua",
-  social: {
-    facebook: "<placeholder>",
-    instagram: "<placeholder>",
-  },
-  hours: "Lunes a Sábado, 8am – 5pm",
+  tagline: "Envíos que conectan.",
+  whatsapp: "https://wa.me/50582085181",   // 8208-5181
+  instagram: "https://instagram.com/hit.cargo",
+  web: "https://hitcargo.com",
+  email: "<confirmar>",                     // no figura en la guía
+  address: "Nicaragua",
 };
 ```
 
-### `hero.ts`
+### `theme` — tokens de marca
 
 ```ts
-export const hero = {
-  title: "Tu puente desde Estados Unidos a Nicaragua",
-  subtitle: "Conecta con tus tiendas favoritas de EE.UU. como Amazon, Shein y eBay...",
-  cta: {
-    primary: { text: "Nuestros Servicios", href: "#servicios" },
-    secondary: { text: "Contáctanos", href: "#contacto" },
-  },
-  image: { src: "/images/hero-delivery.jpg", alt: "Servicio de entrega HIT CARGO" },
+export const brand = {
+  orange: "#FF7A00",   // protagonista · 10% · CTAs
+  black:  "#111111",   // base · 70%
+  navy:   "#14213D",   // soporte estratégico
+  white:  "#FFFFFF",   // respiración · 20%
 };
 ```
 
-> CTA y color: el `primary` usa el **Primario `#FF3B3F`** (regla de oro, §2). El `secondary`
-> nunca va en azul.
+> **CTA y color:** el botón de acción (Rastrear, Cotizar, WhatsApp) usa el **Naranja HIT `#FF7A00`**.
+> El navy es soporte, nunca el CTA.
 
-### `services.ts` (contenido de referencia — validar precios con operaciones)
+### `services.ts` — tipos de envío (validar tarifas base)
 
 ```ts
 export const services = [
-  {
-    icon: "package",
-    title: "Casillero Virtual",
-    description: "Te damos una dirección en Miami...",
-    price: "Desde $5/lb",
-  },
-  {
-    icon: "truck",
-    title: "Envío Marítimo",
-    description: "Para paquetes grandes o pesados...",
-    price: "Desde $3/lb",
-  },
+  { icon: "plane", title: "Envío Aéreo",    price: "US$6.25/lb" },  // promo Día de la Madre
+  { icon: "ship",  title: "Envío Marítimo", price: "US$2.90/lb" },  // promo Día de la Madre
 ];
 ```
 
-Y en un componente Astro:
+Nota: los precios provienen de la plantilla de promo **Día de la Madre** — referencia promocional, no
+tarifas base confirmadas.
 
-```astro
----
-import { hero } from '../data/hero';
----
-<h1>{hero.title}</h1>
-<p>{hero.subtitle}</p>
-<a href={hero.cta.primary.href} class="btn-primary">{hero.cta.primary.text}</a>
-```
+## C · Extensión y tracker
 
-## 9. Cómo extender (research → recursos)
-
-Cuando el contenido crezca (blog, guías de envío, una página por servicio), migrar a **Content
+**Cómo extender.** Cuando el contenido crezca (blog, guías, página por servicio), migrar a **Content
 Collections** de Astro con Markdown/MDX y validación de schemas con **Zod**:
 
 ```
@@ -209,24 +294,78 @@ src/
       como-usar-casillero.md
       guia-amazon-nicaragua.md
     services/
-      casillero-virtual.md
+      envio-aereo.md
       envio-maritimo.md
 ```
 
-Ventajas: rutas generadas automáticamente, schemas tipados, y contenido largo con formato.
+**Camino a CMS:** si el contenido se edita desde un CMS (Storyblok, Contentful), sólo se reemplazan
+los imports de `src/data/*` por llamadas al CMS — el markup no cambia.
 
-**Camino a CMS:** si eventualmente el contenido se edita desde un CMS (Storyblok, Contentful), sólo
-se reemplazan los imports de `src/data/*` por llamadas al CMS — el markup de los componentes no
-cambia. La arquitectura data-driven de §8 es justamente lo que habilita esta migración sin dolor.
+**Tracker y proveedores.** El rastreo consume eventos de **Everest** y **Global Connection**, con
+textos distintos. La isla de Preact los estandariza y estiliza según esta guía:
 
-## 10. Tracker y proveedores (referencia)
+- No mostrar logs crudos: estandarizar a hitos claros (recibido → en camino → en Nicaragua →
+  entregado).
+- Estilizar con la paleta: **Naranja HIT** solo para el paso actual; navy/negro para superficies;
+  blanco para respiración.
+- No inventar fechas para hitos que no se puedan atribuir con certeza.
 
-El rastreo (§3–4) consume eventos de los proveedores logísticos **Everest** y **Global Connection**,
-cada uno con textos de evento distintos. Reglas del sitio, ya cubiertas arriba:
+## D · Kit de assets
 
-- No mostrar logs crudos del proveedor → estandarizar a los **4 hitos de marca** (§4).
-- Aplicar los **colores semánticos** por estado (§3); Primario sólo para el hito actual.
-- No inventar fechas para hitos intermedios no atribuibles (§4).
+Todo lo necesario para lanzar el sitio y el resto de piezas, entregado como
+`HIT_CARGO_Assets.zip`. PNG con fondo transparente en alta resolución (logo ~2400 px, isotipo ~1600 px).
 
-La isla de Preact del tracker mapea `estado interno → etiqueta pública → color semántico` usando esta
-guía como fuente única de verdad.
+**Logotipos e isotipos** (`/logo`)
+
+- `logo-principal.png` — HIT negro + CARGO naranja (fondo claro)
+- `logo-blanco.png` — logo completo en blanco (fondos oscuros)
+- `logo-negro.png` — logo completo en negro (fondos claros)
+- `logo-naranja.png` — logo completo en naranja
+- `isotipo-naranja.png` / `isotipo-blanco.png` / `isotipo-negro.png` — solo globo + flecha
+
+**Favicon y web** (`/favicon`)
+
+- `favicon.ico` (16/32/48, tile navy mejorado) · `favicon-16/32/48/64.png`
+- `apple-touch-icon.png` (180) · `android-chrome-192/512.png` · `maskable-512.png`
+- `favicon-linea-transparente-64.png` (versión de línea original) · `site.webmanifest`
+
+**Social / anuncios** (`/social`)
+
+- `og-image-1200x630.png` — preview de enlaces y banner de anuncios
+- `profile-navy-1000.png` / `profile-negro-1000.png` — avatares de redes
+
+**Favicon — mejora.** El isotipo de línea se difumina a 16 px y pierde contraste sobre fondos claros;
+la versión sobre **tile navy redondeado** gana presencia en pestañas, PWA y avatares. Se conserva la
+versión de línea transparente. El `README.md` del kit incluye el snippet completo del `<head>`.
+
+**Snippet del `<head>`:**
+
+```html
+<link rel="icon" href="/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/favicon/site.webmanifest">
+<meta name="theme-color" content="#14213D">
+<meta property="og:image" content="/social/og-image-1200x630.png">
+<meta name="twitter:card" content="summary_large_image">
+```
+
+**Follow-up.** Para nitidez infinita y menor peso en web, exportar los logos en **SVG** desde el
+archivo de diseño original — el master disponible es raster (PNG 8000 px), y un autotrace no iguala
+un vector nativo.
+
+## Assets del logo en el repo (implementación actual)
+
+Master: `public/brand/logo.jpg` (1080×1080 — isotipo naranja + wordmark negro sobre blanco).
+Derivados web con **fondo transparente** (matte suave, ~43 KB c/u):
+
+| Archivo | Wordmark | Fondo objetivo | Se usa en |
+|---|---|---|---|
+| `public/brand/logo-full.png` | Negro | Claro | Login del panel; OG/impresión |
+| `public/brand/logo-full-dark.png` | Blanco | Oscuro | Footer del sitio |
+| `public/brand/logo-mark.png` · `mark-32/180/512.png` | — (solo isotipo) | Cualquiera | Header/nav, favicon |
+
+**Regla de uso.** En **barras horizontales** (header, nav) va el **isotipo + texto**, no el lockup
+apilado. El **lockup completo** se reserva para bloques verticales con aire: footer (variante dark)
+y login del panel (variante light). El panel copia `logo-full.png` a su propio `public/`.
