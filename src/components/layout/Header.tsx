@@ -36,14 +36,14 @@ export const Header = () => {
                 alt="HIT Cargo"
                 width="640"
                 height="656"
-                className="h-12 w-auto object-contain dark:hidden"
+                className={`${isScrolled ? "h-11" : "h-16"} w-auto object-contain transition-all duration-300 dark:hidden`}
               />
               <img
                 src="/brand/logo-full-dark.png"
                 alt="HIT Cargo"
                 width="640"
                 height="656"
-                className="hidden h-12 w-auto object-contain dark:block"
+                className={`hidden ${isScrolled ? "h-11" : "h-16"} w-auto object-contain transition-all duration-300 dark:block`}
               />
             </a>
           </div>

@@ -1,6 +1,7 @@
 ---
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer.astro';
+import WhatsappFab from '../components/preact/WhatsappFab';
 import JSONLD from '../components/seo/JSONLD.astro';
 import { siteMeta } from '../content/meta';
 import '../styles/global.css';
@@ -83,5 +84,6 @@ const fullTitle = `${title} | ${siteMeta.siteName}`;
 			<slot />
 		</main>
     <Footer />
+    <WhatsappFab client:idle />
 	</body>
 </html>
