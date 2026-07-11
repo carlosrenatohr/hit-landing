@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] — 2026-07-10
+
+Tracking UX, anti-abuse and the full brand logo, on top of the v2.3.0 MVP.
+
+### Added
+- **Inline tracking from the home hero.** The hero form resolves the waybill in place and opens the
+  result **modal** (shared with `/track`) — no page navigation. The result view is shared between
+  both entry points.
+- **Branded loading state** (animated mark + indeterminate bar) so the search action is obvious.
+- **Request timeout** — a 12s `AbortController` cutoff so a hung/blocked worker never traps the
+  visitor; the overlay stays closable (Escape / backdrop / close button).
+- **Journey redesign** — rendered latest-first, with the current milestone pulled out into a
+  highlighted "Estado actual" card above the rest.
+- **`track_search` dataLayer event** on every outcome (found / notfound / error / timeout) for GTM →
+  pixels / Google Analytics conversions.
+- **Full brand logo assets** — the master `public/brand/logo.jpg` plus two web-optimized transparent
+  variants (~43 KB): `logo-full.png` (light backgrounds) and `logo-full-dark.png` (dark). The full
+  lockup is used in the site footer; the horizontal header/nav keep the mark + text.
+
+### Security
+- **Client-side anti-abuse** on the tracking forms — a minimum interval between submits, a
+  per-minute cap, and a honeypot field to blunt mass/bot submissions, on top of the worker's per-IP
+  rate limit.
+
+### Changed
+- CTAs recolored to the brand Primary and hovers tokenized (from the brand-palette pass).
+
 ## [2.3.0] — 2026-07-10
 
 MVP release: the missing site pages, a real package-tracking portal wired to the
