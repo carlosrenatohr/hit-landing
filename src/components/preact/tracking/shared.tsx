@@ -132,7 +132,11 @@ export function useTracking() {
     abortRef.current?.abort();
     const ac = new AbortController();
     abortRef.current = ac;
-    const timer = setTimeout(() => ac.abort(), TRACK_TIMEOUT_MS);
+    let timedOut = false;
+    const timer = setTimeout(() => {
+      timedOut = true;
+      ac.abort();
+    }, TRACK_TIMEOUT_MS);
 
     try {
       const res = await fetch(`${API_URL}/track/${encodeURIComponent(value)}`, { signal: ac.signal });
@@ -158,7 +162,11 @@ export function useTracking() {
       pushTrackEvent(value, "found", json.data.status);
     } catch {
       clearTimeout(timer);
-      const timedOut = ac.signal.aborted;
+      // Ignore aborts that aren't our timeout: a superseding search or the user closing the overlay
+      // aborts the in-flight request, and its catch runs async AFTER state was reset — without these
+      // guards it would re-open a spurious error and push a phantom analytics event.
+      if (ac !== abortRef.current) return; // superseded by a newer search, or closed
+      if (ac.signal.aborted && !timedOut) return; // aborted by the user, not the timeout
       setView("error");
       pushTrackEvent(value, timedOut ? "timeout" : "error");
     }
@@ -166,6 +174,7 @@ export function useTracking() {
 
   const close = () => {
     abortRef.current?.abort();
+    abortRef.current = null; // so the aborted request's catch recognizes it was dismissed
     setView("idle");
     setData(null);
   };
