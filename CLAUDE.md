@@ -20,9 +20,9 @@ Empresa de logística internacional con sede en Nicaragua. Funciona como freight
 
 ## Identidad visual
 
-- Paleta: rojo-naranja de alta energía (`#FF3B3F`) + negro como base. Estética sobria, moderna, oscura sin ser pesada, con guiños cinematográficos (la referencia interna es la dirección de arte de GTA VI). Dark mode es default.
-- **Sistema de color completo (tokens, colores semánticos del tracker, reglas de uso):** [docs/marketing/brand-color-system.md](docs/marketing/brand-color-system.md). Es la fuente de verdad de marca; `tailwind.config.js` la implementa.
-- Tipografía: Inter (Google Fonts).
+- Paleta: **Naranja HIT `#FF7A00`** (protagonista — acción y foco) + **negro `#111111`** como base y **navy `#14213D`** de soporte estratégico; blanco para respirar. Proporción 70/20/10. Dark mode es default.
+- **Manual de marca completo (paleta y escala, tipografía, logo, tokens, reglas de uso):** [docs/marketing/brand-color-system.md](docs/marketing/brand-color-system.md). Es la fuente de verdad de marca; `tailwind.config.js` la implementa.
+- Tipografía: **Montserrat** (títulos e impacto) + **Poppins** (cuerpo), vía Google Fonts.
 - Tono de comunicación: cercano y profesional. Educativo cuando hace falta. Cero hype de marketing.
 
 ## Equipo y ritmo
@@ -200,6 +200,8 @@ Node version:     22.x   # Astro 6 requiere Node >=22.12 (ver .nvmrc)
 - [Cloudflare Deployment](docs/operations/cloudflare-deployment.md)
 
 **Marketing**
+- [Manual de marca (paleta, tipografía, logo)](docs/marketing/brand-color-system.md)
+- [Dirección de fotografía y reemplazo](docs/marketing/photo-direction.md)
 - [SEO + Copy Audit](docs/marketing/copy-seo-audit.md)
 - [T&C Rifa Aniversario 2026](docs/marketing/terminos-condiciones-rifa-aniversario-2026.md)
 
