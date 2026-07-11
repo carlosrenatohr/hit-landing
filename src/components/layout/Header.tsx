@@ -57,7 +57,10 @@ export const Header = () => {
               Inicio
             </a>
             <div className="relative group">
-              <button className="flex items-center text-secondary dark:text-white hover:text-primary transition-colors font-medium">
+              <button
+                aria-haspopup="true"
+                className="flex items-center text-secondary dark:text-white hover:text-primary transition-colors font-medium"
+              >
                 Servicios <ChevronDown className="h-4 w-4 ml-1" />
               </button>
               <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-secondary shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right border border-gray-100 dark:border-gray-800">
@@ -114,6 +117,8 @@ export const Header = () => {
           {/* Mobile Navigation Toggle */}
           <button
             className="md:hidden text-secondary dark:text-white"
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (

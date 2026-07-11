@@ -40,3 +40,6 @@ pnpm-debug.log*
 
 # Local agent config (not shared)
 .claude/
+
+# Windows Alternate-Data-Stream cruft
+*:Zone.Identifier
