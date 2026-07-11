@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] — 2026-07-10
+
+Landing rebrand to brand book v1.0: the Naranja HIT palette and new typography.
+
+### Changed
+- **Brand palette** — the protagonist color moves from red `#FF3B3F` to **Naranja HIT `#FF7A00`**
+  (with a 50–800 scale for states/hovers), and **Azul Navy `#14213D`** joins as strategic support;
+  the browser `theme-color` is navy. CTAs and focus states re-hue to orange through the `primary`
+  token.
+- **Typography** — from Inter to **Montserrat** (headings/impact) + **Poppins** (body).
+- **Header logo** — now the full logo (isotype + wordmark) with light/dark variants, replacing the
+  isotype-plus-text lockup.
+- The old amber accent is retired from the landing (icon chips and stars → orange; decorative blobs
+  → navy) so orange stays scarce per the 70/20/10 proportion.
+
+### Performance
+- **Logo assets re-optimized** (~370 KB saved): `logo-mark` 244K→28K, `mark-512` 113K→27K,
+  `mark-180` 25K→5K, master JPG 147K→35K; the oversized 928px mark is capped at 512px.
+
+### Docs
+- Brand book v1.0 (palette, typography, logo, asset kit), with the content-architecture path
+  corrected (`src/content` + `src/config`, not `src/data`).
+- New `docs/marketing/photo-direction.md` — photo preparation and replacement guide.
+- `CLAUDE.md` identity section updated to the new brand.
+
 ## [2.4.0] — 2026-07-10
 
 Tracking UX, anti-abuse and the full brand logo, on top of the v2.3.0 MVP.
@@ -98,5 +123,6 @@ production on Cloudflare Pages.
 - Automatic CI/CD via Cloudflare Pages on push to `master`.
 - Initial docs set (now under `docs/operations/` and `docs/guides/`).
 
-[Unreleased]: https://github.com/carlosrenatohr/hit-landing/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/carlosrenatohr/hit-landing/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/carlosrenatohr/hit-landing/compare/v2.4.0...v2.5.0
 [2.2.0]: https://github.com/carlosrenatohr/hit-landing/compare/v2.1.1...v2.2.0
