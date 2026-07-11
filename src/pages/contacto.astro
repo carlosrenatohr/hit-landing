@@ -26,8 +26,8 @@ const details = [
   { label: 'WhatsApp', value: 'Escribinos por WhatsApp', href: wa, external: true, icon: icon.whatsapp },
   { label: 'Teléfono', value: siteConfig.phone, href: phoneHref, icon: icon.phone },
   { label: 'Correo', value: siteConfig.email, href: `mailto:${siteConfig.email}`, icon: icon.mail },
-  { label: 'Dirección', value: siteConfig.address, href: mapsUrl, external: true, icon: icon.pin },
-  { label: 'Horario', value: 'Lunes a viernes, 8:00 a.m. – 5:00 p.m. No trabajamos domingos.', icon: icon.clock },
+  // Dirección se muestra en la tarjeta "Visitanos" + el mapa, no se duplica aquí.
+  { label: 'Horario', value: 'Lunes a viernes, 8:00 a.m. – 5:00 p.m.', icon: icon.clock },
 ];
 
 const socials = [
