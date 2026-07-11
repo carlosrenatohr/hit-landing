@@ -48,6 +48,7 @@ export default {
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.5s ease-out',
         'in': 'fadeIn 0.5s ease-out',
+        'wa-bounce': 'waBounce 2.2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -61,6 +62,13 @@ export default {
         slideDown: {
           '0%': { transform: 'translateY(-20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' }
+        },
+        // Periodic hop for the floating WhatsApp button — rests most of the cycle, then bounces.
+        waBounce: {
+          '0%, 65%, 100%': { transform: 'translateY(0)' },
+          '75%': { transform: 'translateY(-8px)' },
+          '85%': { transform: 'translateY(-4px)' },
+          '95%': { transform: 'translateY(-1px)' }
         }
       }
     }
