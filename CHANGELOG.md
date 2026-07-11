@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] — 2026-07-11
+
+Landing polish: redesigned contact page, a prominent scroll-shrinking logo, an embedded map, and a floating WhatsApp widget.
+
+### Added
+- **Floating WhatsApp button** on every page (bottom-right): periodic bounce + pulse ring and an invite label; opens `wa.me` (the app on mobile, web on desktop) with a short prefilled greeting. Emits a `whatsapp_click` dataLayer event (`location: floating_widget`) so a GTM pixel / GA conversion can be wired with no code change.
+- **Google Maps embed** on the contact page, pinned to the HIT CARGO Business Profile.
+
+### Changed
+- **Contact page redesigned** — per-field orange icon chips, real brand social icons (Facebook/Instagram/TikTok), and a two-column layout with an orange WhatsApp card and a navy "Cómo llegar" card. The address row was de-duplicated (it lives in the map/directions card) and the hours trimmed to Mon–Fri.
+- **Header logo** enlarged to `h-16` at the top of the page and shrinks to `h-11` on scroll, transitioning in sync with the fixed header.
+
+### Security
+- CSP `frame-src` extended to allow `www.google.com` / `maps.google.com` for the contact map embed.
+
 ## [2.5.0] — 2026-07-10
 
 Landing rebrand to brand book v1.0: the Naranja HIT palette and new typography.
@@ -123,6 +138,7 @@ production on Cloudflare Pages.
 - Automatic CI/CD via Cloudflare Pages on push to `master`.
 - Initial docs set (now under `docs/operations/` and `docs/guides/`).
 
-[Unreleased]: https://github.com/carlosrenatohr/hit-landing/compare/v2.5.0...HEAD
+[Unreleased]: https://github.com/carlosrenatohr/hit-landing/compare/v2.6.0...HEAD
+[2.6.0]: https://github.com/carlosrenatohr/hit-landing/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/carlosrenatohr/hit-landing/compare/v2.4.0...v2.5.0
 [2.2.0]: https://github.com/carlosrenatohr/hit-landing/compare/v2.1.1...v2.2.0
