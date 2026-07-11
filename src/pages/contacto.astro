@@ -5,6 +5,9 @@ import { siteConfig } from '../config/site';
 const wa = siteConfig.social.whatsapp;
 const phoneHref = `tel:${siteConfig.phone.replace(/[^\d+]/g, '')}`;
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${siteConfig.address}, Nicaragua`)}`;
+// Keyless embed (geocodes the address). For an exact pin, replace with the "Embed a map" iframe
+// src from Google Maps / the Business Profile (the ...&output=embed or /maps/embed?pb=... URL).
+const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(`${siteConfig.address}, Nicaragua`)}&z=15&hl=es&output=embed`;
 
 // Inline SVGs so the static Astro page needs no icon runtime (lucide-preact is island-only).
 // lucide (stroke) for field glyphs, simple-icons (fill) for brand marks. Trusted static markup.
@@ -136,6 +139,17 @@ const socials = [
             </a>
           </div>
         </div>
+      </div>
+
+      <!-- Map -->
+      <div class="mt-8 overflow-hidden rounded-2xl border border-primary/10 shadow-lg">
+        <iframe
+          title="Ubicación de HIT CARGO en Google Maps"
+          src={mapEmbed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="block h-[360px] w-full border-0 md:h-[440px]"
+        ></iframe>
       </div>
     </div>
   </section>
