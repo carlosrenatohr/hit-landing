@@ -5,9 +5,9 @@ import { siteConfig } from '../config/site';
 const wa = siteConfig.social.whatsapp;
 const phoneHref = `tel:${siteConfig.phone.replace(/[^\d+]/g, '')}`;
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${siteConfig.address}, Nicaragua`)}`;
-// Keyless embed (geocodes the address). For an exact pin, replace with the "Embed a map" iframe
-// src from Google Maps / the Business Profile (the ...&output=embed or /maps/embed?pb=... URL).
-const mapEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(`${siteConfig.address}, Nicaragua`)}&z=15&hl=es&output=embed`;
+// Exact pin from the HIT CARGO Google Business Profile ("Embed a map" src). CSP frame-src allows
+// www.google.com so this iframe loads.
+const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.751261914731!2d-86.1942389249387!3d12.060627788177209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f73ffd16aa2686f%3A0x33b21079da1210!2sHIT%20CARGO!5e0!3m2!1sen!2sni!4v1783753731029!5m2!1sen!2sni';
 
 // Inline SVGs so the static Astro page needs no icon runtime (lucide-preact is island-only).
 // lucide (stroke) for field glyphs, simple-icons (fill) for brand marks. Trusted static markup.
