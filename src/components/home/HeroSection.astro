@@ -1,8 +1,12 @@
 ---
 import TrackingForm from './TrackingForm';
 import { heroContent } from '../../content/home'
+import { siteConfig } from '../../config/site'
 import { Image } from 'astro:assets'
 import heroBackground from '../../assets/images/background.jpeg'
+
+// "Cotizar Ahora" opens WhatsApp (the primary conversion channel) with a prefilled message.
+const quoteUrl = `${siteConfig.social.whatsapp}?text=${encodeURIComponent('Hola 👋 Quiero cotizar un envío con HIT Cargo.')}`
 ---
 
 <section class="min-h-screen relative overflow-hidden bg-gradient-to-b from-neutral-bg to-white dark:from-secondary dark:to-secondary-light">
@@ -25,12 +29,20 @@ import heroBackground from '../../assets/images/background.jpeg'
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-400">
-          <button class="bg-primary text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg">
+          <a
+            href="/servicios"
+            class="inline-block text-center bg-primary text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg"
+          >
             {heroContent.primaryCTA}
-          </button>
-          <button class="bg-transparent border-2 border-primary text-primary py-4 px-8 text-lg rounded-md font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105">
+          </a>
+          <a
+            href={quoteUrl}
+            target="_blank"
+            rel="noopener"
+            class="inline-block text-center bg-transparent border-2 border-primary text-primary py-4 px-8 text-lg rounded-md font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105"
+          >
             {heroContent.secondaryCTA}
-          </button>
+          </a>
         </div>
       </div>
 
