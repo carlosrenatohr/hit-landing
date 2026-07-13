@@ -1,73 +1,72 @@
-# Hit Cargo Web v1.2
+# HIT Cargo — Website (`hit-landing`)
 
-Sitio público de [HIT CARGO Nicaragua](https://hit-cargo.com), construido con Astro 6 + Preact y desplegado en Cloudflare Pages.
+Public site for [HIT Cargo Nicaragua](https://hit-cargo.com), a logistics business moving packages between the US and Nicaragua.
 
-> Para contexto completo del proyecto (negocio, equipo, decisiones técnicas, restricciones), abrir [CLAUDE.md](CLAUDE.md).
->
-> Si trabajás dentro del workspace `hit/` (sitio + worker `hit-ever2` + otros), el mapa de prioridades y enlaces vive un nivel arriba en [`../CLAUDE.md`](../CLAUDE.md).
+The architecture is driven by one fact about the real users: many of them are on 3G/LTE in Nicaragua. So the site is built on Astro with island architecture — it ships plain HTML for the 90% that's static content, and only the pieces that actually need it (the header, the tracking portal, the FAQ) load any JavaScript. Preact instead of React keeps that interactive slice at a ~3 kB runtime. The result is a fast time-to-interactive on slow networks, which for this audience is a product decision, not a micro-optimization.
+
+**Live:** https://hit-cargo.com
+
+---
 
 ## Stack
 
 | | |
 |---|---|
 | Framework | Astro 6.1 |
-| UI interactiva | Preact 10 vía `@astrojs/preact` |
-| Estilos | Tailwind CSS 3.4 |
+| Interactive UI | Preact 10 via `@astrojs/preact` |
+| Styles | Tailwind CSS 3.4 |
 | Bundler | Vite 8 |
 | Tests | Vitest 4 |
 | Hosting | Cloudflare Pages |
-| Analítica | GTM (`GTM-K55VC9JZ`) + Cloudflare Web Analytics |
+| Analytics | Google Tag Manager + Cloudflare Web Analytics |
 
-## Arrancar
+---
+
+## Getting started
 
 ```bash
 pnpm install
-pnpm dev           # http://localhost:4321 — sin CSP enforcement
-pnpm build         # genera dist/
-pnpm preview       # astro preview de dist/ — sigue sin _headers
+pnpm dev           # http://localhost:4321 — no CSP enforcement
+pnpm build         # outputs dist/
+pnpm preview       # astro preview of dist/ — still without _headers
 pnpm test
 ```
 
-Para validar el CSP igual que producción (con `public/_headers` aplicado):
+To validate CSP the way production does (with `public/_headers` applied):
 
 ```bash
 pnpm build
 wrangler pages dev dist --compatibility-date=2026-04-28
 ```
 
-## Estructura corta
+---
 
-- `src/components/` — `*.astro` por defecto (zero-JS), `*.tsx` solo si necesita estado o interacción.
-- `src/layouts/Layout.astro` — `<head>` global, snippet GTM, CSP coordinado.
-- `src/pages/` — routing basado en archivos (`index.astro`, `track.astro`).
-- `public/` — estáticos + `_headers` + `_redirects` que Cloudflare Pages aplica directo.
-- `docs/` — documentación organizada por dominio: `business/`, `operations/`, `guides/`, `marketing/`, `history/`. Detalle del índice en [CLAUDE.md](CLAUDE.md).
+## Structure
 
-## Por qué este stack
+- `src/components/` — `*.astro` by default (zero-JS), `*.tsx` only when a component needs state or interaction.
+- `src/layouts/Layout.astro` — global `<head>`, analytics snippet, CSP coordination.
+- `src/pages/` — file-based routing (`index.astro`, `track.astro`).
+- `public/` — static assets + `_headers` + `_redirects`, applied directly by Cloudflare Pages.
 
-- **Astro:** el sitio es 90% contenido estático. Servir HTML puro baja TTI dramáticamente en 3G/LTE, que es lo que tienen muchos usuarios reales en Nicaragua.
-- **Island architecture:** solo el `<Header>`, el tracking portal y la FAQ cargan JS. El resto es HTML puro.
-- **Preact:** misma API que React con 3 kB de runtime. La parte interactiva es chica y no se justifica el peso de React.
+---
 
-## Convenciones rápidas
+## Why this stack
 
-- Por defecto `.astro`. Solo `.tsx` Preact si hay estado o evento.
-- Tailwind utilities; CSS custom solo cuando lo que ofrece Tailwind no alcanza.
-- Imports con alias `@/` apuntando a `src/`.
-- **Evitar atributos `style="..."` inline** — el CSP basado en hashes los bloquea. Usar clases.
+- **Astro:** the site is 90% static content. Serving plain HTML drops time-to-interactive sharply on 3G/LTE, which is what many real users in Nicaragua are on.
+- **Island architecture:** only the `<Header>`, the tracking portal, and the FAQ load JS. Everything else is plain HTML.
+- **Preact:** same API as React at a ~3 kB runtime. The interactive surface is small and doesn't justify React's weight.
+
+---
+
+## Conventions
+
+- `.astro` by default. `.tsx` (Preact) only when there's state or an event handler.
+- Tailwind utilities; custom CSS only when Tailwind can't express it.
+- Imports via the `@/` alias pointing at `src/`.
+- **No inline `style="..."` attributes** — the strict CSP disallows inline styles, so use classes.
+
+---
 
 ## Deploy
 
-Push a `master` → Cloudflare Pages dispara build automático y promueve a producción. Branches feature obtienen un preview en `<branch>.<project>.pages.dev`. No hay configuración adicional, está conectado vía GitHub.
-
-## Documentación viva
-
-| Tema | Archivo |
-|---|---|
-| Contexto completo del proyecto | [CLAUDE.md](CLAUDE.md) |
-| Cambios por versión | [CHANGELOG.md](CHANGELOG.md) |
-| Modelo de negocio | [docs/business/company-overview.md](docs/business/company-overview.md) |
-| Roadmap maestro | [docs/business/master-plan-2024-2026.md](docs/business/master-plan-2024-2026.md) |
-| Seguridad y deploy | [docs/operations/security-deployment-guide.md](docs/operations/security-deployment-guide.md) |
-| Auditoría SEO y copy | [docs/marketing/copy-seo-audit.md](docs/marketing/copy-seo-audit.md) |
-| Tutorial GitFlow | [docs/guides/gitflow-tutorial.md](docs/guides/gitflow-tutorial.md) |
+Push to `master` → Cloudflare Pages runs a build automatically and promotes to production. Feature branches get a preview at `<branch>.<project>.pages.dev`. No extra configuration — it's connected via GitHub.
