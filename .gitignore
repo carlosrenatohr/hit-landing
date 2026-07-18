@@ -43,3 +43,10 @@ pnpm-debug.log*
 
 # Windows Alternate-Data-Stream cruft
 *:Zone.Identifier
+
+
+# graphify knowledge-graph output — keep the portable artifacts (graph.json + report)
+# for cross-model handoff; ignore the rest (cache, html, temp, manifests).
+graphify-out/*
+!graphify-out/graph.json
+!graphify-out/GRAPH_REPORT.md
