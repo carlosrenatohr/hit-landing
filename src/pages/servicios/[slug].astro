@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { siteConfig } from '../../config/site';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { servicePages, getServicePage } from '../../content/servicePages';
+import { waUrlForPath } from '../../lib/whatsapp';
 
 export function getStaticPaths() {
   return servicePages.map((service) => ({
@@ -11,12 +12,13 @@ export function getStaticPaths() {
 }
 
 const { service } = Astro.props;
-const wa = siteConfig.social.whatsapp;
+const wa = waUrlForPath(Astro.url.pathname);
 ---
 
 <Layout title={service.title} description={service.metaDescription}>
   <section class="pt-32 pb-16 bg-secondary">
     <div class="container mx-auto px-4 md:px-6 text-center">
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Servicios', href: '/servicios' }, { label: service.nav }]} />
       <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">{service.title}</h1>
       <p class="text-xl text-gray-300 max-w-3xl mx-auto">{service.hero}</p>
     </div>
@@ -28,9 +30,14 @@ const wa = siteConfig.social.whatsapp;
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
         {service.bullets.map((b) => (
-          <div class="bg-white dark:bg-secondary-light p-6 rounded-lg shadow-lg border border-primary/10">
+          <div class="bg-white dark:bg-secondary-light p-6 rounded-lg shadow-lg border border-primary/10 flex flex-col">
             <h3 class="font-bold text-lg text-secondary dark:text-white mb-2">{b.title}</h3>
-            <p class="text-neutral-text dark:text-gray-300">{b.text}</p>
+            <p class="text-neutral-text dark:text-gray-300 mb-4">{b.text}</p>
+            {b.cta && (
+              <a href={b.cta.href} class="mt-auto text-primary font-semibold hover:underline">
+                {b.cta.label}
+              </a>
+            )}
           </div>
         ))}
       </div>
@@ -51,6 +58,23 @@ const wa = siteConfig.social.whatsapp;
           Escribinos por WhatsApp
         </a>
       </div>
+
+      {/* Related services */}
+      <nav aria-label="Otros servicios" class="mt-16 pt-8 border-t border-primary/10">
+        <p class="text-sm font-semibold uppercase tracking-wide text-neutral-text dark:text-gray-400 text-center mb-4">Otros servicios</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          {servicePages
+            .filter((s) => s.slug !== service.slug)
+            .map((s) => (
+              <a
+                href={`/servicios/${s.slug}`}
+                class="px-4 py-2 rounded-full bg-white dark:bg-secondary-light border border-primary/20 text-sm font-medium text-secondary dark:text-white hover:border-primary/60 hover:text-primary transition-all"
+              >
+                {s.nav}
+              </a>
+            ))}
+        </div>
+      </nav>
     </div>
   </section>
 </Layout>

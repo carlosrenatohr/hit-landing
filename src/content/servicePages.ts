@@ -3,6 +3,12 @@
 // closed on Sundays; B2B 7/15-day credit WITHOUT publishing terms (refer to contact);
 // never invent prices.
 
+export interface ServiceBullet {
+  title: string;
+  text: string;
+  cta?: { href: string; label: string };
+}
+
 export interface ServicePage {
   slug: string;
   nav: string;
@@ -10,7 +16,7 @@ export interface ServicePage {
   metaDescription: string;
   hero: string;
   intro: string;
-  bullets: { title: string; text: string }[];
+  bullets: ServiceBullet[];
   steps: string[];
   closing: string;
 }
@@ -27,7 +33,12 @@ export const servicePages: ServicePage[] = [
       "El envío aéreo es ideal cuando necesitás tu mercancía pronto. Comprás en cualquier tienda, la enviás a tu casillero en Miami y nosotros la traemos por avión a Nicaragua, gestionamos la nacionalización y te la entregamos a domicilio.",
     bullets: [
       { title: "Rápido", text: "Tiempos de tránsito optimizados para que recibás en pocos días una vez tu paquete llega a Miami." },
-      { title: "Cobro por libra", text: "Pagás según el peso de tu paquete. Te ayudamos a estimar el costo antes de comprar." },
+      {
+        title: "Cobro por libra",
+        text: "Pagás según el peso de tu paquete. Te ayudamos a estimar el costo antes de comprar.",
+        cta: { href: "/precios", label: "Calculá tu envío →" },
+      },
+      { title: "Duración", text: "5 a 7 días hábiles una vez tu paquete llega a Miami, o antes según el tráfico." },
       { title: "Cobertura nacional", text: "Llegamos a todo Nicaragua. El costo de entrega varía según tu ubicación, pero no te vas a quedar sin tu paquete hasta tenerlo en tus manos." },
     ],
     steps: [
@@ -45,17 +56,22 @@ export const servicePages: ServicePage[] = [
     title: "Envío Marítimo a Nicaragua",
     metaDescription:
       "Carga marítima desde USA, China y Panamá a Nicaragua. La opción económica para mercancía pesada o voluminosa, con nacionalización y cobertura nacional.",
-    hero: "La opción económica para carga pesada o voluminosa.",
+    hero: "La opción económica para carga pesada o de gran tamaño.",
     intro:
       "El envío marítimo conviene cuando tu mercancía es grande, pesada o no tenés prisa. Consolidamos tu carga, la traemos por barco y nos encargamos de la nacionalización y la entrega final en Nicaragua.",
     bullets: [
-      { title: "Económico", text: "El costo por volumen lo hace ideal para inventarios y pedidos de gran escala." },
-      { title: "Para volumen", text: "Pensado para muebles, repuestos, maquinaria y compras grandes." },
+      { title: "Económico", text: "La tarifa más baja por libra: ideal para inventarios y pedidos de gran escala que no tienen apuro." },
+      {
+        title: "Cobro por libra",
+        text: "Pagás según el peso de tu carga. Te ayudamos a estimar el costo antes de enviar.",
+        cta: { href: "/precios", label: "Calculá tu envío →" },
+      },
       { title: "Cobertura nacional", text: "Llegamos a todo Nicaragua. El costo de entrega varía según tu ubicación, pero no te vas a quedar sin tu paquete hasta tenerlo en tus manos." },
     ],
     steps: [
       "Comprás o consolidás tu mercancía.",
       "La enviás a tu casillero en Miami.",
+      "Consolidamos tus paquetes en un solo envío y, a tu pedido, te facturamos un solo peso conjunto.",
       "La traemos por vía marítima y gestionamos aduana.",
       "Te la entregamos a domicilio en Nicaragua.",
     ],
@@ -100,10 +116,12 @@ export const servicePages: ServicePage[] = [
       { title: "Cotización previa", text: "Te damos el costo exacto según las medidas antes de enviar." },
     ],
     steps: [
-      "Medís tu caja o barril (largo × ancho × alto).",
+      "Medís tu caja (largo × ancho × alto) o tu barril (en galones).",
       "Escribinos con las medidas para cotización.",
       "Te damos el costo por volumen y coordinamos el envío.",
       "Lo traemos y te lo entregamos a domicilio en Nicaragua.",
+      "¿Preferís encargarte de llevar tu caja a nuestra dirección? También te la cotizamos y la traemos desde ahí.",
+      "¿Estás en otro estado fuera de Florida? Contamos con servicio de pickup en ciertos estados, consultá disponibilidad.",
     ],
     closing:
       "¿Tenés una carga pesada o voluminosa? Escribinos con las medidas y te cotizamos al instante.",
