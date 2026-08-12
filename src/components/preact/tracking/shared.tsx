@@ -253,7 +253,7 @@ function ResultCard({ data }: { data: PublicShipment }) {
         <div className="text-xs font-medium uppercase tracking-wide text-gray-400">Guía</div>
         <h2 className="text-2xl font-bold text-secondary dark:text-white">{data.guia}</h2>
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className={`inline-block rounded-full px-3 py-1 text-sm font-bold ${STATUS_PILL[data.status] ?? "bg-accent-yellow text-secondary"}`}>
+          <span className={`inline-block rounded-full px-3 py-1 text-sm font-bold ${STATUS_PILL[data.status] ?? "bg-neutral-bg text-secondary"}`}>
             {data.statusLabel}
           </span>
           {(data.serviceType || data.pieces || data.weightLb) && (

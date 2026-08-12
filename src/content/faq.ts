@@ -1,7 +1,7 @@
 export const title = "Preguntas Frecuentes";
 export const subtitle = "Todo lo que necesitas saber sobre tus envíos.";
 export const text =
-  "¿Tienes más dudas? Nuestro equipo de soporte está listo para asesorarte personalmente.";
+  "¿Tenés más dudas? Nuestro equipo de soporte está listo para asesorarte personalmente.";
 
 export const moreQs = {
   title: "Ver todos los servicios",

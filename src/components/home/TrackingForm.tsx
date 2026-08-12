@@ -49,7 +49,7 @@ export const TrackingForm = () => {
               setTrackingNumber(e.target.value);
               if (error) setError("");
             }}
-            placeholder="Ingresa tu número de rastreo"
+            placeholder="Ingresá tu número de rastreo"
             className={`pl-12 pr-4 py-4 w-full border-2 ${
               error ? "border-red-500" : "border-primary/30 dark:border-gray-600"
             } rounded-md bg-white dark:bg-secondary text-secondary dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 shadow-sm`}
