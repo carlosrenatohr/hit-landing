@@ -4,14 +4,16 @@ import { siteConfig } from '../config/site';
 
 const wa = siteConfig.social.whatsapp;
 
-// NOTE (Renato/Abi): do not publish specific rates until confirmed with the team.
-// When real numbers exist (e.g. air per-pound, sea per-ft³), add them here.
-// Never invent prices: for now the page explains the model and points to a WhatsApp quote.
+// Rates confirmed by HIT CARGO team (2026-08).
+const rates = {
+  aereo: 6.50,
+  maritimo: 2.50,
+};
 ---
 
 <Layout
   title="Precios"
-  description="Cómo cobramos tus importaciones a Nicaragua: envío aéreo por libra, marítimo por volumen y entrega nacional incluida. Pedí tu cotización por WhatsApp."
+  description="Cómo cobramos tus importaciones a Nicaragua: envío aéreo $6.50/libra, marítimo $2.50/libra y entrega nacional incluida. Pedí tu cotización por WhatsApp."
 >
   <section class="pt-32 pb-16 bg-secondary">
     <div class="container mx-auto px-4 md:px-6 text-center">
@@ -27,12 +29,14 @@ const wa = siteConfig.social.whatsapp;
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div class="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10">
           <h2 class="text-xl font-bold text-secondary dark:text-white mb-3">Envío Aéreo</h2>
-          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por libra</strong>. Ideal para compras que necesitás rápido.</p>
+          <p class="text-4xl font-bold text-primary mb-2">${rates.aereo}<span class="text-lg text-neutral-text dark:text-gray-300 font-normal">/libra</span></p>
+          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por peso</strong>. Ideal para compras que necesitás rápido.</p>
           <p class="text-neutral-text dark:text-gray-300">Te damos el estimado según el peso antes de comprar.</p>
         </div>
         <div class="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10">
           <h2 class="text-xl font-bold text-secondary dark:text-white mb-3">Envío Marítimo</h2>
-          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por volumen</strong>. Conviene para carga pesada o voluminosa.</p>
+          <p class="text-4xl font-bold text-primary mb-2">${rates.maritimo}<span class="text-lg text-neutral-text dark:text-gray-300 font-normal">/libra</span></p>
+          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por peso</strong>. Conviene para carga pesada o voluminosa.</p>
           <p class="text-neutral-text dark:text-gray-300">Pensado para inventarios y pedidos grandes.</p>
         </div>
       </div>
@@ -54,7 +58,7 @@ const wa = siteConfig.social.whatsapp;
 
       <div class="bg-secondary-light rounded-lg p-8 text-center">
         <p class="text-lg text-gray-200 mb-6">
-          El costo final depende del peso, el volumen y el origen de tu compra. Escribinos y te damos una cotización clara.
+          El costo final depende del peso y el origen de tu compra. Escribinos y te damos una cotización clara.
         </p>
         <a href={wa} target="_blank" rel="noopener" class="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
           Pedí tu cotización por WhatsApp
