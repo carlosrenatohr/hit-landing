@@ -27,11 +27,6 @@ export default {
           DEFAULT: '#14213D',
           light: '#1E2E4F'
         },
-        // Semantic status colors for the tracker journey (functional, not brand accents).
-        accent: {
-          yellow: { DEFAULT: '#FFD700', dark: '#E6C200' },
-          blue: { DEFAULT: '#00A8E8', dark: '#0089BE' }
-        },
         neutral: {
           text: '#4A4A4A',
           bg: '#F8F9FA'
