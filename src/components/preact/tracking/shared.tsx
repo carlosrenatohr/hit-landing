@@ -5,7 +5,7 @@ import { isValidQuery } from "../../../utils/tracking";
 
 // Tracking worker URL (hit-ever2). Defaults to the live public worker so the page works even when
 // PUBLIC_API_URL isn't injected at build time. Set PUBLIC_API_URL to "" to force "coming soon".
-const DEFAULT_API_URL = "https://hit-ever-scraper.honchkrow1995.workers.dev";
+const DEFAULT_API_URL = "https://hit-ever-scraper.nativerse.workers.dev";
 const envApiUrl = import.meta.env.PUBLIC_API_URL as string | undefined;
 export const API_URL = envApiUrl ?? DEFAULT_API_URL;
 export const WHATSAPP = siteConfig.social.whatsapp;
