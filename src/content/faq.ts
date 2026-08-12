@@ -22,7 +22,7 @@ export const faqs = [
   {
     question: "¿Cómo se calculan los costos de importación?",
     answer:
-      "Nuestras tarifas dependen del origen, peso y volumen de la carga. Ofrecemos cotizaciones personalizadas y transparentes que incluyen la logística internacional y los trámites de nacionalización en Nicaragua.",
+      "Para envíos aéreos y marítimos cobramos por peso exacto: lo que diga la báscula, sin redondeos ni inventos. Para encomiendas o cargas comerciales (China, Panamá, industrial), generamos una cotización transparente según el volumen, directamente a tu atención.",
   },
   {
     question: "¿Mi carga está segura durante todo el trayecto?",
@@ -32,6 +32,6 @@ export const faqs = [
   {
     question: "¿Realizan entregas en los departamentos de Nicaragua?",
     answer:
-      "Sí, cubrimos todo el territorio nacional. Entregamos en nuestras oficinas centrales en Managua y coordinamos el despacho seguro a cualquier departamento del país.",
+      "Sí, tenemos cobertura a nivel nacional. El costo de entrega varía según tu ubicación, pero no te vas a quedar sin tu paquete hasta recibirlo en tus manos.",
   },
 ];
