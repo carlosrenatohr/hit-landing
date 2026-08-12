@@ -73,8 +73,21 @@
 | G-01 | Title/description per page ≥ 50 chars & ≤ 160 | ✅ | meta engine |
 | G-02 | Canonical + hreflang dual-es present on every page | ✅ | Layout meta |
 | G-03 | OG image 1200×630 | ◻ | M-6 (BI-10a) |
-| G-04 | JSON-LD matches config (FB / street / geo) | ◻ | M-15 (BI-13) |
+| G-04 | JSON-LD matches config (FB / street / geo) | ✅ | siteConfig (BI-13) |
 | G-05 | robots/sitemap served (worker rewrite) | ✅ | public + rewrite |
+| G-06 | Sitemap includes new pages (15 URLs: /servicios, /servicios/*, /precios) | ✅ | dist/sitemap-0.xml |
+
+## G2. SEO — new pages (added 2026-08 audit batch 2)
+
+| # | Check | Status | Evidence |
+|---|---|---|---|
+| G2-01 | `/servicios/index.astro` has title + description | ✅ | servicios/index.astro:16-18 |
+| G2-02 | `/servicios/[slug].astro` uses `service.metaDescription` per service | ✅ | [slug].astro:18 |
+| G2-03 | `/precios` has title + description (calculator page) | ✅ | precios.astro:19 |
+| G2-04 | Breadcrumbs component on all service pages + /servicios + /precios | ✅ | Breadcrumbs.astro |
+| G2-05 | Related-service chips navigate correctly on service pages | ✅ | [slug].astro chips |
+| G2-06 | JSON-LD (Organization + LocalBusiness) matches updated FB URL | ✅ | JSONLD.astro (BI-13) |
+| G2-07 | Keyword map updated for new pages in copy-seo-audit | ✅ | §4.1, §4.2, keyword table |
 
 ## H. Post-deploy smoke (run each prod deploy)
 

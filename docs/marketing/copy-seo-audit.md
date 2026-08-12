@@ -772,8 +772,15 @@ Artículos con mayor potencial de posicionamiento por volumen de búsqueda estim
 |---|---|---|
 | Homepage | "importaciones nicaragua" | "envíos desde miami", "courier nicaragua" |
 | /precios | "cuanto cuesta enviar de usa a nicaragua" | "tarifas courier nicaragua" |
+| /servicios | "servicios de importacion nicaragua" | "tipos de envio internacional", "courier de carga" |
 | /servicios/aereo | "carga aérea nicaragua" | "envío aéreo miami nicaragua" |
 | /servicios/maritimo | "carga marítima nicaragua" | "envío marítimo económico" |
+| /servicios/encomiendas | "encomiendas de estados unidos a nicaragua" | "encomienda voluminosa", "barriles a nicaragua" |
+| /servicios/consolidacion | "consolidacion de carga nicaragua" | "consolidar paquetes miami" |
+| /servicios/importacion-usa | "importar de estados unidos a nicaragua" | "compras en usa nicaragua" |
+| /servicios/importacion-china | "importar de china a nicaragua" | "carga china nicaragua" |
+| /servicios/importacion-panama | "importar de panama a nicaragua" | "envios panama nicaragua" |
+| /servicios/importacion-global | "importaciones internacionales nicaragua" | "freight forwarder nicaragua" |
 | /guias/amazon | "comprar amazon nicaragua" | "casillero miami nicaragua" |
 | /track | "rastrear paquete nicaragua" | "tracking courier nicaragua" |
 
