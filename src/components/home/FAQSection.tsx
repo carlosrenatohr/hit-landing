@@ -71,9 +71,9 @@ export const FAQSection = () => {
 
         <div className="text-center mt-12">
           <p className="text-neutral-text dark:text-gray-300 mb-6">{text}</p>
-          <button className="bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all shadow-lg">
-            <a href={moreQs.url}>{moreQs.title}</a>
-          </button>
+          <a href={moreQs.url} className="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all shadow-lg">
+            {moreQs.title}
+          </a>
         </div>
       </div>
     </section>

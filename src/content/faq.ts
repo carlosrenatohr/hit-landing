@@ -5,7 +5,7 @@ export const text =
 
 export const moreQs = {
   title: "Ver todos los servicios",
-  url: "/services",
+  url: "/servicios",
 };
 
 export const faqs = [
