@@ -110,7 +110,7 @@ export const siteMeta = {
   title: seo.title,
   description: seo.description,
   keywords: seo.keywords,
-  ogImage: "/og-image.png",
+  ogImage: "/og-image.jpg",
   siteName: "HIT CARGO Nicaragua",
 
   og: {
@@ -178,8 +178,8 @@ const schema = {
   "alternateName": "HIT Cargo",
   "description": "Agencia de importaciones y carga internacional en Nicaragua. Envíos aéreos y marítimos desde USA, China y Panamá. Bodega en Miami, entregas a toda Nicaragua.",
   "url": "https://hit-cargo.com",
-  "logo": "https://hit-cargo.com/favicon.svg",
-  "image": "https://hit-cargo.com/og-image.png",
+  "logo": "https://hit-cargo.com/brand/logo-full.png",
+  "image": "https://hit-cargo.com/og-image.jpg",
   "telephone": "+50582085181",
   "email": "ventas@hit-cargo.com",
   "priceRange": "$$",

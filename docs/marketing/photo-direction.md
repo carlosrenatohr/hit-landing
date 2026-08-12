@@ -18,7 +18,7 @@ stock frío. La foto es prueba y conversión, no decoración.
 |---|---|---|---|
 | Hero | `/images/background.jpeg` | Pesado, genérico, no dice "US/China/Panamá → Nicaragua" | Reemplazar + optimizar |
 | Testimonios | `/images/testimonial1-3.webp` | Retratos de stock (no clientes reales); sección oculta | No usar retrato falso — ver §3 prueba social |
-| OG / social | `public/og-image.png` | Plantilla genérica sin marca | Reemplazar por OG con logo + claim |
+| OG / social | `public/og-image.jpg` | Imagen social 1200×630 optimizada | Vigente |
 | Servicios / Cómo funciona / CTA | Solo SVG inline | Páginas planas, sin prueba real | Añadir 1 foto real por bloque |
 
 El logo ya está resuelto y optimizado en `public/brand/` (mismo set en web y panel).
@@ -116,7 +116,7 @@ fotos todavía.*
 ## 8. Checklist de reemplazo
 
 - [ ] Hero: foto real o mapa de rutas, optimizado (≤ 200 KB), reemplaza `background.jpeg`.
-- [ ] OG branded 1200×630 reemplaza `public/og-image.png`.
+- [x] OG branded 1200×630 en `public/og-image.jpg`.
 - [ ] 1 foto real por bloque de Servicios (aéreo, marítimo).
 - [ ] Secuencia "Cómo funciona" (3–4 fotos reales del proceso en Nicaragua).
 - [ ] Prueba social: cifras verificables + banda de logos de tiendas (sin retratos de stock).

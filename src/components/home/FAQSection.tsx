@@ -10,11 +10,15 @@ interface FAQItemProps {
 }
 
 const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
+  const answerId = `faq-answer-${question.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
   return (
     <div className="border-b border-gray-200 dark:border-gray-700 py-5">
       <button
         className="flex justify-between items-center w-full text-left focus:outline-none"
         onClick={toggleOpen}
+        aria-expanded={isOpen}
+        aria-controls={answerId}
       >
         <h3 className="text-lg font-medium text-secondary dark:text-white">
           {question}
@@ -28,6 +32,7 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
         </span>
       </button>
       <div
+        id={answerId}
         className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 mt-4 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <p className="text-neutral-text dark:text-gray-300 pr-12 pb-4">
@@ -50,10 +55,10 @@ export const FAQSection = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary dark:text-white mb-4">
-            {subtitle}
+            {title}
           </h2>
           <p className="text-xl text-neutral-text dark:text-gray-300 max-w-3xl mx-auto">
-            {title}
+            {subtitle}
           </p>
         </div>
 
