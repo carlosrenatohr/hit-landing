@@ -1,6 +1,6 @@
 ---
 import { title, description, ctaButtonText, contactButtonText } from '../../content/cta'
-import { siteConfig } from '@/config/site'
+import { WA_MESSAGES, waUrl } from '../../lib/whatsapp'
 ---
 
 <section class="py-20 bg-secondary dark:bg-secondary-light">
@@ -16,7 +16,7 @@ import { siteConfig } from '@/config/site'
         {description}
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-400">
-        <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer" class="bg-primary text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg text-center">
+        <a href={waUrl(WA_MESSAGES.generic)} target="_blank" rel="noopener noreferrer" class="bg-primary text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg text-center">
           {ctaButtonText}
         </a>
         <a href="/contacto" class="bg-transparent border-2 border-white text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-white hover:text-secondary transition-all transform hover:scale-105 text-center">

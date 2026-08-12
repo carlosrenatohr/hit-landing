@@ -1,7 +1,7 @@
 export const heroContent = {
   title: "Importaciones Globales a Nicaragua: Tu Aliado Logístico",
   subtitle:
-    "Traemos tus compras de Estados Unidos, China, Panamá y el resto del mundo. Con bodega estratégica en Miami para tus pedidos de Amazon y Shein, gestionamos toda tu logística de importación con entregas en toda Nicaragua.",
+    "Traemos tus compras de Estados Unidos, China, Panamá y el resto del mundo. Con tu casillero en Miami para tus pedidos de Amazon y Shein, gestionamos toda tu logística de importación con entregas en toda Nicaragua.",
   primaryCTA: "Consultar Servicios",
   secondaryCTA: "Cotizar Ahora",
 

@@ -15,7 +15,7 @@ export const services = [
     url: "/servicios/consolidacion",
   },
   {
-    name: "Precios",
+    name: "Tarifas",
     url: "/precios",
   },
 ];

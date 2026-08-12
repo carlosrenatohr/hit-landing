@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { siteConfig } from '../config/site';
+import { WA_MESSAGES, waUrl } from '../lib/whatsapp';
 
-const wa = siteConfig.social.whatsapp;
+const wa = waUrl(WA_MESSAGES.contact);
 const phoneHref = `tel:${siteConfig.phone.replace(/[^\d+]/g, '')}`;
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${siteConfig.address}, Nicaragua`)}`;
 // Exact pin from the HIT CARGO Google Business Profile ("Embed a map" src). CSP frame-src allows
@@ -27,7 +28,7 @@ const details = [
   { label: 'Teléfono', value: siteConfig.phone, href: phoneHref, icon: icon.phone },
   { label: 'Correo', value: siteConfig.email, href: `mailto:${siteConfig.email}`, icon: icon.mail },
   // Dirección se muestra en la tarjeta "Visitanos" + el mapa, no se duplica aquí.
-  { label: 'Horario', value: 'Lunes a viernes, 8:00 a.m. – 5:00 p.m.', icon: icon.clock },
+  { label: 'Horario', value: 'Lunes a viernes, 9:00 a.m. – 5:00 p.m. | Sábados, 9:00 a.m. – 1:00 p.m.', icon: icon.clock },
 ];
 
 const socials = [

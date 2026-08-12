@@ -78,10 +78,17 @@ export const Header = () => {
                     Envío Marítimo
                   </a>
                   <a
-                    href="/servicios/consolidacion"
+                    href="/servicios/encomiendas"
                     className="block py-2 text-neutral-text dark:text-gray-300 hover:text-primary"
                   >
-                    Consolidación
+                    Encomiendas
+                  </a>
+                  <div className="border-t border-gray-100 dark:border-gray-800 my-2"></div>
+                  <a
+                    href="/servicios"
+                    className="block py-2 text-primary font-semibold hover:text-primary-dark"
+                  >
+                    Todos los Servicios
                   </a>
                 </div>
               </div>
@@ -161,11 +168,19 @@ export const Header = () => {
                   Envío Marítimo
                 </a>
                 <a
-                  href="/servicios/consolidacion"
+                  href="/servicios/encomiendas"
                   className="block py-1 text-neutral-text dark:text-gray-300 hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Consolidación
+                  Encomiendas
+                </a>
+                <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+                <a
+                  href="/servicios"
+                  className="block py-1 text-primary font-semibold hover:text-primary-dark"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Todos los Servicios
                 </a>
               </div>
             </div>

@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets'
 import { siteConfig } from '@/config/site'
 import { footerContent } from '@/content/footer'
 import { servicesTitle, services } from '@/content/copy'
+import nativerseLogo from '@/assets/images/nativerse-logo-version-finalv1.png'
 const currentYear = new Date().getFullYear();
 
 ---
@@ -75,10 +77,14 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="border-t border-gray-700 mt-12 pt-8">
-      <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="flex flex-col items-center md:flex-row justify-between">
         <p class="text-gray-400 text-sm">
           &copy; {currentYear} {siteConfig.name}. {footerContent.rightsReserved}.
         </p>
+        <a href="https://nativerse.dev" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 flex items-center gap-2 text-gray-400 hover:text-primary transition-colors" aria-label="Powered by Nativerse">
+          <Image src={nativerseLogo} alt="Nativerse" width={120} class="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+          <span class="text-sm">Powered by Nativerse</span>
+        </a>
         <div class="mt-4 md:mt-0">
           <ul class="flex space-x-6 text-sm text-gray-400">
             <li><a href={footerContent.privacyPolicy.url} class="hover:text-primary transition-colors">{footerContent.privacyPolicy.title}</a></li>

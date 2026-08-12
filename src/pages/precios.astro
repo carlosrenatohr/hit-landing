@@ -1,46 +1,70 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { siteConfig } from '../config/site';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { WA_MESSAGES, waUrl } from '../lib/whatsapp';
+import { ShippingCalculator } from '../components/preact/pricing/ShippingCalculator';
 
-const wa = siteConfig.social.whatsapp;
+// Rates confirmed by HIT CARGO team (2026-08).
+const rates = {
+  aereo: 6.50,
+  maritimo: 2.50,
+};
 
-// NOTE (Renato/Abi): do not publish specific rates until confirmed with the team.
-// When real numbers exist (e.g. air per-pound, sea per-ft³), add them here.
-// Never invent prices: for now the page explains the model and points to a WhatsApp quote.
+const waPromos = waUrl(WA_MESSAGES.pricingPromos);
+const waEntrepreneur = waUrl(WA_MESSAGES.pricingEntrepreneur);
+const waQuote = waUrl(WA_MESSAGES.pricingQuote);
 ---
 
 <Layout
-  title="Precios"
-  description="Cómo cobramos tus importaciones a Nicaragua: envío aéreo por libra, marítimo por volumen y entrega nacional incluida. Pedí tu cotización por WhatsApp."
+  title="Tarifas de Paquetería Internacional"
+  description="Tarifas de envío aéreo y marítimo a Nicaragua: aéreo $6.50/libra, marítimo $2.50/libra. Calculá tu costo al instante. Cobertura nacional."
 >
   <section class="pt-32 pb-16 bg-secondary">
     <div class="container mx-auto px-4 md:px-6 text-center">
-      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Precios</h1>
+      <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Servicios', href: '/servicios' }, { label: 'Precios y Tarifas' }]} />
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Tarifas de Paquetería Internacional</h1>
       <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-        Cobramos de forma simple y transparente. Te ayudamos a estimar el costo antes de que compres.
+        Calculá al instante cuánto te cuesta traer tu paquete. Cobramos por peso exacto, sin inventos.
       </p>
     </div>
   </section>
 
   <section class="py-16 bg-neutral-bg dark:bg-secondary">
     <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+
+      {/* Calculadora */}
+      <div class="mb-16 bg-white dark:bg-secondary-light rounded-2xl shadow-2xl border-2 border-primary/20 p-6 md:p-10">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-secondary dark:text-white mb-2">Calculá tu envío</h2>
+          <p class="text-neutral-text dark:text-gray-300">Seleccioná el tipo de envío y poné el peso. Así de simple.</p>
+        </div>
+        <ShippingCalculator client:load aereo={rates.aereo} maritimo={rates.maritimo} />
+      </div>
+
+      {/* Tarifas resumen */}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div class="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10">
           <h2 class="text-xl font-bold text-secondary dark:text-white mb-3">Envío Aéreo</h2>
-          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por libra</strong>. Ideal para compras que necesitás rápido.</p>
-          <p class="text-neutral-text dark:text-gray-300">Te damos el estimado según el peso antes de comprar.</p>
+          <p class="text-4xl font-bold text-primary mb-2">${rates.aereo}<span class="text-lg text-neutral-text dark:text-gray-300 font-normal">/libra</span></p>
+          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por peso exacto</strong>. Lo que marque la báscula.</p>
+          <p class="text-neutral-text dark:text-gray-300">Ideal para compras que necesitás rápido.</p>
         </div>
         <div class="bg-white dark:bg-secondary-light p-8 rounded-lg shadow-lg border border-primary/10">
           <h2 class="text-xl font-bold text-secondary dark:text-white mb-3">Envío Marítimo</h2>
-          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por volumen</strong>. Conviene para carga pesada o voluminosa.</p>
-          <p class="text-neutral-text dark:text-gray-300">Pensado para inventarios y pedidos grandes.</p>
+          <p class="text-4xl font-bold text-primary mb-2">${rates.maritimo}<span class="text-lg text-neutral-text dark:text-gray-300 font-normal">/libra</span></p>
+          <p class="text-neutral-text dark:text-gray-300 mb-2">Se cobra <strong>por peso exacto</strong>. Lo que marque la báscula.</p>
+          <p class="text-neutral-text dark:text-gray-300">Conviene para carga pesada o inventarios grandes.</p>
         </div>
       </div>
 
       <ul class="space-y-3 mb-12">
         <li class="flex items-start">
           <span class="text-primary font-bold mr-3">✓</span>
-          <span class="text-neutral-text dark:text-gray-300"><strong>Entrega nacional gratis:</strong> está incluida en el flete, no es un costo extra.</span>
+          <span class="text-neutral-text dark:text-gray-300"><strong>Cobertura nacional:</strong> llegamos a todo Nicaragua. El costo de entrega varía según tu ubicación, pero no te vas a quedar sin tu paquete hasta tenerlo en tus manos.</span>
+        </li>
+        <li class="flex items-start">
+          <span class="text-primary font-bold mr-3">✓</span>
+          <span class="text-neutral-text dark:text-gray-300"><strong>Peso exacto:</strong> cobramos lo que diga la báscula, sin redondeos ni inventos. Transparente.</span>
         </li>
         <li class="flex items-start">
           <span class="text-primary font-bold mr-3">✓</span>
@@ -48,16 +72,35 @@ const wa = siteConfig.social.whatsapp;
         </li>
         <li class="flex items-start">
           <span class="text-primary font-bold mr-3">✓</span>
-          <span class="text-neutral-text dark:text-gray-300"><strong>Empresas (B2B):</strong> manejamos líneas de crédito según volumen. Consultá los términos con nuestro equipo.</span>
+          <span class="text-neutral-text dark:text-gray-300"><strong>Consolidación:</strong> traé todos tus paquetes a tu casillero y, a tu pedido, te los facturamos en un solo peso conjunto. Suele salir más económico que enviar cada compra por separado, porque pagás una sola gestión y un solo envío.</span>
         </li>
       </ul>
 
+      {/* CTA Promociones + Emprendedor */}
+      <div class="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 md:p-10 text-white text-center mb-12 shadow-xl">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-2xl md:text-3xl font-bold mb-4">¿Tenés un emprendimiento?</h2>
+          <p class="text-lg text-white/90 mb-6">
+            Preguntá por nuestros <strong>precios especiales de emprendedor</strong> y las <strong>promociones del mes</strong>. Tenemos tarifas preferenciales para quienes envían constante.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href={waPromos} target="_blank" rel="noopener" class="inline-block bg-white text-primary py-3 px-8 rounded-md font-bold hover:bg-gray-100 transition-all shadow-lg">
+              Preguntá por promos del mes
+            </a>
+            <a href={waEntrepreneur} target="_blank" rel="noopener" class="inline-block bg-transparent border-2 border-white text-white py-3 px-8 rounded-md font-bold hover:bg-white/10 transition-all">
+              Precios de emprendedor
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Info adicional */}
       <div class="bg-secondary-light rounded-lg p-8 text-center">
         <p class="text-lg text-gray-200 mb-6">
-          El costo final depende del peso, el volumen y el origen de tu compra. Escribinos y te damos una cotización clara.
+          ¿Necesitás una cotización para carga comercial, encomiendas o importación? Escribinos y te damos un presupuesto transparente.
         </p>
-        <a href={wa} target="_blank" rel="noopener" class="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
-          Pedí tu cotización por WhatsApp
+        <a href={waQuote} target="_blank" rel="noopener" class="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
+          Cotización personalizada por WhatsApp
         </a>
       </div>
     </div>
