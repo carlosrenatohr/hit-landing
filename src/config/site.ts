@@ -6,7 +6,7 @@ export const siteConfig = {
   phone: "+505 8208-5181",
   email: "ventas@hit-cargo.com",
   social: {
-    facebook: "https://www.facebook.com/share/19eySNaXUy",
+    facebook: "https://www.facebook.com/hitcargo.ni/",
     instagram: "https://www.instagram.com/hit.cargo",
     tiktok: "https://www.tiktok.com/@hit__cargo",
     whatsapp: "https://wa.me/50582085181",
