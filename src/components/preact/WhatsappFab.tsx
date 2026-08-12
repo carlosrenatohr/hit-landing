@@ -1,10 +1,9 @@
-import { siteConfig } from "../../config/site";
+import { useEffect, useState } from "preact/hooks";
+import { waUrlForPath } from "../../lib/whatsapp";
 
 // wa.me opens the WhatsApp app on mobile and web.whatsapp.com on desktop automatically.
-// A short prefilled greeting lifts reply rate; it still just opens the chat with our number.
-const WA_URL = `${siteConfig.social.whatsapp}?text=${encodeURIComponent(
-  "Hola HIT CARGO, quiero más información sobre mis envíos."
-)}`;
+// The prefilled message is derived from the current page so the bot can route the reply
+// by origin (see docs/whatsapp-bot-origins.md). It still just opens the chat with our number.
 
 export const WhatsappFab = () => {
   // GTM/dataLayer event so a pixel or Google Analytics conversion can be wired later with no code change.
@@ -14,9 +13,15 @@ export const WhatsappFab = () => {
     w.dataLayer.push({ event: "whatsapp_click", location: "floating_widget" });
   };
 
+  // Lazy client-only path detection (window is unavailable during SSR).
+  const [href, setHref] = useState("#");
+  useEffect(() => {
+    setHref(waUrlForPath(window.location.pathname));
+  }, []);
+
   return (
     <a
-      href={WA_URL}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       onClick={onClick}

@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { siteConfig } from '../config/site';
+import { WA_MESSAGES, waUrl } from '../lib/whatsapp';
 
-const wa = siteConfig.social.whatsapp;
+const wa = waUrl(WA_MESSAGES.contact);
 const phoneHref = `tel:${siteConfig.phone.replace(/[^\d+]/g, '')}`;
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${siteConfig.address}, Nicaragua`)}`;
 // Exact pin from the HIT CARGO Google Business Profile ("Embed a map" src). CSP frame-src allows
