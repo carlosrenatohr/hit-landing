@@ -8,9 +8,9 @@
 
 | ID | Task | Depends on | Evidence |
 |---|---|---|---|
-| HC-401 | Wire the 4 dead CTA buttons (ServicesSection "Ver Todos", CTASection "Cotizar Mi Envío", "Solicitar Cotización") to real destinations (WhatsApp or /contacto) | — | A-01 |
-| HC-402 | Fix FAQ link /services → /servicios | — | A-02 |
-| HC-303 | Fix malformed SVG arc in src/content/services.ts:28 (`a2 0 0 0-2 0l-7 4` → `a2 2 0 0 0-2 0l-7 4`) — clears console error on every home viewport | — | A-03/A-04 |
+| HC-401 | Wire the 4 dead CTA buttons (ServicesSection "Ver Todos", CTASection "Cotizar Mi Envío", "Solicitar Cotización") to real destinations (WhatsApp or /contacto) | — | Resolved in current production code |
+| HC-402 | Fix FAQ link /services → /servicios | — | Resolved in `src/content/faq.ts:8` |
+| HC-303 | Fix malformed SVG arc in src/content/services.ts:28 — clears console error on every home viewport | — | Resolved; current service SVGs pass build |
 
 ### P1 — content & conversion (most blocked on BIs)
 
@@ -33,7 +33,7 @@
 | HC-304 | Recolor black CTA → bg-primary (ServicesSection.astro:33) | — | §4 |
 | HC-305 | Document dark-only default + 70/20/10 deviation (or add theme toggle) | BI-12 | §3 |
 | HC-306 | Remove `italic`/TestimonialsSection (hidden) per book ban | BI-05 | §5 |
-| HC-307 | OG image 1200×630 export | BI-10a | M-6 |
+| HC-307 | OG image 1200×630 export | BI-10a | Resolved: `public/og-image.jpg` |
 | HC-308 | Typography scale: headings → 800, consistent h1 scale, kill unused display utilities | — | M-8/M-9 |
 | HC-309 | Logo min-size (scrolled) + favicon merge + remove unused brand images | — | M-10/M-16 |
 | HC-310 | Small-target sweep (44px nav/hamburger), dropdown keyboard+aria-expanded, nav aria-label, breakpoint dropdown gap (768-1024) | — | M-11/M-12/B-7 |
@@ -82,7 +82,7 @@
 
 | Phase | Contents | Exit criteria |
 |---|---|---|
-| **P0 fix (this sprint)** | HC-401, 402, 303 | No dead CTAs; FAQ link works; console clean — re-verified B-05 |
+| **P0 fix (completed)** | HC-401, 402, 303 | Current code has live CTAs, `/servicios`, and corrected service SVGs; browser console rerun remains |
 | **Copy & conversion** | HC-403..409 | Option C hero, casillero wording, rates live, voseo, hours synced, footer complete (needs BIs) |
 | **Design cleanup** | HC-302..317 | Book tokens only, dark decision documented, no dead assets, a11y targets |
 | **Analytics** | G1..G6 | Events visible in GA4 + documented + validator |
@@ -90,7 +90,7 @@
 
 ## 4. Delivery verdict
 
-- **Ship "as-is" to the world publicly (with coverage)**: NO — blockers A-01, A-02, A-03 (code-only; fix in days, no business input).
+- **Ship "as-is" to the world publicly (with coverage)**: pending final E2E/Lighthouse rerun — historical blockers A-01, A-02, A-03 are resolved in current code.
 - **Share privately (clients/team) / soft-launch with knowing consent to the 4 issues**: YES — after BI-01 (rates) + BI-06 (casillero wording), the copy is accurate enough to not mislead; analytics gap does not block private share.
 - **Trigger for public launch:** P0 fixes + BIs 01/06 + G1 (events measurable) + re-run E2E/Lighthouse green.
 - **Estimated:** P0 = 1 session (few hours). Copy sprint = 1-2 sessions post-BIs. P2 pass = 1-2 sessions. Total ≤ 1 week part-time to "public-launch ready".

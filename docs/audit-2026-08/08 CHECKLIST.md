@@ -6,10 +6,10 @@
 
 | # | Check | Status | Evidence |
 |---|---|---|---|
-| A-01 | 4 dead CTA buttons wired to real actions | ◻ | ServicesSection.astro:33-35, CTASection.astro:18-23 (HC-401) |
-| A-02 | FAQ → `/services` fixed to `/servicios` | ◻ | faq.ts:8 (HC-402) |
-| A-03 | Malformed SVG icon (services.ts:28) fixed — console error gone | ◻ | E2E §5 (HC-303) |
-| A-04 | `pnpm check` green after A-01..A-03 | ◻ | gate |
+| A-01 | CTA buttons wired to real actions | ✅ | ServicesSection.astro:33-35, CTASection.astro:19-23 |
+| A-02 | FAQ → `/servicios` fixed | ✅ | faq.ts:8 |
+| A-03 | Home service SVGs parse without the audited malformed arc | ✅ | services.ts + `pnpm check` |
+| A-04 | `pnpm check` green after P0 fixes | ✅ | `pnpm check` (3 tests, Astro build 15 pages) |
 
 ## B. Quality gates (every commit / pre-merge)
 
@@ -19,7 +19,7 @@
 | B-02 | astro build passes | ✅ | `pnpm build` (green @ audit) |
 | B-03 | No `style=""` inline attributes | ✅ | sweep `style="` in src = 0 |
 | B-04 | No overflow-x on any page (320-1920) | ✅ | E2E B1 sweep (0/68) |
-| B-05 | No console errors (home + others) | ◻ | E2E §5 — fails until A-03 |
+| B-05 | No console errors (home + others) | ◻ | Requires browser E2E rerun |
 | B-06 | GTM snippet byte-identical (hash CSP) | ✅ | Layout.astro + astro.config integrity |
 | B-07 | dark-mode init before any JS in head | ✅ | public/scripts/dark-mode-init.js |
 
@@ -27,10 +27,10 @@
 
 | # | Check | Status | Evidence |
 |---|---|---|---|
-| C-01 | All interactive targets ≥ 44×44 CSS px (nav links/hamburger currently 24 px) | ◻ | E2E §4, HC-310 |
-| C-02 | Services dropdown keyboard-focusable + aria-expanded | ◻ | Header.tsx:59-88, HC-310 |
-| C-03 | `<nav>` has aria-label; mobile nav link semantics | ◻ | B-7, HC-310 |
-| C-04 | Heading hierarchy per page (h1→h2→h3, no inversion) | ◻ | FAQ inverted (B-6), HC-315 |
+| C-01 | Header interactive targets ≥ 44×44 CSS px | ✅ | Header.tsx:53-137, mobile links |
+| C-02 | Services dropdown keyboard-focusable + aria-expanded | ✅ | Header.tsx:60-96 |
+| C-03 | Desktop/mobile `<nav>` has aria-label | ✅ | Header.tsx:52, 142 |
+| C-04 | Heading hierarchy per page (h1→h2→h3, no inversion) | ✅ | FAQSection.tsx:52-60 |
 | C-05 | Color-contrast AA on orange/navy mixes (dark mode) | ◻ | Lighthouse a11y pass |
 
 ## D. Analytics (S10)
@@ -72,7 +72,7 @@
 |---|---|---|---|
 | G-01 | Title/description per page ≥ 50 chars & ≤ 160 | ✅ | meta engine |
 | G-02 | Canonical + hreflang dual-es present on every page | ✅ | Layout meta |
-| G-03 | OG image 1200×630 | ◻ | M-6 (BI-10a) |
+| G-03 | OG image 1200×630 | ✅ | `public/og-image.jpg` (93 KB) |
 | G-04 | JSON-LD matches config (FB / street / geo) | ✅ | siteConfig (BI-13) |
 | G-05 | robots/sitemap served (worker rewrite) | ✅ | public + rewrite |
 | G-06 | Sitemap includes new pages (15 URLs: /servicios, /servicios/*, /precios) | ✅ | dist/sitemap-0.xml |
