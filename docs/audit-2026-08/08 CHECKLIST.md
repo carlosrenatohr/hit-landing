@@ -31,30 +31,30 @@
 | C-02 | Services dropdown keyboard-focusable + aria-expanded | ✅ | Header.tsx:60-96 |
 | C-03 | Desktop/mobile `<nav>` has aria-label | ✅ | Header.tsx:52, 142 |
 | C-04 | Heading hierarchy per page (h1→h2→h3, no inversion) | ✅ | FAQSection.tsx:52-60 |
-| C-05 | Color-contrast AA on orange/navy mixes (dark mode) | ❌ | axe 2026-08-23: white on `bg-primary` = 2.61:1 (serious) on all primary CTAs; see `evidence/HC-311-RERUN-2026-08-23.md` §3 |
-| C-06 | Social icon links have accessible names (aria-label) | ❌ | NEW 2026-08-23: Footer FB/IG/TikTok icons fail axe `link-name` on every page |
+| C-05 | Color-contrast AA on orange/navy mixes (dark mode) | ✅ | PR #26 (`fix/a11y-contrast-labels-track`): navy-on-orange ~6:1; axe re-run 0 serious |
+| C-06 | Social icon links have accessible names (aria-label) | ✅ | PR #26: Footer FB/IG/TikTok `aria-label` added |
 
 ## D. Analytics (S10)
 
 | # | Check | Status | Evidence |
 |---|---|---|---|
-| D-01 | GTM triggers exist for track_search + whatsapp_click → GA4/pixel | ◻ | G1 (needs GTM access) |
-| D-02 | dataLayer schema documented in repo | ◻ | G6 |
+| D-01 | GTM triggers exist for track_search + whatsapp_click → GA4/pixel | ◻ | G1 — owner GTM container config needed (`docs/analytics/gtm-setup.md`) |
+| D-02 | dataLayer schema documented in repo | ✅ | `docs/analytics/gtm-setup.md` §1 |
 | D-03 | Consent banner decision (EU traffic) | ◻ | G3 |
 
 ## E. Content & conversion (S8) — most blocked on BIs
 
 | # | Check | Status | Evidence |
 |---|---|---|---|
-| E-01 | Hero = option C copy (Calcular Costo de Envío, times, no jargon) | ◻ | HC-403 (BI-06) |
-| E-02 | All "bodega" claims → "casillero" | ◻ | HC-404 (BI-06) |
-| E-03 | FAQ: price Q first + 7 Qs | ◻ | HC-406 |
-| E-04 | Rates visible (precios + FAQ) | ◻ | HC-405 (BI-01) |
-| E-05 | Services cards: concrete figures + links | ◻ | HC-405 (BI-01) |
-| E-06 | 100% voseo sweep | ◻ | HC-407 |
-| E-07 | Hours match confirmed source (Sat) | ◻ | HC-408 (BI-04) |
-| E-08 | Testimonials real or removed | ◻ | dec.4 (BI-03/05) |
-| E-09 | Footer: WhatsApp CTA + hours + semua links | ◻ | HC-409 |
+| E-01 | Hero = option C copy (Calcular Costo de Envío, times, no jargon) | ✅ | PR #25 (`feat/content-hero-faq`): `src/content/home.ts:18-19` |
+| E-02 | All "bodega" claims → "casillero" | ✅ | PR #25: `servicePages.ts:193` (last leftover) fixed |
+| E-03 | FAQ: price Q first + 7 Qs | ✅ | PR #25: `src/content/faq.ts` restructured |
+| E-04 | Rates visible (precios + FAQ) | ✅ | `src/pages/precios.astro` + `faq.ts` — $6.50 aereo / $2.50 maritimo published |
+| E-05 | Services cards: concrete figures + links | ✅ | `src/pages/servicios/index.astro` — links to /precios calculator |
+| E-06 | 100% voseo sweep | ✅ | `fix/voseo-sweep` merged |
+| E-07 | Hours match confirmed source (Sat) | ✅ | `fix/hours` merged: L-V 9:30-18:00, S 9:30-17:00 |
+| E-08 | Testimonials real or removed | ◻ | dec.4 (BI-03/05) — owner decision |
+| E-09 | Footer: WhatsApp CTA + hours + semua links | ✅ | PR #26 + PR #27 (remaining WhatsApp CTA in HC-323) |
 
 ## F. Design & brand (S7)
 
@@ -63,7 +63,7 @@
 | F-01 | accent.* tokens deleted; accent-yellow pill replaced | ◻ | HC-302/306 |
 | F-02 | Black CTA → bg-primary | ◻ | HC-304 |
 | F-03 | Dark-only decision documented (70/20/10 deviation) | ◻ | HC-305 (BI-12) |
-| F-04 | Heading weights/scale aligned (800/900) | ◻ | HC-308 |
+| F-04 | Heading weights/scale aligned (800/900) | ✅ | PR #27 (`chore/design-polish-p2`): all h1 → `font-extrabold` |
 | F-05 | Unused assets deleted (94 KB + testimonials) | ◻ | HC-302/309 |
 | F-06 | src/index.css deleted | ◻ | HC-302 |
 
@@ -108,5 +108,6 @@ curl -s "https://hit-ever-scraper.nativerse.workers.dev/track/910500?pretty=1" |
 ## I. HC-311 re-run log
 
 - **2026-08-23** post-merge `6a9e1c6` (PR #20/#22/#23): E2E sweep + tracking assertions + axe scan. Full results: `evidence/HC-311-RERUN-2026-08-23.md`. B-05 closed; C-05 failed with evidence; new C-06. No P0/P1 regressions.
+- **2026-08-23** post-merge `02997a3` (PR #25/#26/#27/#28): hero option C, FAQ restructure, contrast/navy fix, social a11y, landmarks, theme-color, h1 extrabold, GTM docs. C-05/C-06/E-01/E-02/E-03/E-04/E-05/E-06/E-07/E-09/F-04/D-02 now ✅. axe re-run 0 serious violations. Remaining open: E-08 (owner), D-01 (owner GTM), F-01/F-03/F-05/F-06 (owner-design).
 
-_Last updated: 2026-08-23 (HC-311 re-run). Owner: none (shared). Keep in sync with PROJECT_PLAN HC-3xx/4xx._
+_Last updated: 2026-08-23 post-merge sweep. Owner: none (shared). Keep in sync with PROJECT_PLAN HC-3xx/4xx._

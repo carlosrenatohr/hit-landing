@@ -12,6 +12,7 @@
 |---|---|---|---|
 | `whatsapp_click` | Click on floating WhatsApp button | `location: "floating_widget"` | `src/components/preact/WhatsappFab.tsx:13` |
 | `track_search` | Every tracking form submission outcome | `track_query` (guía), `track_result`: `"found" \| "notfound" \| "error" \| "timeout"`, `track_status` | `src/components/preact/tracking/shared.tsx:81-90` |
+| `social_click` | Click on footer social icon link (FB/IG/TikTok) | `social_network`: `"facebook" \| "instagram" \| "tiktok"`, `link_url` | `src/components/layout/Footer.astro` (inline script) |
 
 GTM container already installed in `<head>`: **`GTM-K55VC9JZ`** (hash-pinned — never reformat the snippet).
 

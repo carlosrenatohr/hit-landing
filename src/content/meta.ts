@@ -5,8 +5,8 @@ export const siteMeta = {
   ogImage: "/og-image.jpg",
   siteName: "HIT CARGO Nicaragua",
   social: {
-    facebook: "https://www.facebook.com/share/19eySNaXUy",
+    facebook: "https://www.facebook.com/hitcargo.ni/",
     instagram: "https://www.instagram.com/hit.cargo",
-    tiktok: "https://www.tiktok.com/@hit__cargo",
+    tiktok: "https://www.tiktok.com/@hitcargo.ni",
   },
 };
