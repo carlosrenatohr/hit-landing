@@ -315,7 +315,7 @@ function ResultCard({ data }: { data: PublicShipment }) {
                     <div className="-ml-2 rounded-lg border-l-4 border-primary bg-primary/5 py-2 pl-3 pr-2 dark:bg-primary/10">
                       <div className="flex items-center gap-2">
                         <span className="text-base font-extrabold text-secondary dark:text-white">{m.label}</span>
-                        <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                        <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-navy">
                           Estado actual
                         </span>
                       </div>
@@ -355,7 +355,7 @@ function MessageCard({ title, body }: { title: string; body: string }) {
         href={WHATSAPP}
         target="_blank"
         rel="noopener"
-        className="mt-5 inline-block rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
+        className="mt-5 inline-block rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-navy transition-colors hover:bg-primary-dark"
       >
         Consultar por WhatsApp
       </a>

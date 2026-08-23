@@ -14,7 +14,7 @@ const ComingSoon = () => (
       href={WHATSAPP}
       target="_blank"
       rel="noopener"
-      className="inline-block bg-primary text-white py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all"
+      className="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all"
     >
       Consultar por WhatsApp
     </a>
@@ -89,7 +89,7 @@ export const TrackingPortal = () => {
               <button
                 type="submit"
                 disabled={view === "loading"}
-                className="w-full mt-4 bg-primary text-white py-4 text-lg rounded-md font-bold hover:bg-primary-dark transition-all disabled:opacity-60"
+                className="w-full mt-4 bg-primary text-navy py-4 text-lg rounded-md font-bold hover:bg-primary-dark transition-all disabled:opacity-60"
               >
                 {view === "loading" ? "Buscando…" : "Rastrear Paquete"}
               </button>

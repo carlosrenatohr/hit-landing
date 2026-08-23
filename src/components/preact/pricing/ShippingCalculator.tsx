@@ -45,7 +45,7 @@ export const ShippingCalculator = ({ aereo, maritimo }: Props) => {
             ${rates.aereo}/lb
           </span>
           {shippingType === "aereo" && (
-            <div className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
+            <div className="absolute -top-2 -right-2 bg-primary text-navy text-xs font-bold px-2 py-1 rounded-full">
               Rápido
             </div>
           )}
@@ -79,7 +79,7 @@ export const ShippingCalculator = ({ aereo, maritimo }: Props) => {
             ${rates.maritimo}/lb
           </span>
           {shippingType === "maritimo" && (
-            <div className="absolute -top-2 -right-2 bg-navy dark:bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">
+            <div className="absolute -top-2 -right-2 bg-navy dark:bg-primary text-white dark:text-navy text-xs font-bold px-2 py-1 rounded-full">
               Económico
             </div>
           )}
@@ -119,7 +119,7 @@ export const ShippingCalculator = ({ aereo, maritimo }: Props) => {
         <p className="text-sm text-gray-400 mt-2">
           {numericWeight} lb × ${rate}/lb = ${total.toFixed(2)}
         </p>
-        <p className="text-xs text-gray-500 mt-3">
+        <p className="text-xs text-gray-600 dark:text-gray-400 mt-3">
           * No incluye costo de entrega nacional (varía según ubicación)
         </p>
       </div>

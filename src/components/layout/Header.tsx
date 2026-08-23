@@ -120,7 +120,7 @@ export const Header = () => {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <a href="/track" className="min-h-11 inline-flex items-center bg-primary text-white py-2 px-6 rounded-md hover:bg-primary-dark transition-all shadow-lg font-medium">
+            <a href="/track" className="min-h-11 inline-flex items-center bg-primary text-navy py-2 px-6 rounded-md hover:bg-primary-dark transition-all shadow-lg font-medium">
               Rastrear Paquete
             </a>
           </div>
@@ -153,9 +153,9 @@ export const Header = () => {
               Inicio
             </a>
             <div>
-              <h3 className="font-semibold py-2 text-secondary dark:text-white">
+              <p className="font-semibold py-2 text-secondary dark:text-white">
                 Servicios
-              </h3>
+              </p>
               <div className="pl-4 space-y-2">
                 <a
                   href="/servicios/aereo"
@@ -209,7 +209,7 @@ export const Header = () => {
             >
               Contacto
             </a>
-            <a href="/track" className="min-h-11 flex items-center justify-center w-full bg-primary text-white py-3 rounded-md font-bold hover:bg-primary-dark transition-all" onClick={() => setIsMenuOpen(false)}>
+            <a href="/track" className="min-h-11 flex items-center justify-center w-full bg-primary text-navy py-3 rounded-md font-bold hover:bg-primary-dark transition-all" onClick={() => setIsMenuOpen(false)}>
               Rastrear Paquete
             </a>
           </div>

@@ -59,7 +59,7 @@ export const TrackingForm = () => {
         <button
           type="submit"
           disabled={view === "loading"}
-          className="w-full mt-4 bg-primary text-white py-4 text-lg rounded-md font-bold transition-all duration-300 shadow-lg hover:bg-primary-dark disabled:opacity-60"
+          className="w-full mt-4 bg-primary text-navy py-4 text-lg rounded-md font-bold transition-all duration-300 shadow-lg hover:bg-primary-dark disabled:opacity-60"
         >
           {view === "loading" ? "Buscando…" : "Rastrear Paquete"}
         </button>
