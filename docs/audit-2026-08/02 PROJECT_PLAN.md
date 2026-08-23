@@ -37,13 +37,17 @@
 | HC-308 | Typography scale: headings → 800, consistent h1 scale, kill unused display utilities | — | M-8/M-9 |
 | HC-309 | Logo min-size (scrolled) + favicon merge + remove unused brand images | — | M-10/M-16 |
 | HC-310 | Small-target sweep (44px nav/hamburger), dropdown keyboard+aria-expanded, nav aria-label, breakpoint dropdown gap (768-1024) | — | M-11/M-12/B-7 |
-| HC-311 | Re-run E2E screenshots + Lighthouse after content changes | HC-403..409 | E2E §9 |
-| HC-312 | _headers: add x-frame-options, CSP report-only, clear-site-data | — | B-1/B-2/B-3 |
+| HC-311 | Re-run E2E screenshots + Lighthouse after content changes | HC-403..409 | ✅ Re-run 2026-08-23 (`evidence/HC-311-RERUN-2026-08-23.md`): 0 console errors (44 combos), 0 overflow, tracking events fire. Contrast FAIL → HC-320 |
+| HC-312 | _headers: add x-frame-options, CSP report-only, clear-site-data | — | B-1/B-2/B-3 (XFO done in `ac847a4`; report-only + clear-site-data pending) |
 | HC-313 | theme-color/meta geo + apple-touch completeness | — | B-4 |
 | HC-314 | Footer CTA mobile margin-bottom fix | — | B-5 |
 | HC-315 | FAQ heading structure fix (h2/h3) | — | B-6 |
 | HC-316 | WhatsApp phone-mask | BI-11 | B-8 |
 | HC-317 | Legacy fragments cleanup (slug + track timezones/IFCD) | — | B-9 |
+| HC-320 | Fix primary CTA contrast: white on `bg-primary` (#FF7A00) = 2.61:1 fails AA — adopt navy (#14213D) text on orange (~6:1) or darken bg; audit ALL `bg-primary text-white` buttons | HC-311 evidence | axe color-contrast, 2–5 nodes/page (`evidence/HC-311-RERUN-2026-08-23.md` §3) |
+| HC-321 | Add `aria-label` to footer social icon links (FB/IG/TikTok) — axe `link-name` serious on every page | — | Footer.astro, axe link-name ×3 |
+| HC-322 | `/track`: fix heading-order skip + duplicate `<main>` landmark (axe moderate) | — | axe scan /track |
+| HC-323 | Instrument remaining WhatsApp CTAs (hero/CTA-section anchors) with `whatsapp_click` push (placement param), not just the FAB | G1 design | re-run §2 note: 3 uninstrumented wa.me anchors on home |
 
 ### P3 — Green caché / polish
 
