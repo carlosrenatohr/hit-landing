@@ -29,7 +29,6 @@ const quoteUrl = waUrl(WA_MESSAGES.home)
 
         <div class="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-400">
           <a
-          <a
             href="/precios"
             class="inline-block text-center bg-primary text-navy py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg"
           >
@@ -39,14 +38,14 @@ const quoteUrl = waUrl(WA_MESSAGES.home)
             href={quoteUrl}
             target="_blank"
             rel="noopener"
-            class="inline-block text-center bg-transparent border-2 border-primary text-navy py-4 px-8 text-lg rounded-md font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105"
+            class="inline-block text-center bg-transparent border-2 border-primary text-navy dark:text-white dark:border-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105"
           >
             {heroContent.secondaryCTA}
           </a>
         </div>
       </div>
 
-      <div class="lg:w-1/2 relative animate-in fade-in slide-in-from-right duration-1000">
+      <div class="hidden lg:block lg:w-1/2 relative animate-in fade-in slide-in-from-right duration-1000">
         <div class="relative">
           <div class="hero-photo" role="img" aria-label="Servicio de entrega HIT CARGO"></div>
 

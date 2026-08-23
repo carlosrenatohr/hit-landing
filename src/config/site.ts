@@ -8,7 +8,7 @@ export const siteConfig = {
   social: {
     facebook: "https://www.facebook.com/hitcargo.ni/",
     instagram: "https://www.instagram.com/hit.cargo",
-    tiktok: "https://www.tiktok.com/@hit__cargo",
+    tiktok: "https://www.tiktok.com/@hitcargo.ni",
     whatsapp: "https://wa.me/50582085181",
   },
   address: "Carr Masaya Km 14.5, Residencial El Cortez B7",
