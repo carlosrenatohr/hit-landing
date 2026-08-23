@@ -3,7 +3,8 @@ import TrackingForm from './TrackingForm';
 import { heroContent } from '../../content/home'
 import { WA_MESSAGES, waUrl } from '../../lib/whatsapp'
 
-// "Cotizar Ahora" opens WhatsApp (the primary conversion channel) with a prefilled message.
+// Primary CTA opens the shipping calculator (user sees price before contacting).
+// "Cotizar por WhatsApp" opens WhatsApp (the primary conversion channel) with a prefilled message.
 const quoteUrl = waUrl(WA_MESSAGES.home)
 ---
 
@@ -28,7 +29,7 @@ const quoteUrl = waUrl(WA_MESSAGES.home)
 
         <div class="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom duration-700 delay-400">
           <a
-            href="/servicios"
+            href="/precios"
             class="inline-block text-center bg-primary text-white py-4 px-8 text-lg rounded-md font-bold hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg"
           >
             {heroContent.primaryCTA}

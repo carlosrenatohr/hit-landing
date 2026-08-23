@@ -1,18 +1,18 @@
 export const heroContent = {
-  title: "Importaciones Globales a Nicaragua: Tu Aliado Logístico",
+  title: "Comprá en USA, China o Panamá. Recibilo en Nicaragua.",
   subtitle:
-    "Traemos tus compras de Estados Unidos, China, Panamá y el resto del mundo. Con tu casillero en Miami para tus pedidos de Amazon y Shein, gestionamos toda tu logística de importación con entregas en toda Nicaragua.",
-  primaryCTA: "Consultar Servicios",
-  secondaryCTA: "Cotizar Ahora",
+    "Tu casillero en Miami recibe tus pedidos de Amazon, Shein y más. Carga aérea en 5 a 7 días o marítima económica: cobramos por peso exacto. Entregamos en toda Nicaragua.",
+  primaryCTA: "Calcular Costo de Envío",
+  secondaryCTA: "Cotizar por WhatsApp",
 
   highlights: [
     {
-      title: "Alcance Global",
-      description: "USA, China, Panamá y más",
+      title: "Desde 5 Días",
+      description: "Aéreo express desde Miami",
     },
     {
-      title: "Gestión Completa",
-      description: "Nosotros nos encargamos de todo",
+      title: "Precio Transparente",
+      description: "Peso exacto: lo que marca la báscula es lo que pagás",
     },
   ],
 };
