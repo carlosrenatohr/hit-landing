@@ -190,7 +190,7 @@ export const servicePages: ServicePage[] = [
       "Nos enviás los detalles de tu carga (tipo, peso, volumen).",
       "Te cotizamos según las características específicas.",
       "Coordinamos el transporte y gestionamos aduana.",
-      "Te entregamos a domicilio o bodega en Nicaragua.",
+      "Te entregamos a domicilio en Nicaragua.",
     ],
     closing:
       "¿Necesitás importar carga grande desde USA? Escribinos con los detalles y te cotizamos.",
