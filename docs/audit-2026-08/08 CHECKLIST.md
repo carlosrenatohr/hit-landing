@@ -18,8 +18,8 @@
 | B-01 | vitest run passes | ✅ | `pnpm test` (green @ audit) |
 | B-02 | astro build passes | ✅ | `pnpm build` (green @ audit) |
 | B-03 | No `style=""` inline attributes | ✅ | sweep `style="` in src = 0 |
-| B-04 | No overflow-x on any page (320-1920) | ✅ | E2E B1 sweep (0/68) |
-| B-05 | No console errors (home + others) | ◻ | Requires browser E2E rerun |
+| B-04 | No overflow-x on any page (320-1920) | ✅ | E2E B1 sweep (0/68) + re-run 2026-08-23 (0/44) |
+| B-05 | No console errors (home + others) | ✅ | Re-run 2026-08-23: 0 errors in 44 combos (`evidence/HC-311-RERUN-2026-08-23.md`) |
 | B-06 | GTM snippet byte-identical (hash CSP) | ✅ | Layout.astro + astro.config integrity |
 | B-07 | dark-mode init before any JS in head | ✅ | public/scripts/dark-mode-init.js |
 
@@ -31,7 +31,8 @@
 | C-02 | Services dropdown keyboard-focusable + aria-expanded | ✅ | Header.tsx:60-96 |
 | C-03 | Desktop/mobile `<nav>` has aria-label | ✅ | Header.tsx:52, 142 |
 | C-04 | Heading hierarchy per page (h1→h2→h3, no inversion) | ✅ | FAQSection.tsx:52-60 |
-| C-05 | Color-contrast AA on orange/navy mixes (dark mode) | ◻ | Lighthouse a11y pass |
+| C-05 | Color-contrast AA on orange/navy mixes (dark mode) | ❌ | axe 2026-08-23: white on `bg-primary` = 2.61:1 (serious) on all primary CTAs; see `evidence/HC-311-RERUN-2026-08-23.md` §3 |
+| C-06 | Social icon links have accessible names (aria-label) | ❌ | NEW 2026-08-23: Footer FB/IG/TikTok icons fail axe `link-name` on every page |
 
 ## D. Analytics (S10)
 
@@ -99,7 +100,13 @@ curl -s "https://hit-ever-scraper.nativerse.workers.dev/track/910500?pretty=1" |
 | # | Check | Status | Evidence |
 |---|---|---|---|
 | H-01 | hit-cargo.com 200 + CSP/HSTS/XFO headers | ✅ @audit | — |
-| H-02 | worker /track 200 envelope | ✅ @audit | — |
-| H-03 | Search + WhatsApp events appear in GA4 (after D-01) | ◻ | — |
+| H-02 | worker /track 200 envelope | ✅ @re-run 2026-08-23 | curl ok:true |
+| H-03 | Search + WhatsApp events appear in GA4 (after D-01) | ◻ | events verified firing in dataLayer 2026-08-23; GTM consumption still pending (D-01) |
 
-_Last updated: 2026-08 audit. Owner: none (shared). Keep in sync with PROJECT_PLAN HC-3xx/4xx._
+---
+
+## I. HC-311 re-run log
+
+- **2026-08-23** post-merge `6a9e1c6` (PR #20/#22/#23): E2E sweep + tracking assertions + axe scan. Full results: `evidence/HC-311-RERUN-2026-08-23.md`. B-05 closed; C-05 failed with evidence; new C-06. No P0/P1 regressions.
+
+_Last updated: 2026-08-23 (HC-311 re-run). Owner: none (shared). Keep in sync with PROJECT_PLAN HC-3xx/4xx._
