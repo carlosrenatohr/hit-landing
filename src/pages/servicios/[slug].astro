@@ -19,7 +19,7 @@ const wa = waUrlForPath(Astro.url.pathname);
   <section class="pt-32 pb-16 bg-secondary">
     <div class="container mx-auto px-4 md:px-6 text-center">
       <Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Servicios', href: '/servicios' }, { label: service.nav }]} />
-      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">{service.title}</h1>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4">{service.title}</h1>
       <p class="text-xl text-gray-300 max-w-3xl mx-auto">{service.hero}</p>
     </div>
   </section>
