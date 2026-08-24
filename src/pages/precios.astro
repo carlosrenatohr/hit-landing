@@ -84,10 +84,10 @@ const waQuote = waUrl(WA_MESSAGES.pricingQuote);
             Preguntá por nuestros <strong>precios especiales de emprendedor</strong> y las <strong>promociones del mes</strong>. Tenemos tarifas preferenciales para quienes envían constante.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={waPromos} target="_blank" rel="noopener" class="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all shadow-lg">
+            <a href={waPromos} target="_blank" rel="noopener" data-wa-location="pricing_promos" class="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all shadow-lg">
               Preguntá por promos del mes
             </a>
-            <a href={waEntrepreneur} target="_blank" rel="noopener" class="inline-block bg-transparent border-2 border-white text-white py-3 px-8 rounded-md font-bold hover:bg-white/10 transition-all">
+            <a href={waEntrepreneur} target="_blank" rel="noopener" data-wa-location="pricing_entrepreneur" class="inline-block bg-transparent border-2 border-white text-white py-3 px-8 rounded-md font-bold hover:bg-white/10 transition-all">
               Precios de emprendedor
             </a>
           </div>
@@ -99,7 +99,7 @@ const waQuote = waUrl(WA_MESSAGES.pricingQuote);
         <p class="text-lg text-gray-200 mb-6">
           ¿Necesitás una cotización para carga comercial, encomiendas o importación? Escribinos y te damos un presupuesto transparente.
         </p>
-        <a href={waQuote} target="_blank" rel="noopener" class="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
+        <a href={waQuote} target="_blank" rel="noopener" data-wa-location="pricing_quote" class="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
           Cotización personalizada por WhatsApp
         </a>
       </div>
