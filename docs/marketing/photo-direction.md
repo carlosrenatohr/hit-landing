@@ -61,10 +61,15 @@ acento gráfico encima — nunca teñir toda la foto de naranja.
 
 1. **Foto propia (preferida, no negociable para credibilidad).** Sesión de medio día con móvil moderno +
    luz natural, guiada por este shot list. Equipo/oficina Managua, proceso, entrega en puerta.
-2. **Stock curado que parezca real** (puente mientras no haya foto propia). Criterio: gente y logística
+2. **Generada con IA** (viable para lanzamiento). Herramientas: Midjourney, DALL-E, Firefly. Prompt pattern:
+   `"Logistics delivery in Nicaragua, warm natural light, real people, package at doorstep, orange accent, cinematic, 16:9"`
+   - Siempre verificar que no tenga texto distorsionado en el output
+   - Aplicar grado de color de §2 post-generación
+   - No usar para fotos de "equipo real" — eso necesita sesión propia
+3. **Stock curado que parezca real** (puente mientras no haya foto propia). Criterio: gente y logística
    reales, luz cálida, sin estética "corporativa de banco". Fuentes: Unsplash, Pexels (gratis, revisar
    licencia); Getty/Adobe Stock si hay presupuesto. Siempre pasar por el grado de color de §2.
-3. **Ilustración / gráfico** donde la foto no aporta: mapa de rutas, comparativa aéreo vs marítimo,
+4. **Ilustración / gráfico** donde la foto no aporta: mapa de rutas, comparativa aéreo vs marítimo,
    iconografía unificada. Sustituye la necesidad de fotografiar bodegas internacionales.
 
 ---
@@ -122,3 +127,14 @@ fotos todavía.*
 - [ ] Prueba social: cifras verificables + banda de logos de tiendas (sin retratos de stock).
 - [ ] Eliminar del DOM `TestimonialsSection` con retratos falsos (hoy solo `hidden`) si no hay reales.
 - [ ] Todas las fotos: AVIF/WebP, responsive, `alt`, `width/height`, dentro del presupuesto de performance.
+
+## 9. Generación con IA — prompts sugeridos
+
+| Slot | Prompt sugerido | Notas |
+|---|---|---|
+| Hero | `"Courier delivering package at doorstep in Central American neighborhood, warm afternoon light, orange uniform accent, cinematic composition, empty space left for text, 16:9"` | Evitar texto en la imagen |
+| Servicio Aéreo | `"Air cargo being loaded, airplane cargo hold, boxes with labels, warm lighting, logistics, professional photography"` | |
+| Servicio Marítimo | `"Shipping container at port, cranes loading, ocean background, golden hour, logistics operations"` | |
+| Cómo funciona 1 | `"Person receiving package at home in Nicaragua, smiling, natural light, warm tones"` | |
+| Cómo funciona 2 | `"Warehouse worker organizing packages, labels, shelves, warm industrial lighting"` | |
+| Cómo funciona 3 | `"Delivery motorcycle on residential street, tropical setting, orange accent"` | |
