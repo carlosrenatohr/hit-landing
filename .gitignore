@@ -50,3 +50,8 @@ pnpm-debug.log*
 graphify-out/*
 !graphify-out/graph.json
 !graphify-out/GRAPH_REPORT.md
+
+# Promo video (SPEC-P4-15) — capture/render artifacts and local tooling
+scripts/promo/node_modules/
+dist-promo/
+.promo/

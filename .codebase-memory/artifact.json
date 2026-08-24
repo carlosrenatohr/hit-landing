@@ -1,11 +1,11 @@
 {
     "schema_version": 2,
-    "commit": "5559b0d8b80c5a6f8f8754d7b0d4234a959158c4",
-    "indexed_at": "2026-07-31T00:41:12Z",
+    "commit": "02997a36e759b93b28d7649333a7f7d4294ce7cf",
+    "indexed_at": "2026-08-23T20:21:34Z",
     "project": "home-renato-Codee-hit-hit-cargo-web-v-1.2",
-    "nodes": 1028,
-    "edges": 1129,
-    "original_size": 2293760,
-    "compressed_size": 225858,
-    "compression_level": 9
+    "nodes": 7200,
+    "edges": 7333,
+    "original_size": 11337728,
+    "compressed_size": 1017061,
+    "compression_level": 3
 }

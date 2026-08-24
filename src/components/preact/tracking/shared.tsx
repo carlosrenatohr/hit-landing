@@ -337,7 +337,7 @@ function ResultCard({ data }: { data: PublicShipment }) {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 p-5 dark:border-gray-700">
-        <a href={WHATSAPP} target="_blank" rel="noopener" className="text-sm text-neutral-text hover:underline dark:text-gray-300">
+        <a href={WHATSAPP} target="_blank" rel="noopener" data-wa-location="track_result" className="text-sm text-neutral-text hover:underline dark:text-gray-300">
           ¿Dudas? Escribinos por WhatsApp
         </a>
       </div>
@@ -355,6 +355,7 @@ function MessageCard({ title, body }: { title: string; body: string }) {
         href={WHATSAPP}
         target="_blank"
         rel="noopener"
+        data-wa-location="track_message"
         className="mt-5 inline-block rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-navy transition-colors hover:bg-primary-dark"
       >
         Consultar por WhatsApp

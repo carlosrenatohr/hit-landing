@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HIT Cargo — Promo Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ── Tokens reales del sitio (brand book v1.0 → tailwind.config.js) ── */
+  :root {
+    --orange: #FF7A00;
+    --black: #111111;
+    --navy: #14213D;
+    --white: #FFFFFF;
+    --muted: rgba(255,255,255,0.72);
+    --dim: rgba(255,255,255,0.55);
+    --display: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    --body: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; background:#000; overflow:hidden; }
+  body { font-family:var(--body); color:var(--white); }
+
+  /* Stage 16:9 (1920x1080) escalado a la ventana */
+  #stage {
+    position:absolute; left:50%; top:50%; width:1920px; height:1080px;
+    transform:translate(-50%,-50%) scale(var(--scale,1));
+    transform-origin:center center;
+    background:radial-gradient(1200px 700px at 50% -10%, #1b2b4d 0%, var(--navy) 40%, var(--black) 100%);
+    overflow:hidden;
+  }
+
+  /* ── Sistema de escenas: cada una anima dentro de su ventana temporal ── */
+  .scene { position:absolute; inset:0; opacity:0; }
+  .scene.hot { opacity:1; }               /* estado previo al play (hero visible) */
+  .scene .inner { position:absolute; inset:0; }
+  #play .scene { animation:sceneWin linear forwards; }
+  #play .s1 { animation-duration:3.8s; animation-delay:0s; }
+  #play .s2 { animation-duration:4.6s; animation-delay:3.5s; }
+  #play .s3 { animation-duration:6.2s; animation-delay:7.8s; }
+  #play .s4 { animation-duration:5.0s; animation-delay:13.7s; }
+  #play .s5 { animation-duration:2.4s; animation-delay:18.4s; }
+  #play .s6 { animation-duration:4.0s; animation-delay:20.2s; }
+  @keyframes sceneWin {
+    0%   { opacity:0; }
+    4%   { opacity:1; }
+    94%  { opacity:1; }
+    100% { opacity:0; }
+  }
+
+  /* ── Overlays de título (parte inferior izquierda, Montserrat, grande) ── */
+  .ttl {
+    position:absolute; left:64px; bottom:84px; z-index:40; display:flex; align-items:center; gap:20px;
+    opacity:0;
+  }
+  .ttl .bar { width:10px; height:64px; border-radius:5px; background:var(--orange); }
+  .ttl span { font-family:var(--display); font-weight:800; font-size:66px; line-height:1.06;
+    letter-spacing:-0.5px; text-shadow:0 4px 28px rgba(0,0,0,.55); }
+  #play .ttl { animation:ttlWin linear forwards; }
+  #play .t1 { animation-duration:3.1s; animation-delay:.5s; }
+  #play .t2 { animation-duration:2.2s; animation-delay:3.9s; }
+  #play .t3 { animation-duration:1.6s; animation-delay:6.2s; }
+  #play .t4 { animation-duration:4.4s; animation-delay:9.0s; }
+  #play .t5 { animation-duration:3.6s; animation-delay:14.2s; }
+  @keyframes ttlWin {
+    0%   { opacity:0; transform:translateX(-14px); }
+    12%  { opacity:1; transform:translateX(0); }
+    88%  { opacity:1; }
+    100% { opacity:0; }
+  }
+
+  /* ── Botón play (solo preview manual; se oculta con autoplay) ── */
+  #playbtn {
+    position:fixed; z-index:100; left:50%; top:50%; transform:translate(-50%,-50%);
+    background:var(--orange); color:#fff; border:0; border-radius:999px;
+    padding:22px 56px; font-family:var(--display); font-weight:800; font-size:26px; cursor:pointer;
+    box-shadow:0 12px 40px rgba(255,122,0,.45); letter-spacing:.5px;
+  }
+  #playbtn:hover { background:#E56E00; }
+  body.playing #playbtn { display:none; }
+
+  /* ── Scene 1 · Hero (sitio real: content/home.ts + HeroSection.astro) ── */
+  #nav {
+    position:absolute; top:0; left:0; right:0; z-index:20; height:84px;
+    display:flex; align-items:center; justify-content:space-between; padding:0 52px;
+  }
+  #nav img { height:40px; }
+  #nav .links { display:flex; align-items:center; gap:34px; font-size:15px; color:var(--muted); }
+  #nav .links b { color:#fff; font-weight:600; }
+  #nav .cta { background:var(--orange); color:#fff; font-weight:600; font-size:14px;
+    padding:11px 22px; border-radius:6px; }
+  .hero { display:flex; align-items:center; gap:64px; padding:150px 96px 0; height:100%; }
+  .hero .left { flex:1.15; }
+  .hero .left h1 { font-family:var(--display); font-weight:900; font-size:58px; line-height:1.08; margin-bottom:18px; }
+  .hero .left p  { font-size:21px; color:var(--dim); line-height:1.5; margin-bottom:28px; }
+  .hero .trackcard {
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,122,0,.25); border-radius:14px;
+    padding:20px; display:flex; gap:12px; align-items:center; margin-bottom:26px; backdrop-filter:blur(4px);
+  }
+  .hero .trackcard input {
+    flex:1; background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.18); border-radius:8px;
+    color:#fff; font-family:var(--body); font-size:19px; padding:14px 18px; outline:none;
+  }
+  .hero .trackcard button {
+    background:var(--orange); color:#fff; border:0; border-radius:8px; font-family:var(--body);
+    font-weight:600; font-size:17px; padding:15px 28px; cursor:pointer;
+  }
+  .hero .ctas { display:flex; gap:16px; }
+  .hero .ctas a { text-decoration:none; font-weight:700; font-size:18px; padding:16px 32px; border-radius:8px; }
+  .hero .ctas .primary { background:var(--orange); color:#fff; }
+  .hero .ctas .ghost { border:2px solid var(--orange); color:var(--orange); }
+  .hero .right { flex:1; position:relative; }
+  .hero .right img { width:100%; border-radius:16px; border:4px solid rgba(255,122,0,.2); }
+  .hero .chip {
+    position:absolute; background:rgba(17,17,17,.92); border:1px solid rgba(255,122,0,.25);
+    border-radius:14px; padding:14px 18px; display:flex; gap:14px; align-items:center; box-shadow:0 18px 50px rgba(0,0,0,.5);
+  }
+  .hero .chip .ic { width:44px; height:44px; border-radius:50%; background:var(--orange);
+    display:grid; place-items:center; font-size:22px; }
+  .hero .chip b { display:block; font-size:16px; }
+  .hero .chip small { color:var(--dim); font-size:13px; }
+  .hero .chip.c1 { bottom:-22px; left:-34px; }
+  .hero .chip.c2 { top:36px; right:-30px; }
+  .s1 .inner { animation:cameraSlow 3.8s ease-out forwards; }
+  @keyframes cameraSlow { from { transform:scale(1.06); } to { transform:scale(1); } }
+
+  /* ── Scene 2 · Servicios (content/services.ts) ── */
+  .services { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:0 110px; }
+  .services h2 { font-family:var(--display); font-weight:800; font-size:46px; margin-bottom:10px; }
+  .services .sub { color:var(--dim); font-size:20px; margin-bottom:48px; }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:34px; width:100%; max-width:1500px; }
+  .card {
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,122,0,.16); border-radius:16px;
+    padding:34px 30px; text-align:left;
+  }
+  .card .ic { width:56px; height:56px; border-radius:50%; background:rgba(255,122,0,.14);
+    display:grid; place-items:center; color:var(--orange); margin-bottom:18px; }
+  .card h3 { font-family:var(--display); font-weight:800; font-size:24px; margin-bottom:10px; }
+  .card p { color:var(--dim); font-size:15px; line-height:1.55; margin-bottom:14px; }
+  .card a { color:var(--orange); font-weight:600; font-size:15px; text-decoration:none; }
+  #play .s2 .card:nth-child(1) { animation:cardIn .6s ease-out .4s forwards; }
+  #play .s2 .card:nth-child(2) { animation:cardIn .6s ease-out .75s forwards; }
+  #play .s2 .card:nth-child(3) { animation:cardIn .6s ease-out 1.1s forwards; }
+  .card { opacity:0; }
+  #play .s2 .card { opacity:1; animation-fill-mode:both; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(34px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── Scene 3 · Tracking (resultado REAL del worker: 812898 · Entregado) ── */
+  .track { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:0 110px; }
+  .track .shell {
+    width:100%; max-width:840px; background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,122,0,.18); border-radius:18px; padding:0; overflow:hidden;
+  }
+  .track .head { padding:30px 34px; border-bottom:1px solid rgba(255,255,255,.1); }
+  .track .head .lbl { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--dim); }
+  .track .head h3 { font-family:var(--display); font-weight:800; font-size:34px; margin-top:2px; }
+  .track .pill { display:inline-block; margin-top:12px; background:rgba(52,211,153,.16); color:#6ee7b7;
+    border-radius:999px; padding:6px 16px; font-weight:700; font-size:14px; }
+  .track .meta { margin-left:12px; color:var(--dim); font-size:14px; }
+  .track .steps { display:flex; gap:8px; margin-top:22px; }
+  .track .steps i { flex:1; height:6px; border-radius:4px; background:rgba(255,255,255,.12); }
+  .track .steps i.on { background:var(--orange); }
+  .track .steps u { display:block; margin-top:6px; font-size:11px; font-style:normal; color:var(--dim); }
+  .track .steps u.on { color:#fff; font-weight:600; }
+  .track .list { padding:20px 34px 26px; }
+  .track .ev { display:flex; gap:18px; padding:12px 0; }
+  .track .ev .dot { width:14px; height:14px; border-radius:50%; margin-top:5px; flex:0 0 auto; }
+  .track .ev.done .dot { background:#22c55e; }
+  .track .ev.cur .dot { background:var(--orange); box-shadow:0 0 0 6px rgba(255,122,0,.18); }
+  .track .ev b { font-size:15px; display:block; }
+  .track .ev.cur b { color:var(--orange); }
+  .track .ev small { color:var(--dim); font-size:13px; }
+  .track .ev .date { margin-left:auto; color:var(--dim); font-size:13px; white-space:nowrap; }
+  /* estados del flujo */
+  .formBox, .loadBox, .resBox { display:none; }
+  .st-form .formBox { display:block; }
+  .st-load .loadBox { display:block; }
+  .st-res  .resBox  { display:block; }
+  .formBox { padding:34px; }
+  .formBox .row { display:flex; gap:12px; }
+  .formBox input { flex:1; background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.18);
+    border-radius:8px; color:#fff; font-family:var(--body); font-size:20px; padding:15px 18px; }
+  .formBox button { background:var(--orange); color:#fff; border:0; border-radius:8px;
+    font-weight:600; font-size:17px; padding:15px 30px; }
+  .loadBox { padding:64px 34px; text-align:center; }
+  .loadBox .mark { width:84px; height:84px; margin:0 auto 22px; border-radius:50%;
+    background:rgba(255,122,0,.12); border:2px solid rgba(255,122,0,.35);
+    animation:pulse 1.1s ease-in-out infinite; display:grid; place-items:center; font-size:36px; }
+  @keyframes pulse { 0%,100% { transform:scale(1); opacity:.7; } 50% { transform:scale(1.12); opacity:1; } }
+  .loadBox b { font-size:19px; }
+  .loadBox p { color:var(--dim); font-size:14px; margin-top:4px; }
+  .loadBox .bar { width:220px; height:5px; margin:26px auto 0; border-radius:4px;
+    background:rgba(255,255,255,.12); overflow:hidden; }
+  .loadBox .bar i { display:block; width:50%; height:100%; background:var(--orange);
+    animation:slide 1.1s ease-in-out infinite; }
+  @keyframes slide { from { transform:translateX(-100%); } to { transform:translateX(300%); } }
+  #play .s3 .shell { animation:popIn .55s cubic-bezier(.2,.8,.2,1) .5s forwards; }
+  .shell { opacity:0; }
+  #play .s3 .shell { opacity:1; }
+  @keyframes popIn { from { opacity:0; transform:scale(.94) translateY(26px); } to { opacity:1; transform:scale(1) translateY(0); } }
+
+  /* ── Scene 4 · Precios + calculadora (tarifas reales $6.50/$2.50 · 10lb → $25.00) ── */
+  .pricing { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; padding:0 110px; }
+  .pricing h2 { font-family:var(--display); font-weight:800; font-size:44px; margin-bottom:8px; }
+  .pricing .sub { color:var(--dim); font-size:19px; margin-bottom:40px; }
+  .prow { display:grid; grid-template-columns:1.1fr 1fr; gap:30px; width:100%; max-width:1380px; align-items:stretch; }
+  .rate { background:rgba(255,255,255,.05); border:1px solid rgba(255,122,0,.16); border-radius:16px; padding:26px 30px; }
+  .rate b { font-family:var(--display); font-weight:800; font-size:20px; }
+  .rate .price { font-family:var(--display); font-weight:800; font-size:44px; color:var(--orange); margin:6px 0 8px; }
+  .rate .price small { font-size:16px; font-weight:400; color:var(--dim); }
+  .rate p { color:var(--dim); font-size:13px; line-height:1.5; }
+  .calc { background:rgba(255,255,255,.05); border:1px solid rgba(255,122,0,.18); border-radius:16px; padding:26px 30px; }
+  .calc .types { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+  .calc .t { border:2px solid rgba(255,255,255,.14); border-radius:12px; padding:14px; text-align:center;
+    font-weight:700; cursor:pointer; font-size:16px; }
+  .calc .t.sel { border-color:var(--orange); background:rgba(255,122,0,.12); color:var(--orange); }
+  .calc label { font-size:13px; color:var(--dim); }
+  .calc .w { width:100%; margin-top:6px; background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.18);
+    border-radius:8px; color:#fff; font-family:var(--body); font-weight:700; font-size:26px; padding:12px 16px; }
+  .calc .out { margin-top:18px; background:rgba(17,17,17,.5); border-radius:12px; padding:18px; text-align:center; }
+  .calc .out small { color:var(--dim); font-size:13px; }
+  .calc .out .total { font-family:var(--display); font-weight:800; font-size:52px; color:var(--orange); }
+  .calc .out .break { color:var(--dim); font-size:14px; margin-top:4px; }
+  #play .s4 .prow { animation:upIn .6s ease-out .4s forwards; }
+  .prow { opacity:0; }
+  #play .s4 .prow { opacity:1; }
+  @keyframes upIn { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── Scene 5 · "Y esto es solo el principio..." ── */
+  .myst { display:flex; align-items:center; justify-content:center; height:100%;
+    background:linear-gradient(160deg,#14213D 0%,#0B1526 45%,#111111 100%); }
+  .myst .glow { position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 42%, rgba(255,122,0,.15), transparent 62%); }
+  .myst p { position:relative; font-family:var(--display); font-weight:900; font-size:88px;
+    letter-spacing:1px; text-align:center; text-shadow:0 6px 40px rgba(0,0,0,.6); padding:0 80px; }
+  #play .s5 p { animation:mystWin 2.0s ease-out .15s forwards; }
+  #play .s5 p { opacity:1; }
+  @keyframes mystWin {
+    0%   { opacity:0; transform:scale(.97); }
+    14%  { opacity:1; transform:scale(1); }
+    86%  { opacity:1; }
+    100% { opacity:0; }
+  }
+
+  /* ── Scene 6 · Lockup final (logo oficial + Nativerse) ── */
+  .lock { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:36px;
+    background:linear-gradient(165deg,#14213D 0%,#0E1930 40%,#111111 100%); }
+  .lock .glow { position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 38%, rgba(255,122,0,.18), transparent 55%); }
+  .lock img.logo { position:relative; width:560px; }
+  .lock .attr { position:relative; display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .lock .attr img { width:150px; }
+  .lock .attr span { font-size:20px; letter-spacing:3px; color:rgba(255,255,255,.72); }
+  #play .s6 img.logo { animation:logoIn .7s cubic-bezier(.2,.8,.2,1) .25s forwards; }
+  #play .s6 .attr { animation:upIn .6s ease-out .55s forwards; }
+  .lock img.logo, .lock .attr { opacity:0; }
+  #play .s6 img.logo, #play .s6 .attr { opacity:1; }
+  @keyframes logoIn { from { opacity:0; transform:scale(.92); } to { opacity:1; transform:scale(1); } }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <!-- Scene 1 · Hero -->
+    <section class="scene s1 hot">
+      <div class="inner">
+        <header id="nav">
+          <img src="../../public/brand/logo-full-dark.png" alt="HIT CARGO" />
+          <nav class="links">
+            <b>Inicio</b><span>Servicios ▾</span><span>Rastrear Paquete</span><span>Preguntas Frecuentes</span><span>Contacto</span>
+          </nav>
+          <span class="cta">Rastrear Paquete</span>
+        </header>
+        <div class="hero">
+          <div class="left">
+            <h1>Importaciones Globales a Nicaragua:<br />Tu Aliado Logístico</h1>
+            <p>Traemos tus compras de Estados Unidos, China, Panamá y el resto del mundo. Con tu casillero en Miami para tus pedidos de Amazon y Shein, gestionamos toda tu logística con entregas en toda Nicaragua.</p>
+            <div class="trackcard">
+              <input id="heroTrackInput" placeholder="Número de guía (ej. 926791)" />
+              <button id="heroTrackBtn">Rastrear</button>
+            </div>
+            <div class="ctas">
+              <a class="primary" href="#">Consultar Servicios</a>
+              <a class="ghost" href="#">Cotizar Ahora</a>
+            </div>
+          </div>
+          <div class="right">
+            <img src="../../public/brand/warehouse-hero.webp" alt="Bodega HIT CARGO" />
+            <div class="chip c1"><div class="ic">🚚</div><div><b>Entrega Rápida</b><small>Estados Unidos a Nicaragua</small></div></div>
+            <div class="chip c2"><div class="ic">🛡️</div><div><b>Envío Seguro</b><small>100% Confiable</small></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ttl t1"><div class="bar"></div><span>Tu logística comienza aquí.</span></div>
+    </section>
+
+    <!-- Scene 2 · Servicios -->
+    <section class="scene s2">
+      <div class="inner services">
+        <h2>Soluciones de Importación Global</h2>
+        <p class="sub">Gestionamos tus compras y carga desde Estados Unidos, China, Panamá y cualquier parte del mundo directamente hasta Nicaragua.</p>
+        <div class="cards">
+          <div class="card">
+            <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.7 5.2c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.7.5-1.2z"/></svg></div>
+            <h3>Carga Aérea</h3>
+            <p>La vía más rápida para tus pedidos desde Estados Unidos. Cobramos por peso. Ideal para compras urgentes.</p>
+            <a href="#">Saber más →</a>
+          </div>
+          <div class="card">
+            <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21c.6.5 1.2 1 2.5 1 1.4 0 2.5-1 3.5-1s2.1 1 3.5 1 2.5-1 3.5-1 2.1 1 3.5 1 2.5-1 3.5-1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.26.44 4.41 1.25 6"/><path d="M9 6c0-2 1.5-3 3-3s3 1 3 3"/><path d="M12 21v-3"/><path d="M5 14v-2"/><path d="M19 14v-2"/></svg></div>
+            <h3>Carga Marítima</h3>
+            <p>Solución económica para carga pesada desde Estados Unidos. Cobramos por peso. Conviene para inventarios y pedidos grandes.</p>
+            <a href="#">Saber más →</a>
+          </div>
+          <div class="card">
+            <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg></div>
+            <h3>Encomiendas</h3>
+            <p>Envío de cajas y barriles por volumen y dimensiones. Ideal para cargas pesadas con restricciones. Cotización previa.</p>
+            <a href="#">Saber más →</a>
+          </div>
+        </div>
+      </div>
+      <div class="ttl t2"><div class="bar"></div><span>Todo lo que necesitas, en un solo lugar.</span></div>
+      <div class="ttl t3"><div class="bar"></div><span>Soluciones para cada envío.</span></div>
+    </section>
+
+    <!-- Scene 3 · Tracking (resultado REAL: 812898 · Entregado · marítimo · 24 lb) -->
+    <section class="scene s3">
+      <div class="inner track">
+        <div class="shell st-form" id="trackShell">
+          <div class="formBox">
+            <div class="row">
+              <input id="trackInput" placeholder="Número de guía" value="1ZH936R30321624778" />
+              <button id="trackBtn">Rastrear Paquete</button>
+            </div>
+          </div>
+          <div class="loadBox">
+            <div class="mark">📦</div>
+            <b>Buscando tu paquete…</b>
+            <p>Consultando el estado en tiempo real.</p>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="resBox">
+            <div class="head">
+              <div class="lbl">Guía</div>
+              <h3>812898</h3>
+              <span class="pill">Entregado</span><span class="meta">🚢 Marítimo · 1 pzs · 24 lb</span>
+              <div class="steps">
+                <i class="on"><u class="on">En bodega Miami</u></i>
+                <i class="on"><u class="on">En camino</u></i>
+                <i class="on"><u class="on">En Nicaragua</u></i>
+                <i class="on"><u class="on">Entregado</u></i>
+              </div>
+            </div>
+            <div class="list">
+              <div class="ev cur"><span class="dot"></span><div><b>Entregado</b><small>Tu paquete fue entregado.</small></div><span class="date">07 feb 2026</span></div>
+              <div class="ev done"><span class="dot"></span><div><b>Recibido en Oficina Metrocentro</b><small>Llegó a Nicaragua y está en proceso de entrega.</small></div><span class="date">05 feb 2026</span></div>
+              <div class="ev done"><span class="dot"></span><div><b>Enviando a Oficina Metrocentro</b></div><span class="date">05 feb 2026</span></div>
+              <div class="ev done"><span class="dot"></span><div><b>Recibido en Bodega Santa Maria</b></div><span class="date">05 feb 2026</span></div>
+              <div class="ev done"><span class="dot"></span><div><b>Recibido · Miami (MIA)</b><small>Tu paquete llegó a nuestra bodega en Miami.</small></div><span class="date">16 ene 2026</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ttl t4"><div class="bar"></div><span>Rastrea tu paquete fácilmente.</span></div>
+    </section>
+
+    <!-- Scene 4 · Precios + calculadora -->
+    <section class="scene s4">
+      <div class="inner pricing">
+        <h2>Precios claros. Sin sorpresas.</h2>
+        <p class="sub">Calculá al instante cuánto te cuesta traer tu paquete. Cobramos por peso exacto, sin inventos.</p>
+        <div class="prow">
+          <div class="rate">
+            <b>Envio Aéreo</b>
+            <div class="price">$6.50<small>/libra</small></div>
+            <p>Se cobra por peso exacto. Ideal para compras que necesitás rápido.</p>
+          </div>
+          <div class="calc">
+            <div class="types">
+              <div class="t" id="calcA">✈️ Aéreo<br /><small>$6.50/lb</small></div>
+              <div class="t sel" id="calcM">🚢 Marítimo<br /><small>$2.50/lb</small></div>
+            </div>
+            <label for="calcW">Peso (libras)</label>
+            <input class="w" id="calcW" value="10" />
+            <div class="out">
+              <small>Costo estimado de envío</small>
+              <div class="total" id="calcTotal">$25.00</div>
+              <div class="break">10 lb × $2.50/lb = $25.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ttl t5"><div class="bar"></div><span>Precios claros. Sin sorpresas.</span></div>
+    </section>
+
+    <!-- Scene 5 · "Y esto es solo el principio..." -->
+    <section class="scene s5">
+      <div class="myst"><div class="glow"></div><p>Y esto es solo el principio...</p></div>
+    </section>
+
+    <!-- Scene 6 · Lockup final -->
+    <section class="scene s6">
+      <div class="lock">
+        <div class="glow"></div>
+        <img class="logo" src="../../public/brand/logo-full-dark.png" alt="HIT CARGO" />
+        <div class="attr">
+          <img src="../../public/brand/nativerse-logo-version-finalv1.png" alt="Nativerse" />
+          <span>Desarrollado por Nativerse</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <button id="playbtn">▶ Reproducir</button>
+
+  <!-- Música de fondo (preview con audio). No autoplay: arranca con el clic del ▶ (gesto del usuario). -->
+  <audio id="bgm" loop preload="none">
+    <source src="../../.promo/assets/orbit-bgm.mp3" type="audio/mpeg" />
+  </audio>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var stage = document.getElementById("stage");
+  var playBtn = document.getElementById("playbtn");
+  var autoplay = new URLSearchParams(location.search).get("autoplay") === "1";
+
+  // Escalar el stage 1920x1080 a la ventana (para preview manual)
+  function fit() {
+    stage.style.setProperty("--scale", Math.min(innerWidth / 1920, innerHeight / 1080));
+  }
+  addEventListener("resize", fit);
+  fit();
+
+  // Datos REALES (verificados contra el worker 2026-08-12)
+  var TRACKING = "1ZH936R30321624778";
+  var RESULT = { guia: "812898", statusLabel: "Entregado", serviceType: "maritimo", pieces: 1, weightLb: 24 };
+
+  var trackShell = document.getElementById("trackShell");
+  var trackInput = document.getElementById("trackInput");
+  var trackBtn = document.getElementById("trackBtn");
+
+  var t = function (ms, fn) { return setTimeout(fn, ms); };
+  var playStart = 0;
+
+  function start() {
+    document.body.classList.add("playing");
+    root.id = "play"; // dispara toda la línea de tiempo CSS
+    playStart = Date.now();
+    window.__promoStart = performance.now();
+
+    // Limpia el input y lo enfoca (el tipeo real viene en la escena 3)
+    t(100, function () { trackInput.value = ""; trackInput.focus(); });
+
+    // Escena 3: tipeo → loading → resultado real
+    t(8000, function () {
+      var i = 0;
+      var typing = setInterval(function () {
+        i++;
+        trackInput.value = TRACKING.slice(0, i);
+        if (i >= TRACKING.length) { clearInterval(typing); t(250, submitTrack); }
+      }, 34);
+    });
+
+    function submitTrack() {
+      trackShell.className = "shell st-load";
+      t(1400, function () {
+        trackShell.className = "shell st-res";
+      });
+    }
+
+    // Escena 4: interacción de la calculadora (marítimo + 10 lb → $25.00)
+    t(14200, function () { document.getElementById("calcM").click(); });
+    t(14900, function () {
+      var w = document.getElementById("calcW");
+      w.value = "10";
+      document.getElementById("calcTotal").textContent = "$25.00";
+    });
+
+    // Fin del timeline (para el grabador)
+    t(24200, function () {
+      window.__promoDone = true;
+      window.__promoDuration = (Date.now() - playStart) / 1000;
+    });
+  }
+
+  if (autoplay) {
+    // Esperar fuentes con tope (fonts.ready puede tardar mucho si Google Fonts va lento)
+    var fontsReady = document.fonts && document.fonts.ready
+      ? Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 3500); })])
+      : Promise.resolve();
+    fontsReady.then(function () { setTimeout(start, 300); });
+  } else {
+    playBtn.addEventListener("click", function () {
+      playBtn.style.display = "none";
+      start();
+      var bgm = document.getElementById("bgm"); // música de fondo (preview con audio)
+      if (bgm) bgm.play().catch(function () {});
+    });
+    window.__restart = start; // reiniciar: location.reload()
+  }
+})();
+</script>
+</body>
+</html>
