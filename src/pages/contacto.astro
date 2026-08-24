@@ -24,7 +24,7 @@ const icon = {
 };
 
 const details = [
-  { label: 'WhatsApp', value: 'Escribinos por WhatsApp', href: wa, external: true, icon: icon.whatsapp },
+  { label: 'WhatsApp', value: 'Escribinos por WhatsApp', href: wa, external: true, icon: icon.whatsapp, waLocation: 'contact_detail' },
   { label: 'Teléfono', value: siteConfig.phone, href: phoneHref, icon: icon.phone },
   { label: 'Correo', value: siteConfig.email, href: `mailto:${siteConfig.email}`, icon: icon.mail },
   // Dirección se muestra en la tarjeta "Visitanos" + el mapa, no se duplica aquí.
@@ -80,6 +80,7 @@ const socials = [
                       href={d.href}
                       target={d.external ? '_blank' : undefined}
                       rel={d.external ? 'noopener noreferrer' : undefined}
+                      data-wa-location={d.waLocation}
                       class="group block rounded-xl p-2 transition-colors hover:bg-primary/5"
                     >
                       {Row}
@@ -120,6 +121,7 @@ const socials = [
               href={wa}
               target="_blank"
               rel="noopener noreferrer"
+              data-wa-location="contact_card"
               class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 font-bold text-navy transition-transform hover:scale-[1.02]"
             >
               <span class="h-5 w-5" set:html={icon.whatsapp} /> Escribinos por WhatsApp

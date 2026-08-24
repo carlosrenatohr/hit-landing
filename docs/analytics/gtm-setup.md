@@ -41,6 +41,7 @@ Variables → New (User-Defined) → type **Data Layer Variable**:
 
 | Variable name | DL variable name | Notes |
 |---|---|---|
+| `DLV – track_query` | `track_query` | the guía/tracking number searched |
 | `DLV – track_result` | `track_result` | found/notfound/error/timeout |
 | `DLV – track_status` | `track_status` | carrier status when found |
 | `DLV – whatsapp_location` | `location` | where the click happened |
