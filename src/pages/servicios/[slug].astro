@@ -54,7 +54,7 @@ const wa = waUrlForPath(Astro.url.pathname);
 
       <div class="bg-secondary-light dark:bg-secondary-light rounded-lg p-8 text-center">
         <p class="text-lg text-gray-200 mb-6">{service.closing}</p>
-        <a href={wa} target="_blank" rel="noopener" class="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
+        <a href={wa} target="_blank" rel="noopener" data-wa-location="service_detail" class="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all">
           Escribinos por WhatsApp
         </a>
       </div>

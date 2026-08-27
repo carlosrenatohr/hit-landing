@@ -14,6 +14,7 @@ const ComingSoon = () => (
       href={WHATSAPP}
       target="_blank"
       rel="noopener"
+      data-wa-location="track_coming_soon"
       className="inline-block bg-primary text-navy py-3 px-8 rounded-md font-bold hover:bg-primary-dark transition-all"
     >
       Consultar por WhatsApp
