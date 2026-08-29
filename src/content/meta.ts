@@ -2,7 +2,7 @@ export const siteMeta = {
   title: "HIT CARGO Nicaragua | Importaciones Globales y Envíos de Miami",
   description:
     "Agencia logística de importaciones en Nicaragua. Traemos tus compras de USA, China y Panamá con entregas rápidas y seguras en todo el país.",
-  ogImage: "/og-image.jpg",
+  ogImage: "/og-image.jpeg",
   siteName: "HIT CARGO Nicaragua",
   social: {
     facebook: "https://www.facebook.com/hitcargo.ni/",
