@@ -1,0 +1,13 @@
+{
+  "name": "HIT Cargo Nicaragua",
+  "short_name": "HIT Cargo",
+  "description": "Envía tus compras desde Estados Unidos a Nicaragua",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#14213D",
+  "icons": [
+    {"src": "/brand/mark-32.png", "sizes": "32x32", "type": "image/png"},
+    {"src": "/brand/mark-180.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}

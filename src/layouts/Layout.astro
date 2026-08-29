@@ -36,10 +36,11 @@ const fullTitle = `${title} | ${siteMeta.siteName}`;
 		<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K55VC9JZ');</script>
 		<!-- End Google Tag Manager -->
 
-		<link rel="icon" href="/brand/favicon.ico" sizes="any" />
-		<link rel="icon" type="image/png" href="/brand/mark-32.png" />
-		<link rel="apple-touch-icon" href="/brand/mark-180.png" />
+<link rel="icon" href="/brand/favicon.ico" />
+	<link rel="icon" type="image/png" href="/brand/mark-32.png" sizes="32x32" />
+	<link rel="apple-touch-icon" href="/brand/mark-180.png" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="manifest" href="/manifest.json" />
     <JSONLD />
 
     <!-- SEO Meta Tags -->
@@ -57,12 +58,7 @@ const fullTitle = `${title} | ${siteMeta.siteName}`;
     <meta property="og:site_name" content={siteMeta.siteName} />
     <meta property="og:locale" content="es_NI" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@hit__cargo" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, Astro.url)} />
+    
 
     <!-- Brand book §03: navy is the strategic support/base color for browser chrome. -->
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#14213D" />
