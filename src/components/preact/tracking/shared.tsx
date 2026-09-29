@@ -139,7 +139,9 @@ export function useTracking() {
     }, TRACK_TIMEOUT_MS);
 
     try {
-      const res = await fetch(`${API_URL}/track/${encodeURIComponent(value)}`, { signal: ac.signal });
+      // ADR-013: el track es multitenant — el sitio SIEMPRE consulta la tenant de
+      // HIT con ?org=hit (el Worker cae a PUBLIC_TRACK_ORG y luego a "hit").
+      const res = await fetch(`${API_URL}/track/${encodeURIComponent(value)}?org=hit`, { signal: ac.signal });
       clearTimeout(timer);
       if (res.status === 404) {
         setView("notfound");
