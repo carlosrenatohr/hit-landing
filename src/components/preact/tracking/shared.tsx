@@ -248,6 +248,12 @@ function LoadingCard() {
 }
 
 function ResultCard({ data }: { data: PublicShipment }) {
+  // 1 pza junto al peso es redundante: "N pzs" solo a partir de 2.
+  const meta = [
+    data.serviceType ? (data.serviceType === "aereo" ? "✈️ Aéreo" : "🚢 Marítimo") : "",
+    data.pieces != null && data.pieces > 1 ? `${data.pieces} pzs` : "",
+    data.weightLb ? `${data.weightLb} lb` : "",
+  ].filter(Boolean);
   return (
     <>
       {/* Header: guía, estado destacado y servicio */}
@@ -258,11 +264,9 @@ function ResultCard({ data }: { data: PublicShipment }) {
           <span className={`inline-block rounded-full px-3 py-1 text-sm font-bold ${STATUS_PILL[data.status] ?? "bg-neutral-bg text-secondary"}`}>
             {data.statusLabel}
           </span>
-          {(data.serviceType || data.pieces || data.weightLb) && (
+          {meta.length > 0 && (
             <span className="text-sm text-neutral-text dark:text-gray-300">
-              {data.serviceType ? (data.serviceType === "aereo" ? "✈️ Aéreo" : "🚢 Marítimo") : ""}
-              {data.pieces ? ` · ${data.pieces} pzs` : ""}
-              {data.weightLb ? ` · ${data.weightLb} lb` : ""}
+              {meta.join(" · ")}
             </span>
           )}
         </div>
